@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="_nutriFitTheme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <NavMenu></NavMenu>>
+</MudLayout>
+<MudMainContent>
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        @Body
+</MudContainer>
+</MudMainContent>
+
+@code{
+
+    private readonly MudTheme _nutriFitTheme = new()
+    {
+        PaletteLight = new PaletteLight
+        {
+                Primary = "#28a745",
+                PrimaryContrastText = "#FFFFFF",
+                Secondary = "#6c757d",
+                Success = "#6fbf73",
+                Warning = "#ff9800",
+                Info = "#17a2b8",
+                Error = "#dc3545",
+                Dark = "#343a40"
+        },
+        Typography = new Typography()
+        {
+            H1 = new H1 { FontWeight = 700, FontSize = "36px" },
+            H2 = new H2 { FontWeight = 600, FontSize = "24px" },
+            H3 = new H3 { FontWeight = 700, FontSize = "28px" }
+        }
+    };
+}
