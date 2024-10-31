@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NutriFit.ApiService\NutriFit.ApiService.csproj" />
     <ProjectReference Include="..\NutriFit.MigrationsService\NutriFit.MigrationsService.csproj" />
+    <ProjectReference Include="..\NutriFit.Web.BackendForFrontend\NutriFit.Web.BackendForFrontend.csproj" />
     <ProjectReference Include="..\NutriFit.Web\NutriFit.Web.csproj" />
   </ItemGroup>
 

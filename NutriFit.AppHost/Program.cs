@@ -9,11 +9,13 @@ var apiService = builder.AddProject<Projects.NutriFit_ApiService>("apiservice")
     .WithReference(nutriFitWriteDatabase)
     .WithReference(nutriFitReadDatabase);
 
+var webBff = builder.AddProject<Projects.NutriFit_Web_BackendForFrontend>("webBff")
+    .WithReference(apiService);
+
 builder.AddProject<Projects.NutriFit_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(cache)
-    .WithReference(apiService);
-
+    .WithReference(webBff);
 
 builder.AddProject<Projects.NutriFit_MigrationsService>("migrationservice")
     .WithReference(nutriFitWriteDatabase)

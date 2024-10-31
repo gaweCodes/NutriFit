@@ -1,0 +1,6 @@
+@NutriFit.Web.BackendForFrontend_HostAddress = http://localhost:5192
+
+GET {{NutriFit.Web.BackendForFrontend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

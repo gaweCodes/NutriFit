@@ -16,6 +16,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{A7A0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriFit.MigrationsService", "NutriFit.MigrationsService\NutriFit.MigrationsService.csproj", "{28E5CDD2-259B-435D-AEF4-C18E37186484}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedKernel", "SharedKernel", "{3FE6D757-1C52-48A8-936A-A32A457AB347}"
+	ProjectSection(SolutionItems) = preProject
+		..\GaWeCodes.Workouts\SharedKernel.Domain\TypedIdValueBase.cs = ..\GaWeCodes.Workouts\SharedKernel.Domain\TypedIdValueBase.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Domain", "SharedKernel.Domain\SharedKernel.Domain.csproj", "{EECF204C-6971-4F4D-9D45-32F62C508A99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WorkoutPlans", "WorkoutPlans", "{893E763F-6261-49EB-90E3-CD15B82A8689}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriFit.Web.BackendForFrontend", "NutriFit.Web.BackendForFrontend\NutriFit.Web.BackendForFrontend.csproj", "{DD014A45-87F3-4ACB-A40F-C619351883C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,9 +57,22 @@ Global
 		{28E5CDD2-259B-435D-AEF4-C18E37186484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E5CDD2-259B-435D-AEF4-C18E37186484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E5CDD2-259B-435D-AEF4-C18E37186484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EECF204C-6971-4F4D-9D45-32F62C508A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EECF204C-6971-4F4D-9D45-32F62C508A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EECF204C-6971-4F4D-9D45-32F62C508A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EECF204C-6971-4F4D-9D45-32F62C508A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD014A45-87F3-4ACB-A40F-C619351883C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD014A45-87F3-4ACB-A40F-C619351883C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD014A45-87F3-4ACB-A40F-C619351883C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD014A45-87F3-4ACB-A40F-C619351883C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3FE6D757-1C52-48A8-936A-A32A457AB347} = {A7A078CD-1303-4A87-B4F5-94D3113F7AFE}
+		{EECF204C-6971-4F4D-9D45-32F62C508A99} = {3FE6D757-1C52-48A8-936A-A32A457AB347}
+		{893E763F-6261-49EB-90E3-CD15B82A8689} = {A7A078CD-1303-4A87-B4F5-94D3113F7AFE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCE22833-D577-4787-98D6-654AFE31E7DA}
