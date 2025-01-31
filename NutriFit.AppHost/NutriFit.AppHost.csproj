@@ -1,25 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAspireHost>true</IsAspireHost>
-    <UserSecretsId>e8a8b248-869d-42b3-9503-1092fde34dd6</UserSecretsId>
+    <UserSecretsId>20d0b062-1521-4478-afce-7217be607fc5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NutriFit.ApiService\NutriFit.ApiService.csproj" />
-    <ProjectReference Include="..\NutriFit.MigrationsService\NutriFit.MigrationsService.csproj" />
-    <ProjectReference Include="..\NutriFit.Web.BackendForFrontend\NutriFit.Web.BackendForFrontend.csproj" />
-    <ProjectReference Include="..\NutriFit.Web\NutriFit.Web.csproj" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.2" />
-    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="8.2.2" />
-    <PackageReference Include="Aspire.Hosting.Redis" Version="8.2.2" />
+    <ProjectReference Include="..\NutriFit.Web.Angular.BackendForFrontend\NutriFit.Web.Angular.BackendForFrontend.csproj" />
   </ItemGroup>
 
 </Project>
