@@ -11,7 +11,7 @@ interface WeatherForecast {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'nutrifit-root',
   imports: [RouterOutlet, globalModules],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
