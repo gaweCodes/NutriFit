@@ -20,7 +20,7 @@ FROM with-node AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["NutriFit.Web.Angular.BackendForFrontend/NutriFit.Web.Angular.BackendForFrontend.csproj", "NutriFit.Web.Angular.BackendForFrontend/"]
-COPY ["nutrifit.Web.Angular/nutrifit.Web.Angular.esproj", "nutrifit.Web.Angular/"]
+COPY ["NutriFit.Web.Angular/NutriFit.Web.Angular.esproj", "NutriFit.Web.Angular/"]
 RUN dotnet restore "./NutriFit.Web.Angular.BackendForFrontend/NutriFit.Web.Angular.BackendForFrontend.csproj"
 COPY . .
 WORKDIR "/src/NutriFit.Web.Angular.BackendForFrontend"

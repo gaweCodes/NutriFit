@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>98f03461-1d71-4365-a67b-be3cc4b8070c</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <SpaRoot>..\nutrifit.Web.Angular</SpaRoot>
+    <SpaRoot>..\NutriFit.Web.Angular</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:64754</SpaProxyServerUrl>
   </PropertyGroup>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\nutrifit.Web.Angular\nutrifit.Web.Angular.esproj">
+    <ProjectReference Include="..\NutriFit.Web.Angular\NutriFit.Web.Angular.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\NutriFit.ServiceDefaults\NutriFit.ServiceDefaults.csproj" />

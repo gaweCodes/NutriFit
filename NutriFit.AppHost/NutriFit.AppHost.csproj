@@ -13,9 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NutriFit.Core\NutriFit.Core.csproj" />
+    <ProjectReference Include="..\NutriFit.MigrationService\NutriFit.MigrationService.csproj" />
     <ProjectReference Include="..\NutriFit.Web.Angular.BackendForFrontend\NutriFit.Web.Angular.BackendForFrontend.csproj" />
   </ItemGroup>
 
