@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #007bff;
+$navbar-light-color: black;
+$navbar-light-hover-color: darken($primary, 25%);
+$navbar-light-active-color: $primary;
+$navbar-light-brand-color: $primary;
+$navbar-light-brand-hover-color: $navbar-light-hover-color;
+$navbar-light-toggler-border-color: $primary;
+$navbar-light-icon-color: $primary;
+
+@import "bootstrap/scss/bootstrap";
+
+html,
+body {
+  background-color: #f8f9fa;
+}
+
+.background-white {
+  background-color: white;
+}
+
+h1.card-title {
+  color: $primary;
+}
