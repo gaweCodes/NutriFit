@@ -1,4 +1,4 @@
-namespace NutriFit.Server;
+namespace NutriFit.Web.Angular.BackendForFrontend;
 
 public class WeatherForecast
 {
