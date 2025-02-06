@@ -3,23 +3,23 @@ var builder = DistributedApplication.CreateBuilder(args);
 var postgresDbServer = builder.AddPostgres("postgres")
     .WithPgWeb()
     .WithLifetime(ContainerLifetime.Persistent);
-var nutriFitReadDatabase = postgresDbServer.AddDatabase("nutrifit-read", "nutrifit-read");
-var nutriFitWriteDatabase = postgresDbServer.AddDatabase("nutrifit-write", "nutriFit-write");
+var nutritionReadDatabase = postgresDbServer.AddDatabase("nutrition-read", "nutrition-read");
+var nutritionWriteDatabase = postgresDbServer.AddDatabase("nutrition-write", "nutrition-write");
 
 var migrator = builder.AddProject<Projects.NutriFit_MigrationService>("nutrifit-migration-service")
-    .WithReference(nutriFitReadDatabase)
-    .WithReference(nutriFitWriteDatabase)
-    .WaitFor(nutriFitReadDatabase)
-    .WaitFor(nutriFitWriteDatabase)
-    .WaitFor(postgresDbServer); 
+    .WithReference(nutritionReadDatabase)
+    .WithReference(nutritionWriteDatabase)
+    .WaitFor(nutritionReadDatabase)
+    .WaitFor(nutritionWriteDatabase)
+    .WaitFor(postgresDbServer);
 
-var nutriFitCore = builder.AddProject<Projects.NutriFit_Core>("nutrifit-core")
-    .WithReference(nutriFitReadDatabase)
-    .WithReference(nutriFitWriteDatabase)
+var nutritionApi = builder.AddProject<Projects.Nutrition_RestApi>("nutrition-rest-api")
+    .WithReference(nutritionReadDatabase)
+    .WithReference(nutritionWriteDatabase)
     .WaitForCompletion(migrator);
 
 builder.AddProject<Projects.NutriFit_Web_Angular_BackendForFrontend>("nutrifit-web-angular-backendforfrontend")
-    .WithReference(nutriFitCore)
-    .WaitFor(nutriFitCore);
+    .WithReference(nutritionApi)
+    .WaitFor(nutritionApi);
 
 builder.Build().Run();

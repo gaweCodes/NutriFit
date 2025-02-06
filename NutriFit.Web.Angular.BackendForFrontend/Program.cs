@@ -3,7 +3,7 @@ using NutriFit.ServiceDefaults;
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddControllers();
-builder.Services.AddHttpClient("NutriFitCoreClient", static client => client.BaseAddress = new("https+http://nutrifit-core"));
+builder.Services.AddHttpClient("Nutrition", static client => client.BaseAddress = new("https+http://nutrition-rest-api"));
 
 var app = builder.Build();
 app.MapDefaultEndpoints();

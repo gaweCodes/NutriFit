@@ -12,19 +12,19 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["NutriFit.Core/NutriFit.Core.csproj", "NutriFit.Core/"]
-RUN dotnet restore "./NutriFit.Core/NutriFit.Core.csproj"
+COPY ["Nutrition.RestApi/Nutrition.RestApi.csproj", "Nutrition.RestApi/"]
+RUN dotnet restore "./Nutrition.RestApi/Nutrition.RestApi.csproj"
 COPY . .
-WORKDIR "/src/NutriFit.Core"
-RUN dotnet build "./NutriFit.Core.csproj" -c $BUILD_CONFIGURATION -o /app/build
+WORKDIR "/src/Nutrition.RestApi"
+RUN dotnet build "./Nutrition.RestApi.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./NutriFit.Core.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./Nutrition.RestApi.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "NutriFit.Core.dll"]
+ENTRYPOINT ["dotnet", "Nutrition.RestApi.dll"]

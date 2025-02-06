@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Nutrifit.Core.Controllers;
+namespace Nutrition.RestApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]

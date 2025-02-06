@@ -12,7 +12,7 @@ public class MenuPlansController : ControllerBase
     public MenuPlansController(ILogger<MenuPlansController> logger, IHttpClientFactory httpFactory)
     {
         _logger = logger;
-        _httpClient = httpFactory.CreateClient("NutriFitCoreClient");
+        _httpClient = httpFactory.CreateClient("Nutrition");
     }
 
     [HttpGet]

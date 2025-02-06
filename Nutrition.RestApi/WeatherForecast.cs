@@ -1,4 +1,4 @@
-namespace Nutrifit.Core;
+namespace Nutrition.RestApi;
 
 public class WeatherForecast
 {
