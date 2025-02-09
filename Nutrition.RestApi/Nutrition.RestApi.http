@@ -1,6 +1,0 @@
-@Nutrition.RestApi_HostAddress = http://localhost:5030
-
-GET {{Nutrition.RestApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

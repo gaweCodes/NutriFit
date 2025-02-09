@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Nutrition.Infrastructure.Write.Database;
+using Nutrition.Infrastructure.Read.Database;
 
 #nullable disable
 
-namespace NutriFit.MigrationService.MigrationsNutritionWrite
+namespace NutriFit.MigrationService.MigrationsNutritionRead
 {
-    [DbContext(typeof(NutritionWriteDbContext))]
-    [Migration("20250205164134_Init")]
-    partial class Init
+    [DbContext(typeof(NutritionReadDbContext))]
+    [Migration("20250208144227_CreatedReadModel")]
+    partial class CreatedReadModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,19 +25,18 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Nutrition.Domain.Recipes.Recipe", b =>
+            modelBuilder.Entity("Nutrition.Infrastructure.Read.DatabaseObjects.RecipeDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("_name")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Name");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("RecipeDetails", (string)null);
                 });
 #pragma warning restore 612, 618
         }

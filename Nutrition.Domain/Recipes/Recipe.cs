@@ -1,4 +1,5 @@
-﻿using SharedKernel.Domain;
+﻿using Nutrition.Domain.Recipes.Events;
+using SharedKernel.Domain;
 
 namespace Nutrition.Domain.Recipes;
 
@@ -16,8 +17,9 @@ public class Recipe : Entity, IAggregateRoot
     {
         Id = new RecipeId(Guid.NewGuid());
         _name = name;
+        AddDomainEvent(new RecipeCreatedDomainEvent(Id.Value, _name));
     }
-    internal static Recipe CreateNew(string name)
+    public static Recipe CreateNew(string name)
     {
         return new(name);
     }

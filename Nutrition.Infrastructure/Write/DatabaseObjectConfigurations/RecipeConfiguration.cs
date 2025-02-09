@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nutrition.Domain.Recipes;
 
-namespace Nutrition.Infrastructure.DatabaseObjectConfigurations;
+namespace Nutrition.Infrastructure.Write.DatabaseObjectConfigurations;
 
 internal class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
 {
@@ -15,6 +15,6 @@ internal class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
             .ValueGeneratedNever();
         builder.Property("_name")
             .HasColumnName("Name")
-            .IsRequired(); 
+            .IsRequired();
     }
 }

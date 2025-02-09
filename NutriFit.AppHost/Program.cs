@@ -14,6 +14,7 @@ var migrator = builder.AddProject<Projects.NutriFit_MigrationService>("nutrifit-
     .WaitFor(postgresDbServer);
 
 var nutritionApi = builder.AddProject<Projects.Nutrition_RestApi>("nutrition-rest-api")
+    .WithExternalHttpEndpoints()
     .WithReference(nutritionReadDatabase)
     .WithReference(nutritionWriteDatabase)
     .WaitForCompletion(migrator);

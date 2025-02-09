@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
-using Nutrition.Infrastructure.Databases;
+using Nutrition.Infrastructure.Read.Database;
+using Nutrition.Infrastructure.Write.Database;
 
 namespace NutriFit.MigrationService;
 

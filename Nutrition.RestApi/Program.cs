@@ -1,25 +1,19 @@
 using NutriFit.ServiceDefaults;
+using Nutrition.Application.Recipes.Commands.CreateRecipe;
+using Nutrition.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(CreateRecipeCommand).Assembly, typeof(NutritionInfrastructureServiceColectionExtensions).Assembly));
+builder.Services.AddNutritionInfrastructure(builder.Configuration);
 
 var app = builder.Build();
-
 app.MapDefaultEndpoints();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
+if (app.Environment.IsDevelopment()) app.MapOpenApi();
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
+app.UseRouting();
 
 app.Run();

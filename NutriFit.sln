@@ -37,6 +37,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nutrition.RestApi", "Nutrit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Domain", "SharedKernel.Domain\SharedKernel.Domain.csproj", "{F067E3AF-6D8F-409A-857F-FDB60E0AE3D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Application", "SharedKernel.Application\SharedKernel.Application.csproj", "{64C2B1F7-E281-492D-A21F-B925A7AF5429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel.Infrastructure", "SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj", "{FA01F1BC-81D9-4937-9DB1-7C3A837F9035}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,14 @@ Global
 		{F067E3AF-6D8F-409A-857F-FDB60E0AE3D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F067E3AF-6D8F-409A-857F-FDB60E0AE3D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F067E3AF-6D8F-409A-857F-FDB60E0AE3D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64C2B1F7-E281-492D-A21F-B925A7AF5429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C2B1F7-E281-492D-A21F-B925A7AF5429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64C2B1F7-E281-492D-A21F-B925A7AF5429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64C2B1F7-E281-492D-A21F-B925A7AF5429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA01F1BC-81D9-4937-9DB1-7C3A837F9035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA01F1BC-81D9-4937-9DB1-7C3A837F9035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA01F1BC-81D9-4937-9DB1-7C3A837F9035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA01F1BC-81D9-4937-9DB1-7C3A837F9035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,5 +114,7 @@ Global
 		{CD528982-4B4A-424A-8EE1-103999DF4176} = {D03BABAE-F3E4-48E2-B3A7-FFAE890EB771}
 		{5913451B-2AE2-4FCF-AEE4-CE5D961BDBD5} = {D03BABAE-F3E4-48E2-B3A7-FFAE890EB771}
 		{F067E3AF-6D8F-409A-857F-FDB60E0AE3D5} = {DC277939-895B-4DAE-B344-1B0355D17ADE}
+		{64C2B1F7-E281-492D-A21F-B925A7AF5429} = {DC277939-895B-4DAE-B344-1B0355D17ADE}
+		{FA01F1BC-81D9-4937-9DB1-7C3A837F9035} = {DC277939-895B-4DAE-B344-1B0355D17ADE}
 	EndGlobalSection
 EndGlobal

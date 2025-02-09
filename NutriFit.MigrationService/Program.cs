@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using NutriFit.MigrationService;
 using NutriFit.ServiceDefaults;
-using Nutrition.Infrastructure.Databases;
+using Nutrition.Infrastructure.Read.Database;
+using Nutrition.Infrastructure.Write.Database;
 
 var builder = Host.CreateApplicationBuilder(args);
 

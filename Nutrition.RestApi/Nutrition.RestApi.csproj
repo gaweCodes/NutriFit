@@ -9,12 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\NutriFit.ServiceDefaults\NutriFit.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Nutrition.Application\Nutrition.Application.csproj" />
+    <ProjectReference Include="..\Nutrition.Domain\Nutrition.Domain.csproj" />
+    <ProjectReference Include="..\Nutrition.Infrastructure\Nutrition.Infrastructure.csproj" />
+    <ProjectReference Include="..\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

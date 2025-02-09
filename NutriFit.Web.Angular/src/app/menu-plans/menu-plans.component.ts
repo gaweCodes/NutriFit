@@ -25,7 +25,7 @@ export class MenuPlansComponent implements OnInit {
   }
 
   private getForecasts(): void {
-    this._httpClient.get<WeatherForecast[]>('/api/menuplans').subscribe(
+    this._httpClient.get<WeatherForecast[]>('/api/recipes').subscribe(
       (result) => {
         this.forecasts = result;
       },
