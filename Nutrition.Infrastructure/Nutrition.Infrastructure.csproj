@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Nutrition.Application\Nutrition.Application.csproj" />
     <ProjectReference Include="..\Nutrition.Domain\Nutrition.Domain.csproj" />
     <ProjectReference Include="..\SharedKernel.Infrastructure\SharedKernel.Infrastructure.csproj" />
   </ItemGroup>

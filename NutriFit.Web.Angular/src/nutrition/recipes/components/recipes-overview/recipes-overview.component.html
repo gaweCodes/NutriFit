@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-header">
+    <h1 class="card-title">Rezepte</h1>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-10"></div>
+      <div class="col-md-2">
+        <a class="btn btn-primary" [routerLink]="'create'">Rezept erfassen</a>
+      </div>
+    </div>
+    <div *ngIf="recipes$ | async as recipes" class="row">
+      <div *ngFor="let recipe of recipes" class="col-md-3">
+        <a [routerLink]="recipe.id">{{ recipe.name }}</a>
+      </div>
+    </div>
+  </div>
+</div>

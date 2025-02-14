@@ -22,7 +22,7 @@ namespace NutriFit.MigrationService.MigrationsNutritionRead
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Nutrition.Infrastructure.Read.DatabaseObjects.RecipeDetail", b =>
+            modelBuilder.Entity("Nutrition.Application.Recipes.Queries.Models.RecipeDetail", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
@@ -34,6 +34,20 @@ namespace NutriFit.MigrationService.MigrationsNutritionRead
                     b.HasKey("Id");
 
                     b.ToTable("RecipeDetails", (string)null);
+                });
+
+            modelBuilder.Entity("Nutrition.Application.Recipes.Queries.Models.RecipeOverview", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RecipeOverviews", (string)null);
                 });
 #pragma warning restore 612, 618
         }

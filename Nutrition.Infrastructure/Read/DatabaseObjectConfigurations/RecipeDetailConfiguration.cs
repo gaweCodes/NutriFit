@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nutrition.Infrastructure.Read.DatabaseObjects;
+using Nutrition.Application.Recipes.Queries.Models;
 
 namespace Nutrition.Infrastructure.Read.DatabaseObjectConfigurations;
 

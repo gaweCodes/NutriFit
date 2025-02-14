@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nutrition.Domain\Nutrition.Domain.csproj" />
-    <ProjectReference Include="..\Nutrition.Infrastructure\Nutrition.Infrastructure.csproj" />
     <ProjectReference Include="..\SharedKernel.Application\SharedKernel.Application.csproj" />
   </ItemGroup>
 

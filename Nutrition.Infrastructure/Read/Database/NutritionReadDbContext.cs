@@ -8,6 +8,7 @@ public class NutritionReadDbContext(DbContextOptions<NutritionReadDbContext> opt
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new RecipeDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new RecipeOverviewConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

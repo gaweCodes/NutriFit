@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { globalModules } from '../../GlobalModules';
+import { globalModules } from '../GlobalModules';
 
 @Component({
   selector: 'nutrifit-dashboard',
