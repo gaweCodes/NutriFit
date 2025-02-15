@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using NutriFit.Web.Angular.BackendForFrontend.Dtos.Read;
-using NutriFit.Web.Angular.BackendForFrontend.Dtos.Write;
+using NutriFit.Web.Angular.BackendForFrontend.Dtos.Recipes;
 
 namespace NutriFit.Web.Angular.BackendForFrontend.Controllers;
 
@@ -10,24 +9,31 @@ public class RecipesController(IHttpClientFactory httpFactory) : ControllerBase
 {
     private readonly HttpClient _httpClient = httpFactory.CreateClient("Nutrition");
 
+    [HttpPost]
+    public async Task<Guid> CreateAsync(RecipeCreationDto recipeToCreate)
+    {
+        var response = await _httpClient.PostAsJsonAsync("recipes", recipeToCreate);
+        return await response.Content.ReadFromJsonAsync<Guid>();
+    }
+
     [HttpGet]
-    public async Task<List<RecipeOverviewDto>> Get()
+    public async Task<List<RecipeOverviewDto>> GetAsync()
     {
         var response = await _httpClient.GetAsync("Recipes");
         return (await response.Content.ReadFromJsonAsync<List<RecipeOverviewDto>>()) ?? [];
     }
 
     [HttpGet("{id}")]
-    public async Task<RecipeDetailDto> GetById(Guid id)
+    public async Task<RecipeDto> GetByIdAsync(Guid id)
     {
         var response = await _httpClient.GetAsync($"Recipes/{id}");
-        return (await response.Content.ReadFromJsonAsync<RecipeDetailDto>())!;
+        return (await response.Content.ReadFromJsonAsync<RecipeDto>())!;
     }
 
-    [HttpPost]
-    public async Task<Guid> Post(RecipeWriteDto recipeWriteDto)
+    [HttpPut("{id}")]
+    public async Task<Guid> UpdateAsync(Guid id, RecipeDto recipeToUpdate)
     {
-        var response = await _httpClient.PostAsJsonAsync("recipes", recipeWriteDto);
+        var response = await _httpClient.PutAsJsonAsync($"Recipes/{id}", recipeToUpdate);
         return await response.Content.ReadFromJsonAsync<Guid>();
     }
 }

@@ -9,7 +9,6 @@ import { Observable, shareReplay } from 'rxjs';
   templateUrl: './recipes-overview.component.html',
   styleUrl: './recipes-overview.component.scss',
   imports: [globalModules],
-  providers: [RecipeService],
 })
 export class RecipesOverviewComponent {
   private readonly recipeService = inject(RecipeService);

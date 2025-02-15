@@ -6,14 +6,26 @@ import { RecipeCreationComponent } from '../nutrition/recipes/components/recipe-
 import { RecipeDetailComponent } from '../nutrition/recipes/components/recipe-detail/recipe-detail.component';
 import { WorkoutsOverviewComponent } from '../workout/workouts/components/workouts-overview/workouts-overview.component';
 import { ExercisesOverviewComponent } from '../workout/exercises/components/exercises-overview/exercises-overview.component';
+import { RecipeService } from '../nutrition/recipes/services/recipe-service';
+import { RecipeModificationComponent } from '../nutrition/recipes/components/recipe-modification/recipe-modification.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'menu-plans', component: MenuPlansOverviewComponent },
-  { path: 'recipes', component: RecipesOverviewComponent },
+  {
+    path: 'recipes',
+    providers: [RecipeService],
+    children: [
+      { path: '', component: RecipesOverviewComponent },
+      { path: 'create', component: RecipeCreationComponent },
+      { path: ':id', component: RecipeDetailComponent },
+      { path: ':id/edit', component: RecipeModificationComponent },
+    ],
+  },
   { path: 'recipes/create', component: RecipeCreationComponent },
   { path: 'recipes/:id', component: RecipeDetailComponent },
+  { path: 'recipes/:id/edit', component: RecipeModificationComponent },
   { path: 'workouts', component: WorkoutsOverviewComponent },
   { path: 'exercises', component: ExercisesOverviewComponent },
 ];

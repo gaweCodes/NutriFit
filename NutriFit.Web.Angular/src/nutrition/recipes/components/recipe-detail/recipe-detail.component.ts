@@ -9,7 +9,7 @@ import {
   shareReplay,
   switchMap,
 } from 'rxjs';
-import { RecipeDetailDto } from '../../dtos/recipe-detail';
+import { RecipeDto } from '../../dtos/recipe';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,7 +17,6 @@ import { ActivatedRoute } from '@angular/router';
   imports: [globalModules],
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.scss',
-  providers: [RecipeService],
 })
 export class RecipeDetailComponent {
   private readonly recipeService = inject(RecipeService);
@@ -27,8 +26,8 @@ export class RecipeDetailComponent {
     distinctUntilChanged()
   );
 
-  public readonly recipe$: Observable<RecipeDetailDto> = this.id$.pipe(
-    switchMap((id) => (id ? this.recipeService.getRecipeDetail(id) : EMPTY)),
+  public readonly recipe$: Observable<RecipeDto> = this.id$.pipe(
+    switchMap((id) => (id ? this.recipeService.getRecipe(id) : EMPTY)),
     shareReplay(1)
   );
 }

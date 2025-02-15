@@ -1,8 +1,19 @@
-<div class="card">
+<div *ngIf="recipe$ | async as recipe" class="card">
   <div class="card-header">
-    <h1 *ngIf="recipe$ | async as recipe" class="card-title">
+    <h1 class="card-title">
       {{ recipe.name }}
     </h1>
   </div>
-  <div class="card-body"></div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-10">
+        <p class="card-text">
+          aasdfasdfasdfasd dsfasdfas asfd asdfdasdfsaf asdf asdf asdf
+        </p>
+      </div>
+      <div class="col-md-2">
+        <a class="btn btn-primary" [routerLink]="'edit'">Rezept bearbeiten </a>
+      </div>
+    </div>
+  </div>
 </div>

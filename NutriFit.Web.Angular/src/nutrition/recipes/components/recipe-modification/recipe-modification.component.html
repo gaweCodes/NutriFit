@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h1 class="card-title">Rezept erfassen</h1>
+    <h1 class="card-title">Rezept bearbeiten</h1>
   </div>
   <div class="card-body">
     <form [formGroup]="recipeForm">
@@ -26,10 +26,10 @@
       <button
         type="button"
         class="btn btn-primary me-2"
-        (click)="createRecipe()"
+        (click)="updateRecipe()"
         [disabled]="recipeForm.invalid"
       >
-        Erfassen
+        Speichern
       </button>
       <a class="btn btn-secondary" [routerLink]="'/recipes'">Verwerfen</a>
     </form>

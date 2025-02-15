@@ -3,7 +3,7 @@
 public class RecipeDetail
 {
     public Guid Id { get; }
-    public string Name { get; }
+    public string Name { get; set; }
 
     private RecipeDetail()
     {

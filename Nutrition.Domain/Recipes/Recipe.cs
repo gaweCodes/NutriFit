@@ -19,8 +19,10 @@ public class Recipe : Entity, IAggregateRoot
         _name = name;
         AddDomainEvent(new RecipeCreatedDomainEvent(Id.Value, _name));
     }
-    public static Recipe CreateNew(string name)
+    public static Recipe CreateNew(string name) => new(name);
+    public void UpdateRecipe(string name)
     {
-        return new(name);
+        _name = name;
+        AddDomainEvent(new RecipeUpdatedDomainEvent(Id.Value, name));
     }
 }

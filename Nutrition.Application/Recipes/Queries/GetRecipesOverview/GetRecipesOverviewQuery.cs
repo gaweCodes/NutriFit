@@ -1,5 +1,4 @@
-﻿using Nutrition.Application.Recipes.Queries.GetRecipeDetail;
-using SharedKernel.Application;
+﻿using SharedKernel.Application;
 
 namespace Nutrition.Application.Recipes.Queries.GetRecipesOverview;
 

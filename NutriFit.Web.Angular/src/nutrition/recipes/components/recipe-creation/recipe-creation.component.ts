@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { globalModules } from '../../../../GlobalModules';
@@ -12,7 +11,6 @@ import { RecipeService } from '../../services/recipe-service';
   imports: [globalModules],
   templateUrl: './recipe-creation.component.html',
   styleUrl: './recipe-creation.component.scss',
-  providers: [RecipeService],
 })
 export class RecipeCreationComponent {
   private readonly formBuilder = inject(NonNullableFormBuilder);

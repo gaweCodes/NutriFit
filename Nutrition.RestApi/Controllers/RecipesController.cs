@@ -1,8 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nutrition.Application.Recipes.Commands.CreateRecipe;
-using Nutrition.Application.Recipes.Queries.GetRecipeDetail;
+using Nutrition.Application.Recipes.Commands.UpdateRecipe;
+using Nutrition.Application.Recipes.Queries.GetRecipe;
 using Nutrition.Application.Recipes.Queries.GetRecipesOverview;
+using Nutrition.RestApi.Dtos.Recipes;
 
 namespace Nutrition.RestApi.Controllers;
 
@@ -10,25 +12,31 @@ namespace Nutrition.RestApi.Controllers;
 [Route("[controller]")]
 public class RecipesController(IMediator mediator) : ControllerBase
 {
+    [HttpPost]
+    public async Task<Guid> CreateRecipeAsync(CreateRecipeCommandDataDto createRecipeCommandData)
+    {
+        var recipeId = await mediator.Send(new CreateRecipeCommand(createRecipeCommandData.Name));
+        return recipeId;
+    }
+
     [HttpGet]
     public async Task<ActionResult<List<RecipeOverviewDto>>> GetAsync()
     {
         var recipeOverviews = await mediator.Send(new GetRecipesOverviewQuery());
-        
         return recipeOverviews;
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<RecipeDetailDto>> GetByIdAsync(Guid id) 
+    public async Task<ActionResult<RecipeDto>> GetByIdAsync(Guid id) 
     {
-        var recipeDetailDto = await mediator.Send(new GetRecipeDetailQuery(id));
-        return recipeDetailDto is null ? (ActionResult<RecipeDetailDto>)NotFound(id) : Ok(recipeDetailDto);
+        var recipeDto = await mediator.Send(new GetRecipeQuery(id));
+        return recipeDto is null ? (ActionResult<RecipeDto>)NotFound(id) : Ok(recipeDto);
     }
 
-    [HttpPost]
-    public async Task<Guid> CreateRecipeAsync(CreateRecipeCommand createRecipeCommand)
+    [HttpPut("{id}")]
+    public async Task<Guid> UpdateRecipeAsync(Guid id, UpdateRecipeCommandDataDto updateRecipeCommandData)
     {
-        var recipeId = await mediator.Send(createRecipeCommand);
+        var recipeId = await mediator.Send(new UpdateRecipeCommand(id, updateRecipeCommandData.Name));
         return recipeId;
     }
 }
