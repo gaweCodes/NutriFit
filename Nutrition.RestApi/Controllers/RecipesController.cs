@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Nutrition.Application.Recipes.Commands.CreateRecipe;
+using Nutrition.Application.Recipes.Commands.DeleteRecipe;
 using Nutrition.Application.Recipes.Commands.UpdateRecipe;
 using Nutrition.Application.Recipes.Queries.GetRecipe;
 using Nutrition.Application.Recipes.Queries.GetRecipesOverview;
@@ -38,5 +39,12 @@ public class RecipesController(IMediator mediator) : ControllerBase
     {
         var recipeId = await mediator.Send(new UpdateRecipeCommand(id, updateRecipeCommandData.Name));
         return recipeId;
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteRecipeAsync(Guid id)
+    {
+        await mediator.Send(new DeleteRecipeCommand(id));
+        return NoContent();
     }
 }

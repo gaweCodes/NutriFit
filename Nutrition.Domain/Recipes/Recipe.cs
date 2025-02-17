@@ -7,6 +7,7 @@ public class Recipe : Entity, IAggregateRoot
 {
     public RecipeId Id { get; }
     private string _name;
+    private bool _isDeleted;
 
     private Recipe() 
     { 
@@ -24,5 +25,11 @@ public class Recipe : Entity, IAggregateRoot
     {
         _name = name;
         AddDomainEvent(new RecipeUpdatedDomainEvent(Id.Value, name));
+    }
+
+    public void Delete()
+    {
+        _isDeleted = true;
+        AddDomainEvent(new RecipeDeletedDomainEvent(Id.Value));
     }
 }

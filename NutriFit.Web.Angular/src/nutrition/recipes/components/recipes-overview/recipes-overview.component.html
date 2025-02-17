@@ -9,9 +9,25 @@
         <a class="btn btn-primary" [routerLink]="'create'">Rezept erfassen</a>
       </div>
     </div>
-    <div *ngIf="recipes$ | async as recipes" class="row">
-      <div *ngFor="let recipe of recipes" class="col-md-3">
-        <a [routerLink]="recipe.id">{{ recipe.name }}</a>
+    <div *ngIf="recipes$ | async as recipes" class="row mt-2">
+      <div *ngFor="let recipe of recipes" class="col-md-3 pb-2 px-1">
+        <div class="card w-100">
+          <div clas="card-header">
+            <h2 class="card-title">
+              <a
+                [routerLink]="recipe.id"
+                class="link-primary link-underline-opacity-25 link-underline-opacity-100-hover"
+                >{{ recipe.name }}</a
+              >
+            </h2>
+          </div>
+          <a [routerLink]="recipe.id">
+            <img
+              alt="Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild."
+              src="RezeptBild.jpg"
+              class="card-img-bottom"
+          /></a>
+        </div>
       </div>
     </div>
   </div>

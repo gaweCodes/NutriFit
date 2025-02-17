@@ -6,13 +6,23 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-md-10">
-        <p class="card-text">
-          aasdfasdfasdfasd dsfasdfas asfd asdfdasdfsaf asdf asdf asdf
-        </p>
+      <div class="col-md-3">
+        <img
+          alt="Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild."
+          src="RezeptBild.jpg"
+          class="w-100"
+        />/>
       </div>
-      <div class="col-md-2">
-        <a class="btn btn-primary" [routerLink]="'edit'">Rezept bearbeiten </a>
+      <div class="col-md-6">
+        Irgend ein Beschreibungstext des Rezptes. Irgend ein Beschreibungstext
+        des Rezptes. Irgend ein Beschreibungstext des Rezptes. Irgend ein
+        Beschreibungstext des Rezptes. Irgend ein Beschreibungstext des Rezptes.
+      </div>
+      <div class="col-md-3">
+        <a class="btn btn-primary me-1" [routerLink]="'edit'">Bearbeiten </a>
+        <button type="button" class="btn btn-danger" (click)="deleteRecipe()">
+          Löschen
+        </button>
       </div>
     </div>
   </div>

@@ -36,4 +36,11 @@ public class RecipesController(IHttpClientFactory httpFactory) : ControllerBase
         var response = await _httpClient.PutAsJsonAsync($"Recipes/{id}", recipeToUpdate);
         return await response.Content.ReadFromJsonAsync<Guid>();
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> DeleteAsync(Guid id)
+    {
+        await _httpClient.DeleteAsync($"Recipes/{id}");
+        return NoContent();
+    }
 }
