@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { globalModules } from '../../../GlobalModules';
+import { NgClass, NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'nutrifit-link',
-  imports: [globalModules],
+  imports: [NgClass, NgIf, RouterLink],
   templateUrl: './link.component.html',
   styleUrl: './link.component.scss',
 })

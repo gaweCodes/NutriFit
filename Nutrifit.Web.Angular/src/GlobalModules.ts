@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutCardComponent } from './shared/components/layout-card/layout-card.component';
 import { LinkComponent } from './shared/components/link/link.component';
 import { ButtonComponent } from './shared/components/button/button.component';
+import { ImageCardComponent } from './shared/components/image-card/image-card.component';
 
 export const globalModules = [
   CommonModule,
@@ -13,4 +14,5 @@ export const globalModules = [
   LayoutCardComponent,
   LinkComponent,
   ButtonComponent,
+  ImageCardComponent,
 ];

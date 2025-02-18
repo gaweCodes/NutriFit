@@ -13,23 +13,13 @@
     </div>
     <div *ngIf="recipes$ | async as recipes" class="row">
       <div *ngFor="let recipe of recipes" class="col-md-3 pb-2 px-1">
-        <div class="card w-100">
-          <div clas="card-header">
-            <h2 class="card-title">
-              <a
-                [routerLink]="recipe.id"
-                class="link-primary link-underline-opacity-25 link-underline-opacity-100-hover"
-                >{{ recipe.name }}</a
-              >
-            </h2>
-          </div>
-          <a [routerLink]="recipe.id">
-            <img
-              alt="Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild."
-              src="RezeptBild.jpg"
-              class="card-img-bottom"
-          /></a>
-        </div>
+        <nutrifit-image-card
+          [imgLink]="{ text: recipe.name, href: recipe.id }"
+          [imgSrc]="{
+            alt: 'Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild.',
+            src: 'RezeptBild.jpg'
+          }"
+        ></nutrifit-image-card>
       </div>
     </div>
   </ng-container>
