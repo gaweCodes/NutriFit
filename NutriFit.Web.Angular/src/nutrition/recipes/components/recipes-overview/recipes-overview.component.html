@@ -1,15 +1,17 @@
-<div class="card">
-  <div class="card-header">
-    <h1 class="card-title">Rezepte</h1>
-  </div>
-  <div class="card-body">
-    <div class="row">
+<nutrifit-layout-card pageTitle="Rezepte">
+  <ng-container>
+    <div class="row mb-2">
       <div class="col-md-10"></div>
-      <div class="col-md-2">
-        <a class="btn btn-primary" [routerLink]="'create'">Rezept erfassen</a>
+      <div class="col-md-2 d-flex justify-content-end">
+        <nutrifit-link
+          text="Erfassen"
+          color="primary"
+          appearance="button"
+          link="create"
+        />
       </div>
     </div>
-    <div *ngIf="recipes$ | async as recipes" class="row mt-2">
+    <div *ngIf="recipes$ | async as recipes" class="row">
       <div *ngFor="let recipe of recipes" class="col-md-3 pb-2 px-1">
         <div class="card w-100">
           <div clas="card-header">
@@ -30,5 +32,5 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </ng-container>
+</nutrifit-layout-card>

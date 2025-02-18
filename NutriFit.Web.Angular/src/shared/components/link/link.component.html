@@ -1,0 +1,15 @@
+<a
+  *ngIf="appearance === 'text'"
+  [routerLink]="link"
+  class="link-{{
+    color
+  }}link-underline-opacity-25 link-underline-opacity-100-hover"
+  >{{ text }}</a
+>
+<a
+  *ngIf="appearance === 'button'"
+  [routerLink]="link"
+  [ngClass]="{ 'ms-1': color !== 'primary' }"
+  class="btn btn-{{ color }}"
+  >{{ text }}</a
+>

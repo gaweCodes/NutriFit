@@ -1,29 +1,32 @@
-<div *ngIf="recipe$ | async as recipe" class="card">
-  <div class="card-header">
-    <h1 class="card-title">
-      {{ recipe.name }}
-    </h1>
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="col-md-3">
-        <img
-          alt="Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild."
-          src="RezeptBild.jpg"
-          class="w-100"
-        />/>
-      </div>
-      <div class="col-md-6">
-        Irgend ein Beschreibungstext des Rezptes. Irgend ein Beschreibungstext
-        des Rezptes. Irgend ein Beschreibungstext des Rezptes. Irgend ein
-        Beschreibungstext des Rezptes. Irgend ein Beschreibungstext des Rezptes.
-      </div>
-      <div class="col-md-3">
-        <a class="btn btn-primary me-1" [routerLink]="'edit'">Bearbeiten </a>
-        <button type="button" class="btn btn-danger" (click)="deleteRecipe()">
-          Löschen
-        </button>
-      </div>
+<nutrifit-layout-card
+  *ngIf="recipe$ | async as recipe"
+  [pageTitle]="recipe.name"
+>
+  <div class="row">
+    <div class="col-md-3">
+      <img
+        alt="Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild."
+        src="RezeptBild.jpg"
+        class="w-100"
+      />/>
+    </div>
+    <div class="col-md-6">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut odio soluta
+      laborum vel explicabo illum quas at ea ut, quisquam iure quam vitae omnis
+      quae. Eligendi dolor dolore voluptatibus impedit?
+    </div>
+    <div class="col-md-3 d-flex justify-content-end">
+      <nutrifit-link
+        appearance="button"
+        color="primary"
+        link="edit"
+        text="Bearbeiten"
+      ></nutrifit-link>
+      <nutrifit-button
+        text="Löschen"
+        color="danger"
+        (clicked)="deleteRecipe()"
+      ></nutrifit-button>
     </div>
   </div>
-</div>
+</nutrifit-layout-card>

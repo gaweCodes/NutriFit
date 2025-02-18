@@ -1,0 +1,14 @@
+@import "../../../styles.scss";
+
+h1.card-title {
+  color: $primary;
+}
+
+hr {
+  margin: 0;
+  height: 3px;
+  color: $primary;
+  background-color: $primary;
+  border-width: 0;
+  opacity: 1;
+}

@@ -17,10 +17,3 @@ body {
 .background-white {
   background-color: white;
 }
-
-h1.card-title {
-  color: $primary;
-}
-
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';

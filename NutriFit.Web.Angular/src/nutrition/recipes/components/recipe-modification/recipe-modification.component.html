@@ -1,37 +1,36 @@
-<div class="card">
-  <div class="card-header">
-    <h1 class="card-title">Rezept bearbeiten</h1>
-  </div>
-  <div class="card-body">
-    <form [formGroup]="recipeForm">
-      <div class="form-floating mb-3">
-        <input
-          id="name"
-          class="form-control"
-          type="text"
-          formControlName="name"
-          required
-        />
-        <label for="name" class="form-label">Rezeptname</label>
-        <div
-          class="alert alert-danger"
-          role="alert"
-          *ngIf="
-            recipeForm.get('name')?.invalid && recipeForm.get('name')?.touched
-          "
-        >
-          Der Rezeptname muss angegeben werden.
-        </div>
-      </div>
-      <button
-        type="button"
-        class="btn btn-primary me-1"
-        (click)="updateRecipe()"
-        [disabled]="recipeForm.invalid"
+<nutrifit-layout-card pageTitle="Rezept bearbeiten">
+  <form [formGroup]="recipeForm">
+    <div class="form-floating mb-3">
+      <input
+        id="name"
+        class="form-control"
+        type="text"
+        formControlName="name"
+        required
+      />
+      <label for="name" class="form-label">Rezeptname</label>
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="
+          recipeForm.get('name')?.invalid && recipeForm.get('name')?.touched
+        "
       >
-        Speichern
-      </button>
-      <a class="btn btn-secondary" [routerLink]="'/recipes'">Verwerfen</a>
-    </form>
-  </div>
-</div>
+        Der Rezeptname muss angegeben werden.
+      </div>
+    </div>
+    <nutrifit-button
+      color="primary"
+      (clicked)="updateRecipe()"
+      [isDisabled]="recipeForm.invalid"
+      text="Speichern"
+    >
+    </nutrifit-button>
+    <nutrifit-link
+      color="secondary"
+      link="/recipes"
+      appearance="button"
+      text="Abbrechen"
+    ></nutrifit-link>
+  </form>
+</nutrifit-layout-card>
