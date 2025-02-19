@@ -1,26 +1,21 @@
 <nutrifit-layout-card pageTitle="Rezepte">
-  <ng-container>
-    <div class="row mb-2">
-      <div class="col-md-10"></div>
-      <div class="col-md-2 d-flex justify-content-end">
-        <nutrifit-link
-          text="Erfassen"
-          color="primary"
-          appearance="button"
-          link="create"
-        />
-      </div>
-    </div>
-    <div *ngIf="recipes$ | async as recipes" class="row">
-      <div *ngFor="let recipe of recipes" class="col-md-3 pb-2 px-1">
-        <nutrifit-image-card
-          [imgLink]="{ text: recipe.name, href: recipe.id }"
-          [imgSrc]="{
-            alt: 'Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild.',
-            src: 'RezeptBild.jpg'
-          }"
-        ></nutrifit-image-card>
-      </div>
-    </div>
-  </ng-container>
+  <nutrifit-action-bar actionBar>
+    <nutrifit-link
+      text="Erfassen"
+      color="primary"
+      appearance="button"
+      link="create"
+    />
+  </nutrifit-action-bar>
+  <nutrifit-row *ngIf="recipes$ | async as recipes" body>
+    <nutrifit-col *ngFor="let recipe of recipes" [columnWidth]="3">
+      <nutrifit-image-card
+        [imgLink]="{ text: recipe.name, href: recipe.id }"
+        [imgSrc]="{
+          alt: 'Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild.',
+          src: 'RezeptBild.jpg'
+        }"
+      ></nutrifit-image-card>
+    </nutrifit-col>
+  </nutrifit-row>
 </nutrifit-layout-card>

@@ -12,10 +12,11 @@ import {
 } from 'rxjs';
 import { RecipeDto } from '../../dtos/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppComponent } from '../../../../app/app.component';
 
 @Component({
   selector: 'nutrifit-recipe-detail',
-  imports: [globalModules],
+  imports: [globalModules, AppComponent],
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.scss',
 })

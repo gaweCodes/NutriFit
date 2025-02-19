@@ -3,5 +3,8 @@
     <h1 class="card-title">{{ pageTitle }}</h1>
     <hr />
   </div>
-  <div class="card-body"><ng-content></ng-content></div>
+  <div class="card-body">
+    <ng-content select="[actionBar]"></ng-content>
+    <ng-content select="[body]"></ng-content>
+  </div>
 </div>

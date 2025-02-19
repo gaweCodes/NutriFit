@@ -5,6 +5,9 @@ import { LayoutCardComponent } from './shared/components/layout-card/layout-card
 import { LinkComponent } from './shared/components/link/link.component';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { ImageCardComponent } from './shared/components/image-card/image-card.component';
+import { RowComponent } from './shared/components/grid/row/row.component';
+import { ColComponent } from './shared/components/grid/col/col.component';
+import { ActionBarComponent } from './shared/components/action-bar/action-bar.component';
 
 export const globalModules = [
   CommonModule,
@@ -15,4 +18,7 @@ export const globalModules = [
   LinkComponent,
   ButtonComponent,
   ImageCardComponent,
+  RowComponent,
+  ColComponent,
+  ActionBarComponent,
 ];

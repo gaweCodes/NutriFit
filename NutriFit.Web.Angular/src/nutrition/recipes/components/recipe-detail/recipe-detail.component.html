@@ -2,31 +2,31 @@
   *ngIf="recipe$ | async as recipe"
   [pageTitle]="recipe.name"
 >
-  <div class="row">
-    <div class="col-md-3">
+  <nutrifit-action-bar actionBar>
+    <nutrifit-link
+      appearance="button"
+      color="primary"
+      link="edit"
+      text="Bearbeiten"
+    ></nutrifit-link>
+    <nutrifit-button
+      text="Löschen"
+      color="danger"
+      (clicked)="deleteRecipe()"
+    ></nutrifit-button>
+  </nutrifit-action-bar>
+  <nutrifit-row body>
+    <nutrifit-col [columnWidth]="3">
       <img
         alt="Ein Symbolbild eines Rezeptes. Momentan existiert für dieses Rezept noch kein echtes Bild."
         src="RezeptBild.jpg"
         class="w-100"
       />/>
-    </div>
-    <div class="col-md-6">
+    </nutrifit-col>
+    <nutrifit-col [columnWidth]="6">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut odio soluta
       laborum vel explicabo illum quas at ea ut, quisquam iure quam vitae omnis
       quae. Eligendi dolor dolore voluptatibus impedit?
-    </div>
-    <div class="col-md-3 d-flex justify-content-end">
-      <nutrifit-link
-        appearance="button"
-        color="primary"
-        link="edit"
-        text="Bearbeiten"
-      ></nutrifit-link>
-      <nutrifit-button
-        text="Löschen"
-        color="danger"
-        (clicked)="deleteRecipe()"
-      ></nutrifit-button>
-    </div>
-  </div>
+    </nutrifit-col>
+  </nutrifit-row>
 </nutrifit-layout-card>
