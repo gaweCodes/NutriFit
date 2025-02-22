@@ -8,6 +8,7 @@ import { ImageCardComponent } from './shared/components/image-card/image-card.co
 import { RowComponent } from './shared/components/grid/row/row.component';
 import { ColComponent } from './shared/components/grid/col/col.component';
 import { ActionBarComponent } from './shared/components/action-bar/action-bar.component';
+import { TableComponent } from './shared/components/table/table.component';
 
 export const globalModules = [
   CommonModule,
@@ -21,4 +22,5 @@ export const globalModules = [
   RowComponent,
   ColComponent,
   ActionBarComponent,
+  TableComponent,
 ];

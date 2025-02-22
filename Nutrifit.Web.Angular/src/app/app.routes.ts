@@ -12,7 +12,10 @@ import { RecipeModificationComponent } from '../nutrition/recipes/components/rec
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'menu-plans', component: MenuPlansOverviewComponent },
+  {
+    path: 'menu-plans',
+    children: [{ path: '', component: MenuPlansOverviewComponent }],
+  },
   {
     path: 'recipes',
     providers: [RecipeService],

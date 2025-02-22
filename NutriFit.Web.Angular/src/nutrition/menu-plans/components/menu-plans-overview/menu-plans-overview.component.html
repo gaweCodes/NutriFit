@@ -1,3 +1,24 @@
 <nutrifit-layout-card pageTitle="Menüpläne">
-  <table class="table table-striped" body></table>
+  <nutrifit-action-bar actionBar>
+    <nutrifit-link
+      text="Erfassen"
+      color="primary"
+      appearance="button"
+      link="create"
+    />
+  </nutrifit-action-bar>
+  <nutrifit-row body>
+    <nutrifit-col [columnWidth]="12">
+      <nutrifit-table [columns]="columns">
+        <tr>
+          <td>01.01.2025 - 07.01.2025</td>
+          <td>Ja</td>
+        </tr>
+        <tr>
+          <td>08.01.2025 - 14.01.2025</td>
+          <td>Nein</td>
+        </tr>
+      </nutrifit-table>
+    </nutrifit-col>
+  </nutrifit-row>
 </nutrifit-layout-card>
