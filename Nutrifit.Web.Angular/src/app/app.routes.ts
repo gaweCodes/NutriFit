@@ -1,26 +1,32 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { MenuPlansOverviewComponent } from '../nutrition/menu-plans/components/menu-plans-overview/menu-plans-overview.component';
-import { RecipesOverviewComponent } from '../nutrition/recipes/components/recipes-overview/recipes-overview.component';
+import { MenuPlanOverviewComponent } from '../nutrition/menu-plans/components/menu-plan-overview/menu-plan-overview.component';
+import { MenuPlanCreationComponent } from '../nutrition/menu-plans/components/menu-plan-creation/menu-plan-creation.component';
+import { MenuPlanService } from '../nutrition/menu-plans/services/menu-plan-service';
+import { RecipeOverviewComponent } from '../nutrition/recipes/components/recipe-overview/recipe-overview.component';
 import { RecipeCreationComponent } from '../nutrition/recipes/components/recipe-creation/recipe-creation.component';
 import { RecipeDetailComponent } from '../nutrition/recipes/components/recipe-detail/recipe-detail.component';
-import { WorkoutsOverviewComponent } from '../workout/workouts/components/workouts-overview/workouts-overview.component';
-import { ExercisesOverviewComponent } from '../workout/exercises/components/exercises-overview/exercises-overview.component';
-import { RecipeService } from '../nutrition/recipes/services/recipe-service';
 import { RecipeModificationComponent } from '../nutrition/recipes/components/recipe-modification/recipe-modification.component';
+import { RecipeService } from '../nutrition/recipes/services/recipe-service';
+import { WorkoutOverviewComponent } from '../workout/workouts/components/workout-overview/workout-overview.component';
+import { ExerciseOverviewComponent } from '../workout/exercises/components/exercise-overview/exercise-overview.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   {
     path: 'menu-plans',
-    children: [{ path: '', component: MenuPlansOverviewComponent }],
+    providers: [MenuPlanService],
+    children: [
+      { path: '', component: MenuPlanOverviewComponent },
+      { path: 'create', component: MenuPlanCreationComponent },
+    ],
   },
   {
     path: 'recipes',
     providers: [RecipeService],
     children: [
-      { path: '', component: RecipesOverviewComponent },
+      { path: '', component: RecipeOverviewComponent },
       { path: 'create', component: RecipeCreationComponent },
       { path: ':id', component: RecipeDetailComponent },
       { path: ':id/edit', component: RecipeModificationComponent },
@@ -29,6 +35,6 @@ export const routes: Routes = [
   { path: 'recipes/create', component: RecipeCreationComponent },
   { path: 'recipes/:id', component: RecipeDetailComponent },
   { path: 'recipes/:id/edit', component: RecipeModificationComponent },
-  { path: 'workouts', component: WorkoutsOverviewComponent },
-  { path: 'exercises', component: ExercisesOverviewComponent },
+  { path: 'workouts', component: WorkoutOverviewComponent },
+  { path: 'exercises', component: ExerciseOverviewComponent },
 ];

@@ -5,12 +5,12 @@ import { RecipeOverviewDto } from '../../dtos/recipe-overview';
 import { Observable, shareReplay } from 'rxjs';
 
 @Component({
-  selector: 'nutrifit-recipes-overview',
-  templateUrl: './recipes-overview.component.html',
-  styleUrl: './recipes-overview.component.scss',
+  selector: 'nutrifit-recipe-overview',
+  templateUrl: './recipe-overview.component.html',
+  styleUrl: './recipe-overview.component.scss',
   imports: [globalModules],
 })
-export class RecipesOverviewComponent {
+export class RecipeOverviewComponent {
   private readonly recipeService = inject(RecipeService);
 
   public readonly recipes$: Observable<RecipeOverviewDto[]> = this.recipeService

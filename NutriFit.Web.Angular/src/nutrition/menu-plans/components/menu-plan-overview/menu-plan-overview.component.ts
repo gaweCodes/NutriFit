@@ -3,11 +3,11 @@ import { globalModules } from '../../../../GlobalModules';
 import { AppComponent } from '../../../../app/app.component';
 
 @Component({
-  selector: 'nutrifit-menu-plans-overview',
+  selector: 'nutrifit-menu-plan-overview',
   imports: [globalModules, AppComponent],
-  templateUrl: './menu-plans-overview.component.html',
-  styleUrl: './menu-plans-overview.component.scss',
+  templateUrl: './menu-plan-overview.component.html',
+  styleUrl: './menu-plan-overview.component.scss',
 })
-export class MenuPlansOverviewComponent {
+export class MenuPlanOverviewComponent {
   public columns = ['Zeitraum', 'Snacking?'];
 }

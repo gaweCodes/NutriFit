@@ -2,14 +2,14 @@ import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
+
 import { globalModules } from '../../../../GlobalModules';
 import { RecipeCreationDto } from '../../dtos/recipe-creation';
 import { RecipeService } from '../../services/recipe-service';
-import { LayoutCardComponent } from '../../../../shared/components/layout-card/layout-card.component';
 
 @Component({
   selector: 'nutrifit-recipe-creation',
-  imports: [globalModules, LayoutCardComponent],
+  imports: [globalModules],
   templateUrl: './recipe-creation.component.html',
   styleUrl: './recipe-creation.component.scss',
 })

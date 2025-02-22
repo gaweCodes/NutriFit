@@ -1,0 +1,75 @@
+<nutrifit-layout-card pageTitle="Menüplan erfassen">
+  <form [formGroup]="menuPlanForm" body>
+    <nutrifit-row>
+      <nutrifit-col [columnWidth]="6">
+        <div class="form-floating mb-3">
+          <input
+            id="startDate"
+            class="form-control"
+            type="date"
+            formControlName="startDate"
+            required
+          />
+          <label for="startDate" class="form-label">Startdatum</label>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="
+              menuPlanForm.get('startDate')?.invalid &&
+              menuPlanForm.get('startDate')?.touched
+            "
+          >
+            Das Startdatum muss angegeben werden.
+          </div>
+        </div>
+      </nutrifit-col>
+      <nutrifit-col [columnWidth]="6">
+        <div class="form-floating mb-3">
+          <input
+            id="endDate"
+            class="form-control"
+            type="date"
+            formControlName="endDate"
+            required
+          />
+          <label for="endDate" class="form-label">Enddatum</label>
+          <div
+            class="alert alert-danger"
+            role="alert"
+            *ngIf="
+              menuPlanForm.get('endDate')?.invalid &&
+              menuPlanForm.get('endDate')?.touched
+            "
+          >
+            Das Enddatum muss angegeben werden.
+          </div>
+        </div>
+      </nutrifit-col>
+    </nutrifit-row>
+    <nutrifit-row>
+      <nutrifit-col [columnWidth]="6">
+        <div class="form-check">
+          <input
+            id="hasSnacking"
+            class="form-check-input"
+            type="checkbox"
+            formControlName="hasSnacking"
+          />
+          <label for="hasSnacking" class="form-check-label">Snacking</label>
+        </div>
+      </nutrifit-col>
+    </nutrifit-row>
+    <nutrifit-button
+      color="primary"
+      text="Speichern"
+      (clicked)="createMenuPlan()"
+      [isDisabled]="menuPlanForm.invalid"
+    ></nutrifit-button>
+    <nutrifit-link
+      text="Abbrechen"
+      color="secondary"
+      appearance="button"
+      link="/menu-plans"
+    />
+  </form>
+</nutrifit-layout-card>
