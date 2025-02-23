@@ -9,18 +9,20 @@ public class MenuPlan : Entity, IAggregateRoot
     private DateOnly _startDate;
     private DateOnly _endDate;
     private bool _hasSnacking;
+    private readonly List<DayPlan> _days = [];
     private bool _isDeleted;
 
-    private MenuPlan() 
-    { 
-        Id = new MenuPlanId(Guid.NewGuid());
-    }
+    private MenuPlan() { }
     private MenuPlan(DateOnly startDate, DateOnly endDate, bool hasSnacking)
     {
         Id = new MenuPlanId(Guid.NewGuid());
         _startDate = startDate;
         _endDate = endDate;
         _hasSnacking = hasSnacking;
+
+        for (var date = _startDate; date <= _endDate; date = date.AddDays(1))
+            _days.Add(new DayPlan(date, _hasSnacking));
+
         AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, _startDate, _endDate, _hasSnacking));
     }
     public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate, bool hasSnacking) => new(startDate, endDate, hasSnacking);
