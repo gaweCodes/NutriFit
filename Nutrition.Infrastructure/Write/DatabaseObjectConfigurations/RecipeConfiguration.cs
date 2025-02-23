@@ -9,16 +9,14 @@ internal class RecipeConfiguration : IEntityTypeConfiguration<Recipe>
     public void Configure(EntityTypeBuilder<Recipe> builder)
     {
         builder.ToTable("Recipes");
-        builder.HasQueryFilter(r => !EF.Property<bool>(r, "_isDeleted"));
+        builder.HasQueryFilter(r => !r.IsDeleted);
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id)
             .HasConversion(id => id.Value, value => new RecipeId(value))
             .ValueGeneratedNever();
-        builder.Property("_name")
-            .HasColumnName("Name")
+        builder.Property(r => r.Name)
             .IsRequired();
-        builder.Property("_isDeleted")
-            .HasColumnName("IsDeleted")
+        builder.Property(r => r.IsDeleted)
             .IsRequired();
     }
 }

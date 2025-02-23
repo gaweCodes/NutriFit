@@ -2,4 +2,4 @@
 
 namespace Nutrition.Domain.MenuPlans;
 
-internal class DayPlanId(Guid value) : TypedIdValueBase(value);
+public class DayPlanId(Guid value) : TypedIdValueBase(value);

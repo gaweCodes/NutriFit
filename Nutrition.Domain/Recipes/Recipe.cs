@@ -5,31 +5,26 @@ namespace Nutrition.Domain.Recipes;
 
 public class Recipe : Entity, IAggregateRoot
 {
-    public RecipeId Id { get; }
-    private string _name;
-    private bool _isDeleted;
+    public RecipeId Id { get; } = new RecipeId(Guid.NewGuid());
+    public string Name { get; private set; } = string.Empty;
+    public bool IsDeleted { get; private set; }
 
-    private Recipe() 
-    { 
-        Id = new RecipeId(Guid.NewGuid());
-        _name = string.Empty;
-    }
+    private Recipe() { }
     private Recipe(string name)
     {
-        Id = new RecipeId(Guid.NewGuid());
-        _name = name;
-        AddDomainEvent(new RecipeCreatedDomainEvent(Id.Value, _name));
+        Name = name;
+        AddDomainEvent(new RecipeCreatedDomainEvent(Id.Value, Name));
     }
     public static Recipe CreateNew(string name) => new(name);
     public void UpdateRecipe(string name)
     {
-        _name = name;
-        AddDomainEvent(new RecipeUpdatedDomainEvent(Id.Value, name));
+        Name = name;
+        AddDomainEvent(new RecipeUpdatedDomainEvent(Id.Value, Name));
     }
 
     public void Delete()
     {
-        _isDeleted = true;
+        IsDeleted = true;
         AddDomainEvent(new RecipeDeletedDomainEvent(Id.Value));
     }
 }

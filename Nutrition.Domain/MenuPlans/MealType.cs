@@ -1,6 +1,6 @@
 ﻿namespace Nutrition.Domain.MenuPlans;
 
-internal enum MealType
+public enum MealType
 {
     Breakfast,
     Lunch,
