@@ -25,4 +25,10 @@ internal class DayPlan : Entity
         var mealSlot = _mealSlots.Single(x => x.MealType == mealType);
         mealSlot.AddRecipe(recipe);
     }
+
+    internal void UpdateSnacking(bool hasSnacking)
+    {
+        if (hasSnacking) _mealSlots.Add(new MealSlot(MealType.Snack));
+        else _mealSlots.RemoveAll(x => x.MealType == MealType.Snack);
+    }
 }

@@ -35,6 +35,16 @@ public class MenuPlan : Entity, IAggregateRoot
         EndDate = endDate;
         HasSnacking = hasSnacking;
 
+        CheckRule(new StartDateBeforeEndDate(this));
+
+        _days.RemoveAll(d => d.Date < StartDate || d.Date > EndDate);
+        for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
+        {
+            var day = _days.SingleOrDefault(d => d.Date == date);
+            if (day == null) _days.Add(new DayPlan(date, HasSnacking));
+            else day.UpdateSnacking(HasSnacking);
+        }
+
         AddDomainEvent(new MenuPlanUpdatedDomainEvent(Id.Value, StartDate, EndDate, HasSnacking));
     }
 
