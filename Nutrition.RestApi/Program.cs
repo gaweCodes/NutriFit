@@ -1,4 +1,5 @@
 using NutriFit.ServiceDefaults;
+using Nutrition.Application.MenuPlans.Commands.CreateMenuPlan;
 using Nutrition.Application.Recipes.Commands.CreateRecipe;
 using Nutrition.Infrastructure;
 

@@ -10,8 +10,7 @@ public class RecipeRepository(NutritionWriteDbContext dbContext) : IRecipeReposi
     public async Task<Recipe> GetByIdAsync(RecipeId id, CancellationToken cancellationToken)
     {
         var recipe = await dbContext.FindAsync<Recipe>(id, cancellationToken);
-
-        return recipe is null ? throw new ArgumentException($"There is no {nameof(Recipe)} with id = {nameof(id)}") : recipe;
+        return recipe is null ? throw new ArgumentException($"There is no {nameof(Recipe)} with id = {id}") : recipe;
     }
     public async Task SaveChangesAsync(CancellationToken cancellationToken) => await dbContext.SaveChangesAsync(cancellationToken);
 }

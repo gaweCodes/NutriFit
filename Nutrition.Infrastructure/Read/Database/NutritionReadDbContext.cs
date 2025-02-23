@@ -9,6 +9,8 @@ public class NutritionReadDbContext(DbContextOptions<NutritionReadDbContext> opt
     {
         modelBuilder.ApplyConfiguration(new RecipeDetailConfiguration());
         modelBuilder.ApplyConfiguration(new RecipeOverviewConfiguration());
+        modelBuilder.ApplyConfiguration(new MenuPlanDetailConfiguration());
+        modelBuilder.ApplyConfiguration(new MenuPlanOverviewConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

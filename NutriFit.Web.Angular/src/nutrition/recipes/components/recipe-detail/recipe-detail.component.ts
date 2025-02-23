@@ -4,6 +4,7 @@ import { RecipeService } from '../../services/recipe-service';
 import {
   distinctUntilChanged,
   EMPTY,
+  filter,
   map,
   Observable,
   shareReplay,
@@ -12,11 +13,10 @@ import {
 } from 'rxjs';
 import { RecipeDto } from '../../dtos/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppComponent } from '../../../../app/app.component';
 
 @Component({
   selector: 'nutrifit-recipe-detail',
-  imports: [globalModules, AppComponent],
+  imports: [globalModules],
   templateUrl: './recipe-detail.component.html',
   styleUrl: './recipe-detail.component.scss',
 })
@@ -24,8 +24,9 @@ export class RecipeDetailComponent {
   private readonly recipeService = inject(RecipeService);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly id$ = this.route.paramMap.pipe(
+  private readonly id$: Observable<string> = this.route.paramMap.pipe(
     map((params) => params.get('id')),
+    filter((x) => x !== null),
     distinctUntilChanged(),
     shareReplay(1)
   );

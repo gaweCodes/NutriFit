@@ -9,14 +9,20 @@
   </nutrifit-action-bar>
   <nutrifit-row body>
     <nutrifit-col [columnWidth]="12">
-      <nutrifit-table [columns]="columns">
-        <tr>
-          <td>01.01.2025 - 07.01.2025</td>
-          <td>Ja</td>
-        </tr>
-        <tr>
-          <td>08.01.2025 - 14.01.2025</td>
-          <td>Nein</td>
+      <nutrifit-table
+        [columns]="columns"
+        *ngIf="menuPlans$ | async as menuPlans"
+      >
+        <tr *ngFor="let row of menuPlans">
+          <td>
+            <nutrifit-link
+              appearance="text"
+              color="dark"
+              [text]="row.period"
+              [link]="row.id"
+            ></nutrifit-link>
+          </td>
+          <td>{{ row.hasSnacking ? "Ja" : "Nein" }}</td>
         </tr>
       </nutrifit-table>
     </nutrifit-col>

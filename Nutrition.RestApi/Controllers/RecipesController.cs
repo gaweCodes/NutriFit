@@ -21,14 +21,14 @@ public class RecipesController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<RecipeOverviewDto>>> GetAsync()
+    public async Task<ActionResult<List<RecipeOverviewDto>>> GetRecipesAsync()
     {
         var recipeOverviews = await mediator.Send(new GetRecipesOverviewQuery());
         return recipeOverviews;
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<RecipeDto>> GetByIdAsync(Guid id) 
+    public async Task<ActionResult<RecipeDto>> GetRecipeByIdAsync(Guid id) 
     {
         var recipeDto = await mediator.Send(new GetRecipeQuery(id));
         return recipeDto is null ? (ActionResult<RecipeDto>)NotFound(id) : Ok(recipeDto);

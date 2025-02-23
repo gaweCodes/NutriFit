@@ -22,6 +22,32 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Nutrition.Domain.MenuPlans.MenuPlan", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateOnly>("_endDate")
+                        .HasColumnType("date")
+                        .HasColumnName("EndDate");
+
+                    b.Property<bool>("_hasSnacking")
+                        .HasColumnType("boolean")
+                        .HasColumnName("HasSnacking");
+
+                    b.Property<bool>("_isDeleted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("IsDeleted");
+
+                    b.Property<DateOnly>("_startDate")
+                        .HasColumnType("date")
+                        .HasColumnName("StartDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MenuPlans", (string)null);
+                });
+
             modelBuilder.Entity("Nutrition.Domain.Recipes.Recipe", b =>
                 {
                     b.Property<Guid>("Id")

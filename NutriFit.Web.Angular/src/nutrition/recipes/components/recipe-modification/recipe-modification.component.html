@@ -1,5 +1,9 @@
 <nutrifit-layout-card pageTitle="Rezept bearbeiten">
-  <form [formGroup]="recipeForm" body>
+  <form
+    [formGroup]="recipeForm"
+    *ngIf="(recipe$ | async) && id$ | async as id"
+    body
+  >
     <div class="form-floating mb-3">
       <input
         id="name"
@@ -28,7 +32,7 @@
     </nutrifit-button>
     <nutrifit-link
       color="secondary"
-      link="/recipes"
+      [link]="'/recipes/' + id"
       appearance="button"
       text="Abbrechen"
     ></nutrifit-link>

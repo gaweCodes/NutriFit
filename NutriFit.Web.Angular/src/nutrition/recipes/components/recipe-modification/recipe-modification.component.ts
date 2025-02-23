@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import {
   distinctUntilChanged,
   EMPTY,
+  filter,
   map,
   Observable,
   shareReplay,
@@ -25,13 +26,14 @@ export class RecipeModificationComponent {
   private readonly recipeService = inject(RecipeService);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
-  private readonly id$ = this.route.paramMap.pipe(
+
+  public readonly id$: Observable<string> = this.route.paramMap.pipe(
     map((params) => params.get('id')),
+    filter((x) => x !== null),
     distinctUntilChanged(),
     shareReplay(1)
   );
-
-  private readonly recipe$: Observable<RecipeDto> = this.id$.pipe(
+  public readonly recipe$: Observable<RecipeDto> = this.id$.pipe(
     switchMap((id) => (id ? this.recipeService.getRecipe(id) : EMPTY)),
     tap((recipe) => this.recipeForm.setValue(recipe))
   );
@@ -39,10 +41,6 @@ export class RecipeModificationComponent {
   public readonly recipeForm = this.formBuilder.group({
     name: ['', { validators: [Validators.required] }],
   });
-
-  constructor() {
-    this.recipe$.subscribe();
-  }
 
   public updateRecipe(): void {
     const recipeToUpdate: RecipeDto = this.recipeForm.getRawValue();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Nutrition.Domain.Recipes;
-using System.Reflection.Emit;
 
 namespace Nutrition.Infrastructure.Write.DatabaseObjectConfigurations;
 

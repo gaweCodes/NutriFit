@@ -8,6 +8,7 @@ public class NutritionWriteDbContext(DbContextOptions<NutritionWriteDbContext> o
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new RecipeConfiguration());
+        modelBuilder.ApplyConfiguration(new MenuPlanConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

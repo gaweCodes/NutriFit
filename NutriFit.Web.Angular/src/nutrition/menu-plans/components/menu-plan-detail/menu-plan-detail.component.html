@@ -1,1 +1,25 @@
-<p>menu-plan-detail works!</p>
+<nutrifit-layout-card
+  *ngIf="menuPlan$ | async as menuPlan"
+  pageTitle="{{ menuPlan.startDate | date : 'dd.MM.yyyy' }} - {{
+    menuPlan.endDate | date : 'dd.MM.yyyy'
+  }}"
+>
+  <nutrifit-action-bar actionBar>
+    <nutrifit-link
+      appearance="button"
+      color="primary"
+      link="edit"
+      text="Bearbeiten"
+    ></nutrifit-link>
+    <nutrifit-button
+      text="Löschen"
+      color="danger"
+      (clicked)="deleteMenuPlan()"
+    ></nutrifit-button>
+  </nutrifit-action-bar>
+  <nutrifit-row body>
+    <nutrifit-col [columnWidth]="12">
+      Mit Snacking: {{ menuPlan.hasSnacking ? "Ja" : "Nein" }}</nutrifit-col
+    >
+  </nutrifit-row>
+</nutrifit-layout-card>

@@ -8,6 +8,8 @@ using SharedKernel.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Nutrition.Application.Recipes.Queries;
 using Nutrition.Infrastructure.Read.Repositories;
+using Nutrition.Domain.MenuPlans;
+using Nutrition.Application.MenuPlans.Queries;
 
 namespace Nutrition.Infrastructure;
 
@@ -16,7 +18,9 @@ public static class NutritionInfrastructureServiceColectionExtensions
     public static IServiceCollection AddNutritionInfrastructure(this IServiceCollection serviceCollection, ConfigurationManager configuration)
     {
         serviceCollection.AddScoped<IRecipeRepository, RecipeRepository>();
+        serviceCollection.AddScoped<IMenuPlanRepository, MenuPlanRepository>();
         serviceCollection.AddScoped<IReadRecipeRepository, ReadRecipeRepository>();
+        serviceCollection.AddScoped<IReadMenuPlanRepository, ReadMenuPlanRepository>();
         serviceCollection.AddDbContext<NutritionWriteDbContext>((sp, options) =>
         {
             options.UseNpgsql(configuration.GetConnectionString("nutrition-write"));

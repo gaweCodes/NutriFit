@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace NutriFit.Web.Angular.BackendForFrontend.Dtos.Recipes;
+namespace NutriFit.Web.Angular.BackendForFrontend.Nutrition.Recipes.Dtos;
 
 public class RecipeDto 
 {

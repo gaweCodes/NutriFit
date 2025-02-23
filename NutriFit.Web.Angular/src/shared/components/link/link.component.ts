@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
 })
 export class LinkComponent {
   @Input() public appearance!: 'button' | 'text';
-  @Input() public color!: 'primary' | 'secondary';
+  @Input() public color!: 'primary' | 'secondary' | 'dark';
   @Input() public text!: string;
   @Input() public link!: string;
 }

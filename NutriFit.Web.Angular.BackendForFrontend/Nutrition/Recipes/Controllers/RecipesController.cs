@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using NutriFit.Web.Angular.BackendForFrontend.Dtos.Recipes;
+using NutriFit.Web.Angular.BackendForFrontend.Nutrition.Recipes.Dtos;
 
-namespace NutriFit.Web.Angular.BackendForFrontend.Controllers;
+namespace NutriFit.Web.Angular.BackendForFrontend.Nutrition.Recipes.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -20,7 +20,7 @@ public class RecipesController(IHttpClientFactory httpFactory) : ControllerBase
     public async Task<List<RecipeOverviewDto>> GetAsync()
     {
         var response = await _httpClient.GetAsync("Recipes");
-        return (await response.Content.ReadFromJsonAsync<List<RecipeOverviewDto>>()) ?? [];
+        return await response.Content.ReadFromJsonAsync<List<RecipeOverviewDto>>() ?? [];
     }
 
     [HttpGet("{id}")]
