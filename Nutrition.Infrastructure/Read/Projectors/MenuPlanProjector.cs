@@ -12,8 +12,8 @@ internal class MenuPlanProjector(NutritionReadDbContext dbContext)
 {
     public async Task Handle(MenuPlanCreatedDomainEvent eventData, CancellationToken cancellationToken)
     {
-        await dbContext.AddAsync(MenuPlanDetail.CreateNew(eventData.MenuPlanId, eventData.StartDate, eventData.EndDate, eventData.HasSnacking), cancellationToken);
-        await dbContext.AddAsync(MenuPlanOverview.CreateNew(eventData.MenuPlanId, eventData.StartDate, eventData.EndDate, eventData.HasSnacking), cancellationToken);
+        await dbContext.AddAsync(new MenuPlanDetail(eventData.MenuPlanId, eventData.StartDate, eventData.EndDate), cancellationToken);
+        await dbContext.AddAsync(new MenuPlanOverview(eventData.MenuPlanId, eventData.StartDate, eventData.EndDate), cancellationToken);
         await dbContext.SaveChangesAsync(cancellationToken);
     }
 
@@ -26,14 +26,12 @@ internal class MenuPlanProjector(NutritionReadDbContext dbContext)
         {
             menuPlanOverview.StartDate = eventData.StartDate;
             menuPlanOverview.EndDate = eventData.EndDate;
-            menuPlanOverview.HasSnacking = eventData.HasSnacking;
         }
 
         if (menuPlanDetail is not null)
         {
             menuPlanDetail.StartDate = eventData.StartDate;
             menuPlanDetail.EndDate = eventData.EndDate;
-            menuPlanDetail.HasSnacking = eventData.HasSnacking;
         }
 
         await dbContext.SaveChangesAsync(cancellationToken);

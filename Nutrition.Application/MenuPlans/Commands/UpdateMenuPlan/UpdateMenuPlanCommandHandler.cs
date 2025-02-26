@@ -8,7 +8,7 @@ internal class UpdateMenuPlanCommandHandler(IMenuPlanRepository menuPlanReposito
     public async Task<Guid> Handle(UpdateMenuPlanCommand request, CancellationToken cancellationToken)
     {
         var menuPlan = await menuPlanRepository.GetByIdAsync(new MenuPlanId(request.Id), cancellationToken);
-        menuPlan.UpdateMenuPlan(request.StartDate, request.EndDate, request.HasSnacking);
+        menuPlan.UpdateMenuPlan(request.StartDate, request.EndDate);
         await menuPlanRepository.SaveChangesAsync(cancellationToken);
 
         return menuPlan.Id.Value;

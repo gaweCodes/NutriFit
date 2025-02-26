@@ -1,62 +1,52 @@
 ﻿using Nutrition.Domain.MenuPlans.Events;
 using Nutrition.Domain.MenuPlans.Rules;
-using Nutrition.Domain.Recipes;
 using SharedKernel.Domain;
 
 namespace Nutrition.Domain.MenuPlans;
 
 public class MenuPlan : Entity, IAggregateRoot
 {
-    public MenuPlanId Id { get; } = new MenuPlanId(Guid.NewGuid());
-    public DateOnly StartDate { get; private set; }
-    public DateOnly EndDate { get; private set; }
-    public bool HasSnacking { get; private set; }
-    public bool IsDeleted { get; private set; }
-    private readonly List<DayPlan> _days = [];
+    public MenuPlanId Id { get; private set; }
+    private DateOnly _startDate;
+    private DateOnly _endDate;
+    private bool _isDeleted;
+    private List<DayPlan> _days = [];
 
     private MenuPlan() { }
-    private MenuPlan(DateOnly startDate, DateOnly endDate, bool hasSnacking)
+    private MenuPlan(DateOnly startDate, DateOnly endDate)
     {
-        StartDate = startDate;
-        EndDate = endDate;
-        HasSnacking = hasSnacking;
+        Id = new MenuPlanId(Guid.NewGuid());
+        _startDate = startDate;
+        _endDate = endDate;
 
-        CheckRule(new StartDateBeforeEndDate(this));
+        CheckRule(new StartDateBeforeEndDate(_startDate, _endDate));
 
-        for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
-            _days.Add(new DayPlan(date, HasSnacking));
+        for (var date = _startDate; date <= _endDate; date = date.AddDays(1))
+            _days.Add(new(date));
 
-        AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, StartDate, EndDate, HasSnacking));
+        AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, _startDate, _endDate));
     }
-    public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate, bool hasSnacking) => new(startDate, endDate, hasSnacking);
-    public void UpdateMenuPlan(DateOnly startDate, DateOnly endDate, bool hasSnacking)
+    public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate) => new(startDate, endDate);
+    
+    public void UpdateMenuPlan(DateOnly startDate, DateOnly endDate)
     {
-        StartDate = startDate;
-        EndDate = endDate;
-        HasSnacking = hasSnacking;
+        _startDate = startDate;
+        _endDate = endDate;
 
-        CheckRule(new StartDateBeforeEndDate(this));
+        CheckRule(new StartDateBeforeEndDate(_startDate, _endDate));
 
-        _days.RemoveAll(d => d.Date < StartDate || d.Date > EndDate);
-        for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
+        _days.RemoveAll(x => x.Date < _startDate || x.Date > _endDate);       
+        for (var date = _startDate; date <= _endDate; date = date.AddDays(1))
         {
-            var day = _days.SingleOrDefault(d => d.Date == date);
-            if (day == null) _days.Add(new DayPlan(date, HasSnacking));
-            else day.UpdateSnacking(HasSnacking);
+            if (!_days.Any(x => x.Date == date)) _days.Add(new(date));
         }
 
-        AddDomainEvent(new MenuPlanUpdatedDomainEvent(Id.Value, StartDate, EndDate, HasSnacking));
-    }
-
-    public void AddRecipeToMeal(DayPlanId dayPlanId, MealType mealType, Recipe recipe)
-    {
-        var dayPlan = _days.Single(x => x.Id == dayPlanId);
-        dayPlan.AddRecipe(mealType, recipe);
+        AddDomainEvent(new MenuPlanUpdatedDomainEvent(Id.Value, _startDate, _endDate));
     }
 
     public void Delete()
     {
-        IsDeleted = true;
+        _isDeleted = true;
         AddDomainEvent(new MenuPlanDeletedDomainEvent(Id.Value));
     }
 }

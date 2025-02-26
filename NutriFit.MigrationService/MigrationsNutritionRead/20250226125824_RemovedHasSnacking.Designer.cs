@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Nutrition.Infrastructure.Read.Database;
@@ -11,9 +12,11 @@ using Nutrition.Infrastructure.Read.Database;
 namespace NutriFit.MigrationService.MigrationsNutritionRead
 {
     [DbContext(typeof(NutritionReadDbContext))]
-    partial class NutritionReadDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250226125824_RemovedHasSnacking")]
+    partial class RemovedHasSnacking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

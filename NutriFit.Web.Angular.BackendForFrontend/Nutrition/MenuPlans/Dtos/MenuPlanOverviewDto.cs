@@ -4,5 +4,4 @@ public class MenuPlanOverviewDto
 {
     public Guid Id { get; set; }
     public string Period { get; set; } = string.Empty;
-    public bool HasSnacking { get; set; }
 }

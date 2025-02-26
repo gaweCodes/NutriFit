@@ -1,4 +1,5 @@
-﻿using Nutrition.Domain.MenuPlans;
+﻿using Microsoft.EntityFrameworkCore;
+using Nutrition.Domain.MenuPlans;
 using Nutrition.Infrastructure.Write.Database;
 
 namespace Nutrition.Infrastructure.Write.Repositories;
@@ -9,8 +10,11 @@ public class MenuPlanRepository(NutritionWriteDbContext dbContext) : IMenuPlanRe
 
     public async Task<MenuPlan> GetByIdAsync(MenuPlanId id, CancellationToken cancellationToken)
     {
-        var menuPlan = await dbContext.FindAsync<MenuPlan>(id, cancellationToken);
+        var menuPlan = await dbContext.Set<MenuPlan>().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
         return menuPlan is null ? throw new ArgumentException($"There is no {nameof(MenuPlan)} with {nameof(id)} = {id}") : menuPlan;
     }
-    public async Task SaveChangesAsync(CancellationToken cancellationToken) => await dbContext.SaveChangesAsync(cancellationToken);
+    public async Task SaveChangesAsync(CancellationToken cancellationToken) 
+    {
+        await dbContext.SaveChangesAsync(cancellationToken); 
+    }
 }

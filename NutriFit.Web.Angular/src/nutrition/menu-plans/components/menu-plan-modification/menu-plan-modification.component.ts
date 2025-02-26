@@ -44,7 +44,6 @@ export class MenuPlanModificationComponent {
     endDate: this.formBuilder.control<Date | null>(null, {
       validators: [Validators.required],
     }),
-    hasSnacking: this.formBuilder.nonNullable.control<boolean>(false),
   });
 
   public updateMenuPlan(): void {

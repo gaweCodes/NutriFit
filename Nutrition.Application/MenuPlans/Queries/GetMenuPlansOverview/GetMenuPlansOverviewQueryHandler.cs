@@ -7,6 +7,6 @@ internal class GetMenuPlansOverviewQueryHandler(IReadMenuPlanRepository readMenu
     public async Task<List<MenuPlanOverviewDto>> Handle(GetMenuPlansOverviewQuery query, CancellationToken cancellationToken)
     {
         var menuPlansOverview = await readMenuPlanRepository.GetMenuPlansOverviewAsync(cancellationToken);
-        return menuPlansOverview.Select(x => new MenuPlanOverviewDto(x.Id, x.StartDate, x.EndDate, x.HasSnacking)).ToList();
+        return menuPlansOverview.Select(x => new MenuPlanOverviewDto(x.Id, x.StartDate, x.EndDate)).ToList();
     }
 }

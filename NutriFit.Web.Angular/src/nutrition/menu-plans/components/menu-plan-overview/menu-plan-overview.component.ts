@@ -12,7 +12,7 @@ import { MenuPlanOverviewDto } from '../../dtos/menu-plan-overview';
 })
 export class MenuPlanOverviewComponent {
   private readonly menuPlanService = inject(MenuPlanService);
-  public columns = ['Zeitraum', 'Snacking?'];
+  public columns = ['Zeitraum'];
   public menuPlans$: Observable<MenuPlanOverviewDto[]> = this.menuPlanService
     .getMenuPlans()
     .pipe(shareReplay(1));

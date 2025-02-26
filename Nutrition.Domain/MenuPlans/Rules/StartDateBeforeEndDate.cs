@@ -2,9 +2,9 @@
 
 namespace Nutrition.Domain.MenuPlans.Rules;
 
-internal class StartDateBeforeEndDate(MenuPlan menuPlan) : IBusinessRule
+internal class StartDateBeforeEndDate(DateOnly startDate, DateOnly endDate) : IBusinessRule
 {
     public string Message => "Das Startdatum muss vor dem Enddatum sein.";
 
-    public bool IsBroken() => menuPlan.EndDate < menuPlan.StartDate;
+    public bool IsBroken() => endDate < startDate;
 }

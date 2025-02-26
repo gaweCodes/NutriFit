@@ -13,6 +13,5 @@ internal class MenuPlanOverviewConfiguration : IEntityTypeConfiguration<MenuPlan
         builder.Property(mp => mp.Id).ValueGeneratedNever();
         builder.Property(mp => mp.StartDate).IsRequired();
         builder.Property(mp => mp.EndDate).IsRequired();
-        builder.Property(mp => mp.HasSnacking).IsRequired();
     }
 }

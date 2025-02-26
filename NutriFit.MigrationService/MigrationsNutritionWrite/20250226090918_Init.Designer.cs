@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Nutrition.Infrastructure.Write.Database;
@@ -11,9 +12,11 @@ using Nutrition.Infrastructure.Write.Database;
 namespace NutriFit.MigrationService.MigrationsNutritionWrite
 {
     [DbContext(typeof(NutritionWriteDbContext))]
-    partial class NutritionWriteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250226090918_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +33,10 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                     b.Property<DateOnly>("_endDate")
                         .HasColumnType("date")
                         .HasColumnName("EndDate");
+
+                    b.Property<bool>("_hasSnacking")
+                        .HasColumnType("boolean")
+                        .HasColumnName("HasSnacking");
 
                     b.Property<bool>("_isDeleted")
                         .HasColumnType("boolean")
@@ -68,11 +75,12 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                             b1.Property<Guid>("Id")
                                 .HasColumnType("uuid");
 
-                            b1.Property<DateOnly>("Date")
-                                .HasColumnType("date");
-
                             b1.Property<Guid>("MenuPlanId")
                                 .HasColumnType("uuid");
+
+                            b1.Property<DateOnly>("_date")
+                                .HasColumnType("date")
+                                .HasColumnName("Date");
 
                             b1.HasKey("Id");
 

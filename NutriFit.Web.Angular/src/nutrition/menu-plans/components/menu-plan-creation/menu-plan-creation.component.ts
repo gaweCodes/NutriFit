@@ -25,7 +25,6 @@ export class MenuPlanCreationComponent {
     endDate: this.formBuilder.control<Date | null>(null, {
       validators: [Validators.required],
     }),
-    hasSnacking: this.formBuilder.nonNullable.control<boolean>(false),
   });
 
   public createMenuPlan(): void {

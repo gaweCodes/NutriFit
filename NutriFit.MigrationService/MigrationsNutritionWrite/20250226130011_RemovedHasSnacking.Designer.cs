@@ -12,8 +12,8 @@ using Nutrition.Infrastructure.Write.Database;
 namespace NutriFit.MigrationService.MigrationsNutritionWrite
 {
     [DbContext(typeof(NutritionWriteDbContext))]
-    [Migration("20250223062412_AddedMenuPlanTable")]
-    partial class AddedMenuPlanTable
+    [Migration("20250226130011_RemovedHasSnacking")]
+    partial class RemovedHasSnacking
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,10 +34,6 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                         .HasColumnType("date")
                         .HasColumnName("EndDate");
 
-                    b.Property<bool>("_hasSnacking")
-                        .HasColumnType("boolean")
-                        .HasColumnName("HasSnacking");
-
                     b.Property<bool>("_isDeleted")
                         .HasColumnType("boolean")
                         .HasColumnName("IsDeleted");
@@ -56,18 +52,42 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("_isDeleted")
-                        .HasColumnType("boolean")
-                        .HasColumnName("IsDeleted");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
 
-                    b.Property<string>("_name")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("Name");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Recipes", (string)null);
+                });
+
+            modelBuilder.Entity("Nutrition.Domain.MenuPlans.MenuPlan", b =>
+                {
+                    b.OwnsMany("Nutrition.Domain.MenuPlans.DayPlan", "_days", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uuid");
+
+                            b1.Property<DateOnly>("Date")
+                                .HasColumnType("date");
+
+                            b1.Property<Guid>("MenuPlanId")
+                                .HasColumnType("uuid");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("MenuPlanId");
+
+                            b1.ToTable("DayPlans", (string)null);
+
+                            b1.WithOwner()
+                                .HasForeignKey("MenuPlanId");
+                        });
+
+                    b.Navigation("_days");
                 });
 #pragma warning restore 612, 618
         }

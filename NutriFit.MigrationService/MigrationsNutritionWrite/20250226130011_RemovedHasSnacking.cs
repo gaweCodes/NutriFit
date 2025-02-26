@@ -5,25 +5,25 @@
 namespace NutriFit.MigrationService.MigrationsNutritionWrite
 {
     /// <inheritdoc />
-    public partial class AddedSoftDelete : Migration
+    public partial class RemovedHasSnacking : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "IsDeleted",
-                table: "Recipes",
-                type: "boolean",
-                nullable: false,
-                defaultValue: false);
+            migrationBuilder.DropColumn(
+                name: "HasSnacking",
+                table: "MenuPlans");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "IsDeleted",
-                table: "Recipes");
+            migrationBuilder.AddColumn<bool>(
+                name: "HasSnacking",
+                table: "MenuPlans",
+                type: "boolean",
+                nullable: false,
+                defaultValue: false);
         }
     }
 }

@@ -27,8 +27,7 @@ public class MenuPlansController(IHttpClientFactory httpFactory) : ControllerBas
             .Select(x => new MenuPlanOverviewDto
             {
                 Id = x.GetProperty("id").GetGuid(),
-                Period = $"{x.GetProperty("startDate").GetDateTime().Date:dd.MM.yyyy} - {x.GetProperty("endDate").GetDateTime().Date:dd.MM.yyyy}",
-                HasSnacking = x.GetProperty("hasSnacking").GetBoolean()
+                Period = $"{x.GetProperty("startDate").GetDateTime().Date:dd.MM.yyyy} - {x.GetProperty("endDate").GetDateTime().Date:dd.MM.yyyy}"
             })];
     }
 

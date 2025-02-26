@@ -16,7 +16,7 @@ public class MenuPlansController(IMediator mediator) : ControllerBase
     [HttpPost]
     public async Task<Guid> CreateMenuPlanAsync(CreateMenuPlanCommandDataDto createMenuPlanCommandData)
     {
-        var menuPlanId = await mediator.Send(new CreateMenuPlanCommand(createMenuPlanCommandData.StartDate, createMenuPlanCommandData.EndDate, createMenuPlanCommandData.HasSnacking));
+        var menuPlanId = await mediator.Send(new CreateMenuPlanCommand(createMenuPlanCommandData.StartDate, createMenuPlanCommandData.EndDate));
         return menuPlanId;
     }
 
@@ -37,7 +37,7 @@ public class MenuPlansController(IMediator mediator) : ControllerBase
     [HttpPut("{id}")]
     public async Task<Guid> UpdateMenuPlanAsync(Guid id, UpdateMenuPlanCommandDataDto updateMenuPlanCommandData)
     {
-        var menuPlanId = await mediator.Send(new UpdateMenuPlanCommand(id, updateMenuPlanCommandData.StartDate, updateMenuPlanCommandData.EndDate, updateMenuPlanCommandData.HasSnacking));
+        var menuPlanId = await mediator.Send(new UpdateMenuPlanCommand(id, updateMenuPlanCommandData.StartDate, updateMenuPlanCommandData.EndDate));
         return menuPlanId;
     }
 

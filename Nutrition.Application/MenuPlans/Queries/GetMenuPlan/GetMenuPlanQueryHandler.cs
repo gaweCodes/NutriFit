@@ -7,6 +7,6 @@ internal class GetMenuPlanQueryHandler(IReadMenuPlanRepository readMenuPlanRepos
     public async Task<MenuPlanDto?> Handle(GetMenuPlanQuery query, CancellationToken cancellationToken)
     {
         var menuPlan = await readMenuPlanRepository.GetMenuPlanDetailAsync(query.Id, cancellationToken);
-        return menuPlan is not null ? new MenuPlanDto(menuPlan.StartDate, menuPlan.EndDate, menuPlan.HasSnacking) : null;
+        return menuPlan is not null ? new MenuPlanDto(menuPlan.StartDate, menuPlan.EndDate) : null;
     }
 }
