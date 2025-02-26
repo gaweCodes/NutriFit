@@ -23,14 +23,23 @@ internal class MenuPlanConfiguration : IEntityTypeConfiguration<MenuPlan>
         builder.Property<bool>("_isDeleted")
             .HasColumnName("IsDeleted")
             .IsRequired();
-        builder.OwnsMany<DayPlan>("_days", y => 
+        builder.OwnsMany<DayPlan>("_days", dp => 
         {
-            y.WithOwner().HasForeignKey("MenuPlanId");
-            y.ToTable("DayPlans");
-            y.HasKey("Id");
-            y.Property<DayPlanId>("Id").HasConversion(id => id.Value, value => new DayPlanId(value)).ValueGeneratedNever();
-            y.Property<MenuPlanId>("MenuPlanId");
-            y.Property<DateOnly>("Date").IsRequired();
+            dp.WithOwner().HasForeignKey("MenuPlanId");
+            dp.ToTable("DayPlans");
+            dp.HasKey("Id");
+            dp.Property<DayPlanId>("Id").HasConversion(id => id.Value, value => new DayPlanId(value)).ValueGeneratedNever();
+            dp.Property<MenuPlanId>("MenuPlanId");
+            dp.Property<DateOnly>("Date").IsRequired();
+            dp.OwnsMany<MealSlot>("_mealSlots", ms =>
+            {
+                ms.WithOwner().HasForeignKey("DayPlanId");
+                ms.ToTable("MealSlotss");
+                ms.HasKey("Id");
+                ms.Property<MealSlotId>("Id").HasConversion(id => id.Value, value => new MealSlotId(value)).ValueGeneratedNever();
+                ms.Property<DayPlanId>("DayPlanId");
+                ms.Property<MealType>("MealType").IsRequired();
+            });
         });
     }
 }

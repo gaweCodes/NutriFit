@@ -82,6 +82,29 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
 
                             b1.WithOwner()
                                 .HasForeignKey("MenuPlanId");
+
+                            b1.OwnsMany("Nutrition.Domain.MenuPlans.MealSlot", "_mealSlots", b2 =>
+                                {
+                                    b2.Property<Guid>("Id")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("DayPlanId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<int>("MealType")
+                                        .HasColumnType("integer");
+
+                                    b2.HasKey("Id");
+
+                                    b2.HasIndex("DayPlanId");
+
+                                    b2.ToTable("MealSlotss", (string)null);
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("DayPlanId");
+                                });
+
+                            b1.Navigation("_mealSlots");
                         });
 
                     b.Navigation("_days");

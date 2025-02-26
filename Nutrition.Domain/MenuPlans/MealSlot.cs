@@ -1,23 +1,16 @@
-﻿using Nutrition.Domain.MenuPlans.Rules;
-using Nutrition.Domain.Recipes;
-using SharedKernel.Domain;
+﻿using SharedKernel.Domain;
 
 namespace Nutrition.Domain.MenuPlans;
 
-internal class MealSlot : Entity
+public class MealSlot : Entity
 {
-    internal MealSlotId Id { get; } = new MealSlotId(Guid.NewGuid());
+    internal MealSlotId Id { get; } = null!;
     internal MealType MealType { get; private set; }
-    private readonly List<Recipe> _recipes = [];
-    internal IReadOnlyCollection<Recipe> Recipes => _recipes.AsReadOnly();
-
     private MealSlot() { }
 
-    internal MealSlot(MealType mealType) => MealType = mealType;
-    
-    internal void AddRecipe(Recipe recipe)
+    internal MealSlot(MealType mealType)
     {
-        CheckRule(new NoDuplicateRecipesInMealSlot(this, recipe));
-        _recipes.Add(recipe);
+        Id = new MealSlotId(Guid.NewGuid());
+        MealType = mealType;
     }
 }

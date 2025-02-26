@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NutriFit.MigrationService.MigrationsNutritionWrite
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,6 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     EndDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    HasSnacking = table.Column<bool>(type: "boolean", nullable: false),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     StartDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
@@ -44,8 +43,8 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    MenuPlanId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Date = table.Column<DateOnly>(type: "date", nullable: false)
+                    Date = table.Column<DateOnly>(type: "date", nullable: false),
+                    MenuPlanId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,20 +57,47 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "MealSlotss",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    MealType = table.Column<int>(type: "integer", nullable: false),
+                    DayPlanId = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MealSlotss", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MealSlotss_DayPlans_DayPlanId",
+                        column: x => x.DayPlanId,
+                        principalTable: "DayPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_DayPlans_MenuPlanId",
                 table: "DayPlans",
                 column: "MenuPlanId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MealSlotss_DayPlanId",
+                table: "MealSlotss",
+                column: "DayPlanId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DayPlans");
+                name: "MealSlotss");
 
             migrationBuilder.DropTable(
                 name: "Recipes");
+
+            migrationBuilder.DropTable(
+                name: "DayPlans");
 
             migrationBuilder.DropTable(
                 name: "MenuPlans");

@@ -12,8 +12,8 @@ using Nutrition.Infrastructure.Write.Database;
 namespace NutriFit.MigrationService.MigrationsNutritionWrite
 {
     [DbContext(typeof(NutritionWriteDbContext))]
-    [Migration("20250226130011_RemovedHasSnacking")]
-    partial class RemovedHasSnacking
+    [Migration("20250226161617_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -85,6 +85,29 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
 
                             b1.WithOwner()
                                 .HasForeignKey("MenuPlanId");
+
+                            b1.OwnsMany("Nutrition.Domain.MenuPlans.MealSlot", "_mealSlots", b2 =>
+                                {
+                                    b2.Property<Guid>("Id")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<Guid>("DayPlanId")
+                                        .HasColumnType("uuid");
+
+                                    b2.Property<int>("MealType")
+                                        .HasColumnType("integer");
+
+                                    b2.HasKey("Id");
+
+                                    b2.HasIndex("DayPlanId");
+
+                                    b2.ToTable("MealSlotss", (string)null);
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("DayPlanId");
+                                });
+
+                            b1.Navigation("_mealSlots");
                         });
 
                     b.Navigation("_days");

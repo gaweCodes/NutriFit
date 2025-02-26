@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Nutrition.Domain.MenuPlans;
 using Nutrition.Infrastructure.Write.DatabaseObjectConfigurations;
 
 namespace Nutrition.Infrastructure.Write.Database;

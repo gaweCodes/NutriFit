@@ -2,4 +2,4 @@
 
 namespace Nutrition.Domain.MenuPlans;
 
-internal class MealSlotId(Guid value) : TypedIdValueBase(value);
+public class MealSlotId(Guid value) : TypedIdValueBase(value);

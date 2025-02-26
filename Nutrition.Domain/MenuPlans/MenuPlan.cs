@@ -6,11 +6,11 @@ namespace Nutrition.Domain.MenuPlans;
 
 public class MenuPlan : Entity, IAggregateRoot
 {
-    public MenuPlanId Id { get; private set; }
+    public MenuPlanId Id { get; private set; } = null!;
     private DateOnly _startDate;
     private DateOnly _endDate;
     private bool _isDeleted;
-    private List<DayPlan> _days = [];
+    private readonly List<DayPlan> _days = [];
 
     private MenuPlan() { }
     private MenuPlan(DateOnly startDate, DateOnly endDate)
