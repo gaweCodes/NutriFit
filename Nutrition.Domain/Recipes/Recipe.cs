@@ -5,14 +5,16 @@ namespace Nutrition.Domain.Recipes;
 
 public class Recipe : Entity, IAggregateRoot
 {
-    public RecipeId Id { get; } = new RecipeId(Guid.NewGuid());
+    public RecipeId Id { get; } = null!;
     public string Name { get; private set; } = string.Empty;
     public bool IsDeleted { get; private set; }
 
     private Recipe() { }
     private Recipe(string name)
     {
+        Id = new RecipeId(Guid.NewGuid());
         Name = name;
+        
         AddDomainEvent(new RecipeCreatedDomainEvent(Id.Value, Name));
     }
     public static Recipe CreateNew(string name) => new(name);

@@ -10,7 +10,10 @@ public class MenuPlanRepository(NutritionWriteDbContext dbContext) : IMenuPlanRe
 
     public async Task<MenuPlan> GetByIdAsync(MenuPlanId id, CancellationToken cancellationToken)
     {
-        var menuPlan = await dbContext.Set<MenuPlan>().SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
+        var menuPlan = await dbContext.Set<MenuPlan>()
+            .Include(mp => mp.Days)
+            .ThenInclude(x => x.MealSlots)
+            .SingleOrDefaultAsync(x => x.Id == id, cancellationToken);
         return menuPlan is null ? throw new ArgumentException($"There is no {nameof(MenuPlan)} with {nameof(id)} = {id}") : menuPlan;
     }
     public async Task SaveChangesAsync(CancellationToken cancellationToken) 

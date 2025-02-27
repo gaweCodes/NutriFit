@@ -7,46 +7,48 @@ namespace Nutrition.Domain.MenuPlans;
 public class MenuPlan : Entity, IAggregateRoot
 {
     public MenuPlanId Id { get; private set; } = null!;
-    private DateOnly _startDate;
-    private DateOnly _endDate;
-    private bool _isDeleted;
-    private readonly List<DayPlan> _days = [];
+    public DateOnly StartDate { get; private set; }
+    public DateOnly EndDate { get; private set; }
+    public bool IsDeleted { get; private set; }
+    public ICollection<DayPlan> Days { get; private set; } = [];
 
     private MenuPlan() { }
     private MenuPlan(DateOnly startDate, DateOnly endDate)
     {
         Id = new MenuPlanId(Guid.NewGuid());
-        _startDate = startDate;
-        _endDate = endDate;
+        StartDate = startDate;
+        EndDate = endDate;
 
-        CheckRule(new StartDateBeforeEndDate(_startDate, _endDate));
+        CheckRule(new StartDateBeforeEndDate(StartDate, EndDate));
 
-        for (var date = _startDate; date <= _endDate; date = date.AddDays(1))
-            _days.Add(new(date));
+        for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
+            Days.Add(new(date));
 
-        AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, _startDate, _endDate));
+        AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, StartDate, EndDate));
     }
     public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate) => new(startDate, endDate);
     
     public void UpdateMenuPlan(DateOnly startDate, DateOnly endDate)
     {
-        _startDate = startDate;
-        _endDate = endDate;
+        StartDate = startDate;
+        EndDate = endDate;
 
-        CheckRule(new StartDateBeforeEndDate(_startDate, _endDate));
+        CheckRule(new StartDateBeforeEndDate(StartDate, EndDate));
 
-        _days.RemoveAll(x => x.Date < _startDate || x.Date > _endDate);       
-        for (var date = _startDate; date <= _endDate; date = date.AddDays(1))
+        var dayList = Days.ToList();
+        dayList.RemoveAll(x => x.Date < StartDate || x.Date > EndDate);       
+        for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
         {
-            if (!_days.Any(x => x.Date == date)) _days.Add(new(date));
+            if (!dayList.Any(x => x.Date == date)) dayList.Add(new(date));
         }
+        Days = dayList;
 
-        AddDomainEvent(new MenuPlanUpdatedDomainEvent(Id.Value, _startDate, _endDate));
+        AddDomainEvent(new MenuPlanUpdatedDomainEvent(Id.Value, StartDate, EndDate));
     }
 
     public void Delete()
     {
-        _isDeleted = true;
+        IsDeleted = true;
         AddDomainEvent(new MenuPlanDeletedDomainEvent(Id.Value));
     }
 }

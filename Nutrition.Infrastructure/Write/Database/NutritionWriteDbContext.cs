@@ -10,6 +10,8 @@ public class NutritionWriteDbContext(DbContextOptions<NutritionWriteDbContext> o
     {
         modelBuilder.ApplyConfiguration(new RecipeConfiguration());
         modelBuilder.ApplyConfiguration(new MenuPlanConfiguration());
+        modelBuilder.ApplyConfiguration(new DayPlanConfiguration());
+        modelBuilder.ApplyConfiguration(new MealSlotConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

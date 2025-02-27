@@ -4,9 +4,9 @@ namespace Nutrition.Domain.MenuPlans;
 
 public class DayPlan : Entity
 {
-    internal DayPlanId Id { get; private set; } = null!;
-    internal DateOnly Date { get; private set; }
-    private readonly List<MealSlot> _mealSlots = [];
+    public DayPlanId Id { get; } = null!;
+    public DateOnly Date { get; private set; }
+    public ICollection<MealSlot> MealSlots { get; } = [];
     
     private DayPlan() { }
 
@@ -15,8 +15,8 @@ public class DayPlan : Entity
         Id = new DayPlanId(Guid.NewGuid());
         Date = date;
 
-        _mealSlots.Add(new(MealType.Breakfast));
-        _mealSlots.Add(new(MealType.Lunch));
-        _mealSlots.Add(new(MealType.Dinner));
+        MealSlots.Add(new(MealType.Breakfast));
+        MealSlots.Add(new(MealType.Lunch));
+        MealSlots.Add(new(MealType.Dinner));
     }
 }
