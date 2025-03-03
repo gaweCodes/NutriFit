@@ -1,5 +1,4 @@
-﻿using OpenTelemetry.Trace;
-using System.Net;
+﻿using System.Net;
 
 namespace NutriFit.Web.Angular.BackendForFrontend;
 
