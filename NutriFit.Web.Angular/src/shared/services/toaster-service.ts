@@ -1,5 +1,10 @@
-import { inject, Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import {
+  EnvironmentProviders,
+  inject,
+  Injectable,
+  Provider,
+} from '@angular/core';
+import { provideToastr, ToastrService } from 'ngx-toastr';
 
 @Injectable({ providedIn: 'root' })
 export class ToasterService {
@@ -12,3 +17,8 @@ export class ToasterService {
     });
   }
 }
+
+export const toasterProvider: (Provider | EnvironmentProviders)[] = [
+  provideToastr(),
+  ToastrService,
+];
