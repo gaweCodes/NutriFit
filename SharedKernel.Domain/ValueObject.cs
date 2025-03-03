@@ -44,7 +44,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
     protected static void CheckRule(IBusinessRule rule)
     {
-        if (rule.IsBroken()) throw new BusinessRuleValidationException(rule);
+        if (rule.IsBroken()) throw new ValidationException(rule.Message);
     }
 
     private bool PropertiesAreEqual(object obj, PropertyInfo p) => Equals(p.GetValue(this, null), p.GetValue(obj, null));
@@ -52,12 +52,10 @@ public abstract class ValueObject : IEquatable<ValueObject>
     private List<PropertyInfo> GetProperties() =>
     GetType()
         .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-        .Where(p => p.GetCustomAttribute<IgnoreMemberAttribute>() == null)
         .ToList();
 
     private List<FieldInfo> GetFields() => 
         GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                .Where(p => p.GetCustomAttribute<IgnoreMemberAttribute>() == null)
                 .ToList();
 
     private static int HashValue(int seed, object? value)

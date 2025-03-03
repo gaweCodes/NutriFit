@@ -9,6 +9,7 @@ $navbar-light-toggler-border-color: $primary;
 $navbar-light-icon-color: $primary;
 
 @import "bootstrap/scss/bootstrap";
+@import "ngx-toastr/toastr";
 
 .background-white {
   background-color: white;

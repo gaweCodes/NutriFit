@@ -1,5 +1,6 @@
 ﻿using Nutrition.Domain.Recipes;
 using Nutrition.Infrastructure.Write.Database;
+using SharedKernel.Domain;
 
 namespace Nutrition.Infrastructure.Write.Repositories;
 
@@ -10,7 +11,7 @@ public class RecipeRepository(NutritionWriteDbContext dbContext) : IRecipeReposi
     public async Task<Recipe> GetByIdAsync(RecipeId id, CancellationToken cancellationToken)
     {
         var recipe = await dbContext.FindAsync<Recipe>(id, cancellationToken);
-        return recipe is null ? throw new ArgumentException($"There is no {nameof(Recipe)} with id = {id}") : recipe;
+        return recipe is null ? throw new EntityNotFoundException(nameof(Recipe), id.Value) : recipe;
     }
     public async Task SaveChangesAsync(CancellationToken cancellationToken) => await dbContext.SaveChangesAsync(cancellationToken);
 }

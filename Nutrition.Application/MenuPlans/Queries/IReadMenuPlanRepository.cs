@@ -4,6 +4,6 @@ namespace Nutrition.Application.MenuPlans.Queries;
 
 public interface IReadMenuPlanRepository
 {
-    public Task<MenuPlanDetail?> GetMenuPlanDetailAsync(Guid id, CancellationToken cancellationToken);
-    public Task<List<MenuPlanOverview>> GetMenuPlansOverviewAsync(CancellationToken cancellationToken);
+    Task<MenuPlanDetail> GetMenuPlanDetailAsync(Guid id, CancellationToken cancellationToken);
+    Task<List<MenuPlanOverview>> GetMenuPlansOverviewAsync(CancellationToken cancellationToken);
 }

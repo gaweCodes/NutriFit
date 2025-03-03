@@ -51,4 +51,9 @@ public class MenuPlan : Entity, IAggregateRoot
         IsDeleted = true;
         AddDomainEvent(new MenuPlanDeletedDomainEvent(Id.Value));
     }
+
+    public bool IsOverlapingWith(MenuPlan plan)
+    {
+        return Id != plan.Id && StartDate <= plan.EndDate && EndDate >= plan.StartDate;
+    }
 }

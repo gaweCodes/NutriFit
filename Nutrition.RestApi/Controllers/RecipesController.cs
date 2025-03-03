@@ -14,32 +14,20 @@ namespace Nutrition.RestApi.Controllers;
 public class RecipesController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    public async Task<Guid> CreateRecipeAsync(CreateRecipeCommandDataDto createRecipeCommandData)
-    {
-        var recipeId = await mediator.Send(new CreateRecipeCommand(createRecipeCommandData.Name));
-        return recipeId;
-    }
+    public async Task<ActionResult<Guid>> CreateRecipeAsync(CreateRecipeCommandDataDto createRecipeCommandData) => 
+        StatusCode(StatusCodes.Status201Created, await mediator.Send(new CreateRecipeCommand(createRecipeCommandData.Name)));
 
     [HttpGet]
-    public async Task<ActionResult<List<RecipeOverviewDto>>> GetRecipesAsync()
-    {
-        var recipeOverviews = await mediator.Send(new GetRecipesOverviewQuery());
-        return recipeOverviews;
-    }
+    public async Task<ActionResult<List<RecipeOverviewDto>>> GetRecipesAsync() => 
+        Ok(await mediator.Send(new GetRecipesOverviewQuery()));
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<RecipeDto>> GetRecipeByIdAsync(Guid id) 
-    {
-        var recipeDto = await mediator.Send(new GetRecipeQuery(id));
-        return recipeDto is null ? (ActionResult<RecipeDto>)NotFound(id) : Ok(recipeDto);
-    }
+    public async Task<ActionResult<RecipeDto>> GetRecipeByIdAsync(Guid id) => 
+        Ok(await mediator.Send(new GetRecipeQuery(id)));
 
     [HttpPut("{id}")]
-    public async Task<Guid> UpdateRecipeAsync(Guid id, UpdateRecipeCommandDataDto updateRecipeCommandData)
-    {
-        var recipeId = await mediator.Send(new UpdateRecipeCommand(id, updateRecipeCommandData.Name));
-        return recipeId;
-    }
+    public async Task<ActionResult<Guid>> UpdateRecipeAsync(Guid id, UpdateRecipeCommandDataDto updateRecipeCommandData) => 
+        Ok(await mediator.Send(new UpdateRecipeCommand(id, updateRecipeCommandData.Name)));
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteRecipeAsync(Guid id)

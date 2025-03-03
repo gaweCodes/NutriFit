@@ -10,31 +10,31 @@ public class RecipesController(IHttpClientFactory httpFactory) : ControllerBase
     private readonly HttpClient _httpClient = httpFactory.CreateClient("Nutrition");
 
     [HttpPost]
-    public async Task<Guid> CreateAsync(RecipeCreationDto recipeToCreate)
+    public async Task<ActionResult<Guid>> CreateAsync(RecipeCreationDto recipeToCreate)
     {
         var response = await _httpClient.PostAsJsonAsync("recipes", recipeToCreate);
-        return await response.Content.ReadFromJsonAsync<Guid>();
+        return StatusCode(StatusCodes.Status201Created, await response.Content.ReadFromJsonAsync<Guid>());
     }
 
     [HttpGet]
-    public async Task<List<RecipeOverviewDto>> GetAsync()
+    public async Task<ActionResult<List<RecipeOverviewDto>>> GetAsync()
     {
         var response = await _httpClient.GetAsync("Recipes");
-        return await response.Content.ReadFromJsonAsync<List<RecipeOverviewDto>>() ?? [];
+        return Ok(await response.Content.ReadFromJsonAsync<List<RecipeOverviewDto>>() ?? []);
     }
 
     [HttpGet("{id}")]
-    public async Task<RecipeDto> GetByIdAsync(Guid id)
+    public async Task<ActionResult<RecipeDto>> GetByIdAsync(Guid id)
     {
         var response = await _httpClient.GetAsync($"Recipes/{id}");
-        return (await response.Content.ReadFromJsonAsync<RecipeDto>())!;
+        return Ok(await response.Content.ReadFromJsonAsync<RecipeDto>());
     }
 
     [HttpPut("{id}")]
-    public async Task<Guid> UpdateAsync(Guid id, RecipeDto recipeToUpdate)
+    public async Task<ActionResult<Guid>> UpdateAsync(Guid id, RecipeDto recipeToUpdate)
     {
         var response = await _httpClient.PutAsJsonAsync($"Recipes/{id}", recipeToUpdate);
-        return await response.Content.ReadFromJsonAsync<Guid>();
+        return Ok(await response.Content.ReadFromJsonAsync<Guid>());
     }
 
     [HttpDelete("{id}")]

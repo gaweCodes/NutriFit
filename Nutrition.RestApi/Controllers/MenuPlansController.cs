@@ -14,32 +14,23 @@ namespace Nutrition.RestApi.Controllers;
 public class MenuPlansController(IMediator mediator) : ControllerBase
 {
     [HttpPost]
-    public async Task<Guid> CreateMenuPlanAsync(CreateMenuPlanCommandDataDto createMenuPlanCommandData)
+    public async Task<ActionResult<Guid>> CreateMenuPlanAsync(CreateMenuPlanCommandDataDto createMenuPlanCommandData)
     {
         var menuPlanId = await mediator.Send(new CreateMenuPlanCommand(createMenuPlanCommandData.StartDate, createMenuPlanCommandData.EndDate));
-        return menuPlanId;
+        return StatusCode(StatusCodes.Status201Created, menuPlanId);
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<MenuPlanOverviewDto>>> GetMenuPlansAsync()
-    {
-        var menuPlanOverviews = await mediator.Send(new GetMenuPlansOverviewQuery());
-        return menuPlanOverviews;
-    }
+    public async Task<ActionResult<List<MenuPlanOverviewDto>>> GetMenuPlansAsync() => 
+        Ok(await mediator.Send(new GetMenuPlansOverviewQuery()));
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<MenuPlanDto>> GetMenuPlanByIdAsync(Guid id) 
-    {
-        var menuPlanDto = await mediator.Send(new GetMenuPlanQuery(id));
-        return menuPlanDto is null ? (ActionResult<MenuPlanDto>)NotFound(id) : Ok(menuPlanDto);
-    }
+    public async Task<ActionResult<MenuPlanDto>> GetMenuPlanByIdAsync(Guid id) => 
+        Ok(await mediator.Send(new GetMenuPlanQuery(id)));
 
     [HttpPut("{id}")]
-    public async Task<Guid> UpdateMenuPlanAsync(Guid id, UpdateMenuPlanCommandDataDto updateMenuPlanCommandData)
-    {
-        var menuPlanId = await mediator.Send(new UpdateMenuPlanCommand(id, updateMenuPlanCommandData.StartDate, updateMenuPlanCommandData.EndDate));
-        return menuPlanId;
-    }
+    public async Task<ActionResult<Guid>> UpdateMenuPlanAsync(Guid id, UpdateMenuPlanCommandDataDto updateMenuPlanCommandData) => 
+        Ok(await mediator.Send(new UpdateMenuPlanCommand(id, updateMenuPlanCommandData.StartDate, updateMenuPlanCommandData.EndDate)));
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteMenuPlanAsync(Guid id)
