@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { globalModules } from '../../../../GlobalModules';
 import { RecipeService } from '../../services/recipe-service';
 import {
   distinctUntilChanged,
@@ -13,6 +12,7 @@ import {
 } from 'rxjs';
 import { RecipeDto } from '../../dtos/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
+import { globalModules } from '../../../../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-recipe-detail',

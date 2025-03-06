@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { globalModules } from '../../../../GlobalModules';
 import { RecipeService } from '../../services/recipe-service';
 import { RecipeOverviewDto } from '../../dtos/recipe-overview';
 import { Observable, shareReplay } from 'rxjs';
+import { globalModules } from '../../../../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-recipe-overview',

@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { globalModules } from '../../../GlobalModules';
+import { LinkComponent } from '../link/link.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'nutrifit-image-card',
-  imports: [globalModules],
+  imports: [LinkComponent, RouterLink],
   templateUrl: './image-card.component.html',
   styleUrl: './image-card.component.scss',
 })

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { globalModules } from '../GlobalModules';
+import { globalModules } from '../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-root',

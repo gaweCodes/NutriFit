@@ -2,10 +2,9 @@ import { Component, inject } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
-
-import { globalModules } from '../../../../GlobalModules';
 import { RecipeCreationDto } from '../../dtos/recipe-creation';
 import { RecipeService } from '../../services/recipe-service';
+import { globalModules } from '../../../../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-recipe-creation',

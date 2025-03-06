@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { globalModules } from '../../../../GlobalModules';
+import { globalModules } from '../../../../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-workout-overview',

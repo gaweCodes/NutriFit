@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { globalModules } from '../../../../GlobalModules';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MenuPlanService } from '../../services/menu-plan-service';
 import {
@@ -13,6 +12,7 @@ import {
   tap,
 } from 'rxjs';
 import { MenuPlanDto } from '../../dtos/menu-plan';
+import { globalModules } from '../../../../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-menu-plan-detail',

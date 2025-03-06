@@ -3,9 +3,9 @@ import { tap } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { globalModules } from '../../../../GlobalModules';
 import { MenuPlanCreationDto } from '../../dtos/menu-plan-creation';
 import { MenuPlanService } from '../../services/menu-plan-service';
+import { globalModules } from '../../../../shared/GlobalModules';
 
 @Component({
   selector: 'nutrifit-menu-plan-creation',
