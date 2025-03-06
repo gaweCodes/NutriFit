@@ -10,6 +10,7 @@ using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 using System.Diagnostics;
+using System.Net;
 
 namespace NutriFit.ServiceDefaults;
 
@@ -22,7 +23,9 @@ public static class Extensions
         builder.Services.AddServiceDiscovery();
         builder.Services.ConfigureHttpClientDefaults(http =>
         {
-            http.AddStandardResilienceHandler();
+            http.AddStandardResilienceHandler(x => x.Retry.ShouldHandle = args => 
+            ValueTask.FromResult(args.Outcome.Result is HttpResponseMessage response && (response.StatusCode == HttpStatusCode.RequestTimeout || (int)response.StatusCode >= 500))
+            );
             http.AddServiceDiscovery();
         });
         builder.Services.Configure<ServiceDiscoveryOptions>(options => options.AllowedSchemes = ["https"]);
