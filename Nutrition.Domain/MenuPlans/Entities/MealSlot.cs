@@ -9,7 +9,7 @@ public class MealSlot : Entity
 {
     public MealSlotId Id { get; } = null!;
     public MealType MealType { get; private set; }
-    //public ICollection<RecipeId> RecipeIds { get; } = [];
+    public ICollection<RecipeId> RecipeIds { get; } = [];
     
     private MealSlot() { }
 
@@ -21,7 +21,7 @@ public class MealSlot : Entity
 
     internal void AddRecipe(RecipeId recipeId)
     {
-        //CheckRule(new NoDuplicateRecipesInMealSlot([.. RecipeIds], recipeId));
-        //RecipeIds.Add(recipeId);
+        CheckRule(new NoDuplicateRecipesInMealSlot([.. RecipeIds], recipeId));
+        RecipeIds.Add(recipeId);
     }
 }

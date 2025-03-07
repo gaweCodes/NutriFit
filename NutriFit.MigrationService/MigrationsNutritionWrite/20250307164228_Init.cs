@@ -80,8 +80,8 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                 name: "MealSlotRecipes",
                 columns: table => new
                 {
-                    MealSlotId = table.Column<Guid>(type: "uuid", nullable: false),
-                    RecipeId = table.Column<Guid>(type: "uuid", nullable: false)
+                    RecipeId = table.Column<Guid>(type: "uuid", nullable: false),
+                    MealSlotId = table.Column<Guid>(type: "uuid", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,23 +92,12 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                         principalTable: "MealSlots",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_MealSlotRecipes_Recipes_RecipeId",
-                        column: x => x.RecipeId,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_DayPlans_MenuPlanId",
                 table: "DayPlans",
                 column: "MenuPlanId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MealSlotRecipes_RecipeId",
-                table: "MealSlotRecipes",
-                column: "RecipeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MealSlots_DayPlanId",
@@ -123,10 +112,10 @@ namespace NutriFit.MigrationService.MigrationsNutritionWrite
                 name: "MealSlotRecipes");
 
             migrationBuilder.DropTable(
-                name: "MealSlots");
+                name: "Recipes");
 
             migrationBuilder.DropTable(
-                name: "Recipes");
+                name: "MealSlots");
 
             migrationBuilder.DropTable(
                 name: "DayPlans");
