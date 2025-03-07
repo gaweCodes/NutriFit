@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nutrition.Domain.MenuPlans;
+using Nutrition.Domain.MenuPlans.Entities;
+using Nutrition.Domain.MenuPlans.ValueObjects;
 using Nutrition.Infrastructure.Write.Database;
 using SharedKernel.Domain;
 
@@ -10,8 +12,6 @@ public class MenuPlanRepository(NutritionWriteDbContext dbContext) : IMenuPlanRe
     public async Task AddAsync(MenuPlan menuPlan, CancellationToken cancellationToken) => 
         await dbContext.AddAsync(menuPlan, cancellationToken);
 
-    public async Task<List<MenuPlan>> GetAllAsync() => 
-        await dbContext.Set<MenuPlan>().AsNoTracking().ToListAsync();
     public async Task<MenuPlan> GetByIdAsync(MenuPlanId id, CancellationToken cancellationToken)
     {
         var menuPlan = await dbContext.Set<MenuPlan>()

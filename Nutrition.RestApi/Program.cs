@@ -1,6 +1,6 @@
 using NutriFit.ServiceDefaults;
 using Nutrition.Application.Recipes.Commands.CreateRecipe;
-using Nutrition.Domain.MenuPlans.Services;
+using Nutrition.Domain.MenuPlans.Checkers;
 using Nutrition.Infrastructure;
 using Nutrition.RestApi;
 
@@ -9,7 +9,6 @@ builder.AddServiceDefaults();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblies(typeof(CreateRecipeCommand).Assembly, typeof(NutritionInfrastructureServiceColectionExtensions).Assembly));
-builder.Services.AddScoped<MenuPlanOverlapChecker>();
 builder.Services.AddNutritionInfrastructure(builder.Configuration);
 
 var app = builder.Build();

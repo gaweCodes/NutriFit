@@ -1,4 +1,4 @@
-﻿namespace Nutrition.Domain.MenuPlans;
+﻿namespace Nutrition.Domain.MenuPlans.ValueObjects;
 
 public enum MealType
 {

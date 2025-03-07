@@ -1,5 +1,5 @@
 ﻿using SharedKernel.Domain;
 
-namespace Nutrition.Domain.MenuPlans;
+namespace Nutrition.Domain.MenuPlans.ValueObjects;
 
 public class MealSlotId(Guid value) : TypedIdValueBase(value);

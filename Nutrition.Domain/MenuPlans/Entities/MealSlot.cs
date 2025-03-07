@@ -1,14 +1,15 @@
 ﻿using Nutrition.Domain.MenuPlans.Rules;
-using Nutrition.Domain.Recipes;
+using Nutrition.Domain.MenuPlans.ValueObjects;
+using Nutrition.Domain.Recipes.ValueObjects;
 using SharedKernel.Domain;
 
-namespace Nutrition.Domain.MenuPlans;
+namespace Nutrition.Domain.MenuPlans.Entities;
 
 public class MealSlot : Entity
 {
     public MealSlotId Id { get; } = null!;
     public MealType MealType { get; private set; }
-    public ICollection<Recipe> Recipes { get; } = [];
+    //public ICollection<RecipeId> RecipeIds { get; } = [];
     
     private MealSlot() { }
 
@@ -18,9 +19,9 @@ public class MealSlot : Entity
         MealType = mealType;
     }
 
-    internal void AddRecipe(Recipe recipe)
+    internal void AddRecipe(RecipeId recipeId)
     {
-        CheckRule(new NoDuplicateRecipesInMealSlot([.. Recipes], recipe));
-        Recipes.Add(recipe);
+        //CheckRule(new NoDuplicateRecipesInMealSlot([.. RecipeIds], recipeId));
+        //RecipeIds.Add(recipeId);
     }
 }

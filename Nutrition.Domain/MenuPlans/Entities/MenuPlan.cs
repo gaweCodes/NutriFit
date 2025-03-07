@@ -1,8 +1,10 @@
-﻿using Nutrition.Domain.MenuPlans.Events;
+﻿using Nutrition.Domain.MenuPlans.Checkers;
+using Nutrition.Domain.MenuPlans.Events;
 using Nutrition.Domain.MenuPlans.Rules;
+using Nutrition.Domain.MenuPlans.ValueObjects;
 using SharedKernel.Domain;
 
-namespace Nutrition.Domain.MenuPlans;
+namespace Nutrition.Domain.MenuPlans.Entities;
 
 public class MenuPlan : Entity, IAggregateRoot
 {
@@ -13,27 +15,32 @@ public class MenuPlan : Entity, IAggregateRoot
     public ICollection<DayPlan> Days { get; private set; } = [];
 
     private MenuPlan() { }
-    private MenuPlan(DateOnly startDate, DateOnly endDate)
+    private MenuPlan(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker uniqueMenuPlanDateRangeChecker)
     {
         Id = new MenuPlanId(Guid.NewGuid());
         StartDate = startDate;
         EndDate = endDate;
 
-        CheckRule(new StartDateBeforeEndDate(StartDate, EndDate));
+        CheckRule(new EndDateNotBeforeStartDate(StartDate, EndDate));
+        if (uniqueMenuPlanDateRangeChecker.Check(this) == false)
+            throw new ValidationException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
 
         for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
             Days.Add(new(date));
 
         AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, StartDate, EndDate));
     }
-    public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate) => new(startDate, endDate);
+    public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker uniqueMenuPlanDateRangeChecker) => 
+        new(startDate, endDate, uniqueMenuPlanDateRangeChecker);
     
-    public void UpdateMenuPlan(DateOnly startDate, DateOnly endDate)
+    public void UpdateMenuPlan(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker uniqueMenuPlanDateRangeChecker)
     {
         StartDate = startDate;
         EndDate = endDate;
 
-        CheckRule(new StartDateBeforeEndDate(StartDate, EndDate));
+        CheckRule(new EndDateNotBeforeStartDate(StartDate, EndDate));
+        if (uniqueMenuPlanDateRangeChecker.Check(this) == false)
+            throw new ValidationException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
 
         var dayList = Days.ToList();
         dayList.RemoveAll(x => x.Date < StartDate || x.Date > EndDate);       
@@ -50,10 +57,5 @@ public class MenuPlan : Entity, IAggregateRoot
     {
         IsDeleted = true;
         AddDomainEvent(new MenuPlanDeletedDomainEvent(Id.Value));
-    }
-
-    public bool IsOverlapingWith(MenuPlan plan)
-    {
-        return Id != plan.Id && StartDate <= plan.EndDate && EndDate >= plan.StartDate;
     }
 }

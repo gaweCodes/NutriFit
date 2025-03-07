@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nutrition.Domain.MenuPlans;
-using System.Runtime.Intrinsics.Arm;
+using Nutrition.Domain.MenuPlans.Entities;
+using Nutrition.Domain.MenuPlans.ValueObjects;
 
 namespace Nutrition.Infrastructure.Write.DatabaseObjectConfigurations;
 

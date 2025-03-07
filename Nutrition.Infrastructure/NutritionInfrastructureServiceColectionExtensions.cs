@@ -10,6 +10,8 @@ using Nutrition.Application.Recipes.Queries;
 using Nutrition.Infrastructure.Read.Repositories;
 using Nutrition.Domain.MenuPlans;
 using Nutrition.Application.MenuPlans.Queries;
+using Nutrition.Domain.MenuPlans.Checkers;
+using Nutrition.Infrastructure.Write.Checkers;
 
 namespace Nutrition.Infrastructure;
 
@@ -24,10 +26,11 @@ public static class NutritionInfrastructureServiceColectionExtensions
         serviceCollection.AddDbContext<NutritionWriteDbContext>((sp, options) =>
         {
             options.UseNpgsql(configuration.GetConnectionString("nutrition-write"));
-            options.AddInterceptors(new AfterSaveInterceptor(sp));
+            options.AddInterceptors(new EventPublisher(sp));
         });
         serviceCollection.AddDbContext<NutritionReadDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("nutrition-read")));
-        
+        serviceCollection.AddScoped<IUniqueMenuPlanDateRangeChecker, UniqueMenuPlanDateRangeChecker>();
+
         return serviceCollection;
     }
 }

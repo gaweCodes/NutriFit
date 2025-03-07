@@ -1,4 +1,5 @@
 ﻿using Nutrition.Domain.MenuPlans;
+using Nutrition.Domain.MenuPlans.ValueObjects;
 using SharedKernel.Application;
 
 namespace Nutrition.Application.MenuPlans.Commands.DeleteMenuPlan;

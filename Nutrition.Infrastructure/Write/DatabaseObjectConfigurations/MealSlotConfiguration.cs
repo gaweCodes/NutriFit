@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Nutrition.Domain.MenuPlans;
-using Nutrition.Domain.Recipes;
+using Nutrition.Domain.MenuPlans.Entities;
+using Nutrition.Domain.MenuPlans.ValueObjects;
 
 namespace Nutrition.Infrastructure.Write.DatabaseObjectConfigurations;
 
@@ -15,17 +15,5 @@ internal class MealSlotConfiguration : IEntityTypeConfiguration<MealSlot>
             .HasConversion(id => id.Value, value => new MealSlotId(value))
             .ValueGeneratedNever();
         builder.Property(ms => ms.MealType).IsRequired();
-
-        builder.HasMany(ms => ms.Recipes)
-            .WithMany()
-                        .UsingEntity<Dictionary<string, object>>(
-            "MealSlotRecipes", 
-            j => j.HasOne<Recipe>().WithMany().HasForeignKey("RecipeId").IsRequired(), 
-            j => j.HasOne<MealSlot>().WithMany().HasForeignKey("MealSlotId").IsRequired(),
-            j =>
-            {
-                j.ToTable("MealSlotRecipes");
-                j.HasKey("MealSlotId", "RecipeId");
-            });
     }
 }

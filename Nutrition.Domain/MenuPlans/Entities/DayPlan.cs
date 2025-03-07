@@ -1,6 +1,7 @@
-﻿using SharedKernel.Domain;
+﻿using Nutrition.Domain.MenuPlans.ValueObjects;
+using SharedKernel.Domain;
 
-namespace Nutrition.Domain.MenuPlans;
+namespace Nutrition.Domain.MenuPlans.Entities;
 
 public class DayPlan : Entity
 {

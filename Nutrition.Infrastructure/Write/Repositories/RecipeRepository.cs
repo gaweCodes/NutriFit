@@ -1,4 +1,6 @@
 ﻿using Nutrition.Domain.Recipes;
+using Nutrition.Domain.Recipes.Entities;
+using Nutrition.Domain.Recipes.ValueObjects;
 using Nutrition.Infrastructure.Write.Database;
 using SharedKernel.Domain;
 

@@ -1,4 +1,5 @@
 ﻿using Nutrition.Domain.Recipes;
+using Nutrition.Domain.Recipes.Entities;
 using SharedKernel.Application;
 
 namespace Nutrition.Application.Recipes.Commands.CreateRecipe;

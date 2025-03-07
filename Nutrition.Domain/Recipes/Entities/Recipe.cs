@@ -1,7 +1,8 @@
 ﻿using Nutrition.Domain.Recipes.Events;
+using Nutrition.Domain.Recipes.ValueObjects;
 using SharedKernel.Domain;
 
-namespace Nutrition.Domain.Recipes;
+namespace Nutrition.Domain.Recipes.Entities;
 
 public class Recipe : Entity, IAggregateRoot
 {

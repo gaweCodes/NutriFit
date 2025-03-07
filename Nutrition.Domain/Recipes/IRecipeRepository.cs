@@ -1,4 +1,7 @@
-﻿namespace Nutrition.Domain.Recipes;
+﻿using Nutrition.Domain.Recipes.Entities;
+using Nutrition.Domain.Recipes.ValueObjects;
+
+namespace Nutrition.Domain.Recipes;
 
 public interface IRecipeRepository
 {

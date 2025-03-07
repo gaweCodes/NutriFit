@@ -6,7 +6,7 @@ using SharedKernel.Domain;
 
 namespace SharedKernel.Infrastructure;
 
-public class AfterSaveInterceptor(IServiceProvider serviceProvider) : SaveChangesInterceptor
+public class EventPublisher(IServiceProvider serviceProvider) : SaveChangesInterceptor
 {
     private static List<Entity>? savedEntities = [];
     public async override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
