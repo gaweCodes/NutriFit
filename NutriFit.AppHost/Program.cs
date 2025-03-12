@@ -13,13 +13,13 @@ var migrator = builder.AddProject<Projects.NutriFit_MigrationService>("nutrifit-
     .WaitFor(nutritionWriteDatabase)
     .WaitFor(postgresDbServer);
 
-var nutritionApi = builder.AddProject<Projects.Nutrition_RestApi>("nutrition-rest-api")
-    .WithExternalHttpEndpoints()
+var nutritionApi = builder.AddProject<Projects.Nutrition_Api>("nutrition-api")
     .WithReference(nutritionReadDatabase)
     .WithReference(nutritionWriteDatabase)
     .WaitForCompletion(migrator);
 
 builder.AddProject<Projects.NutriFit_Web_Angular_BackendForFrontend>("nutrifit-web-angular-backendforfrontend")
+    .WithExternalHttpEndpoints()
     .WithReference(nutritionApi)
     .WaitFor(nutritionApi);
 

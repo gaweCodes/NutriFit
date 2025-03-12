@@ -14,6 +14,6 @@ internal class ReadMenuPlanRepository(NutritionReadDbContext dbContext) : IReadM
         return menuPlanDetail is null ? throw new EntityNotFoundException(nameof(MenuPlanDetail), id) : menuPlanDetail;
     }
 
-    public async Task<List<MenuPlanOverview>> GetMenuPlansOverviewAsync(CancellationToken cancellationToken) =>
+    public async Task<List<MenuPlanOverview>> GetMenuPlanOverviewAsync(CancellationToken cancellationToken) =>
         await dbContext.Set<MenuPlanOverview>().ToListAsync(cancellationToken);
 }

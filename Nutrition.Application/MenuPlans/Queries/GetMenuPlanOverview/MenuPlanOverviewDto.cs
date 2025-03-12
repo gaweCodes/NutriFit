@@ -1,4 +1,4 @@
-﻿namespace Nutrition.Application.MenuPlans.Queries.GetMenuPlansOverview;
+﻿namespace Nutrition.Application.MenuPlans.Queries.GetMenuPlanOverview;
 
 public class MenuPlanOverviewDto(Guid id, DateOnly startDate, DateOnly endDate)
 {

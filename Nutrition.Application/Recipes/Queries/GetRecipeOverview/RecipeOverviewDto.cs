@@ -1,4 +1,4 @@
-﻿namespace Nutrition.Application.Recipes.Queries.GetRecipesOverview;
+﻿namespace Nutrition.Application.Recipes.Queries.GetRecipeOverview;
 
 public class RecipeOverviewDto(Guid id, string name)
 {

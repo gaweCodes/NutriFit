@@ -14,6 +14,6 @@ internal class ReadRecipeRepository(NutritionReadDbContext dbContext) : IReadRec
         return recipeDetail is null ? throw new EntityNotFoundException(nameof(RecipeDetail), id) : recipeDetail;
     }
 
-    public async Task<List<RecipeOverview>> GetRecipesOverviewAsync(CancellationToken cancellationToken) =>
+    public async Task<List<RecipeOverview>> GetRecipeOverviewAsync(CancellationToken cancellationToken) =>
         await dbContext.Set<RecipeOverview>().ToListAsync(cancellationToken);
 }

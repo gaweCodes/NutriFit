@@ -9,7 +9,6 @@ using Microsoft.Extensions.ServiceDiscovery;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
-using System.Diagnostics;
 using System.Net;
 
 namespace NutriFit.ServiceDefaults;
@@ -51,6 +50,7 @@ public static class Extensions
             {
                 tracing.AddSource(builder.Environment.ApplicationName)
                     .AddAspNetCoreInstrumentation()
+                    .AddGrpcClientInstrumentation()
                     .AddHttpClientInstrumentation();
             });
         builder.AddOpenTelemetryExporters();

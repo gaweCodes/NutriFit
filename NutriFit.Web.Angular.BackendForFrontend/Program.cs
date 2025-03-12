@@ -1,15 +1,12 @@
 using NutriFit.ServiceDefaults;
-using NutriFit.Web.Angular.BackendForFrontend;
+using NutriFit.Web.Angular.BackendForFrontend.Nutrition;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.Services.AddControllers();
-builder.Services.AddHttpClient("Nutrition", static client => client.BaseAddress = new("https+http://nutrition-rest-api"))
-    .AddHttpMessageHandler<ApiErrorHandler>();
-builder.Services.AddScoped<ApiErrorHandler>();
+builder.Services.AddScoped<INutritionApiChannelFactory, NutritionApiChannelFactory>();
 
 var app = builder.Build();
-app.UseMiddleware<HttpRequestExceptionMiddleware>();
 app.MapDefaultEndpoints();
 app.UseDefaultFiles();
 app.MapStaticAssets();
