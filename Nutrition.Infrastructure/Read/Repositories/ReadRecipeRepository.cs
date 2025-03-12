@@ -2,7 +2,7 @@
 using Nutrition.Application.Recipes.Queries;
 using Nutrition.Application.Recipes.Queries.Models;
 using Nutrition.Infrastructure.Read.Database;
-using SharedKernel.Domain;
+using SharedKernel.Infrastructure;
 
 namespace Nutrition.Infrastructure.Read.Repositories;
 

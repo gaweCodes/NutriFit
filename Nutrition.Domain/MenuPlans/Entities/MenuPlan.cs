@@ -23,7 +23,7 @@ public class MenuPlan : Entity, IAggregateRoot
 
         CheckRule(new EndDateNotBeforeStartDate(StartDate, EndDate));
         if (uniqueMenuPlanDateRangeChecker.Check(this) == false)
-            throw new ValidationException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
+            throw new BusinessRuleException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
 
         for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
             Days.Add(new(date));
@@ -40,7 +40,7 @@ public class MenuPlan : Entity, IAggregateRoot
 
         CheckRule(new EndDateNotBeforeStartDate(StartDate, EndDate));
         if (uniqueMenuPlanDateRangeChecker.Check(this) == false)
-            throw new ValidationException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
+            throw new BusinessRuleException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
 
         var dayList = Days.ToList();
         dayList.RemoveAll(x => x.Date < StartDate || x.Date > EndDate);       

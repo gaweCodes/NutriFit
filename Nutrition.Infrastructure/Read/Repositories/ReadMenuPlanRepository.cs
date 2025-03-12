@@ -2,7 +2,7 @@
 using Nutrition.Application.MenuPlans.Queries;
 using Nutrition.Application.MenuPlans.Queries.Models;
 using Nutrition.Infrastructure.Read.Database;
-using SharedKernel.Domain;
+using SharedKernel.Infrastructure;
 
 namespace Nutrition.Infrastructure.Read.Repositories;
 
@@ -14,6 +14,6 @@ internal class ReadMenuPlanRepository(NutritionReadDbContext dbContext) : IReadM
         return menuPlanDetail is null ? throw new EntityNotFoundException(nameof(MenuPlanDetail), id) : menuPlanDetail;
     }
 
-    public async Task<List<MenuPlanOverview>> GetMenuPlanOverviewAsync(CancellationToken cancellationToken) =>
+    public async Task<List<MenuPlanOverview>> GetMenuPlanOverviewAsync(CancellationToken cancellationToken) => 
         await dbContext.Set<MenuPlanOverview>().ToListAsync(cancellationToken);
 }

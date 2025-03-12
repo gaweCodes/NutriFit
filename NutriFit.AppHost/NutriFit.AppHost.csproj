@@ -20,7 +20,6 @@
     <ProjectReference Include="..\NutriFit.MigrationService\NutriFit.MigrationService.csproj" />
     <ProjectReference Include="..\NutriFit.Web.Angular.BackendForFrontend\NutriFit.Web.Angular.BackendForFrontend.csproj" />
     <ProjectReference Include="..\Nutrition.Api\Nutrition.Api.csproj" />
-    <ProjectReference Include="..\Nutrition.RestApi\Nutrition.RestApi.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,7 +12,7 @@ export const apiErrorInterceptor: HttpInterceptorFn = (req, next) => {
         let errorMessage = 'Ein unerwarteter Fehler ist aufgetreten.';
 
         if (error.error && typeof error.error === 'object') {
-          errorMessage = error.error.message || errorMessage;
+          errorMessage = error.error.error || errorMessage;
         }
 
         toasterService.showError(

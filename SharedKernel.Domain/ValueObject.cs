@@ -42,21 +42,23 @@ public abstract class ValueObject : IEquatable<ValueObject>
         }
     }
 
+    protected static void CheckRule(IValidationRule rule)
+    {
+        if (rule.IsBroken()) throw new ValidationRuleException(rule.Message);
+    }
+
     protected static void CheckRule(IBusinessRule rule)
     {
-        if (rule.IsBroken()) throw new ValidationException(rule.Message);
+        if (rule.IsBroken()) throw new BusinessRuleException(rule.Message);
     }
 
     private bool PropertiesAreEqual(object obj, PropertyInfo p) => Equals(p.GetValue(this, null), p.GetValue(obj, null));
     private bool FieldsAreEqual(object obj, FieldInfo f) => Equals(f.GetValue(this), f.GetValue(obj));
     private List<PropertyInfo> GetProperties() =>
-    GetType()
-        .GetProperties(BindingFlags.Instance | BindingFlags.Public)
-        .ToList();
+    [.. GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public)];
 
-    private List<FieldInfo> GetFields() => 
-        GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-                .ToList();
+    private List<FieldInfo> GetFields() =>
+        [.. GetType().GetFields(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)];
 
     private static int HashValue(int seed, object? value)
     {

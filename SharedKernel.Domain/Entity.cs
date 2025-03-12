@@ -8,8 +8,13 @@ public abstract class Entity
     public void ClearDomainEvents() => _domainEvents?.Clear();
     protected void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
 
+    protected static void CheckRule(IValidationRule rule)
+    {
+        if (rule.IsBroken()) throw new ValidationRuleException(rule.Message);
+    }
+    
     protected static void CheckRule(IBusinessRule rule)
     {
-        if (rule.IsBroken()) throw new ValidationException(rule.Message);
+        if (rule.IsBroken()) throw new BusinessRuleException(rule.Message);
     }
 }

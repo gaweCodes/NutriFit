@@ -3,7 +3,7 @@ using Nutrition.Domain.MenuPlans;
 using Nutrition.Domain.MenuPlans.Entities;
 using Nutrition.Domain.MenuPlans.ValueObjects;
 using Nutrition.Infrastructure.Write.Database;
-using SharedKernel.Domain;
+using SharedKernel.Infrastructure;
 
 namespace Nutrition.Infrastructure.Write.Repositories;
 
