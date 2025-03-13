@@ -14,10 +14,6 @@ export class ToasterService {
   }
 
   public showError(message: string, title: string): void {
-    this.toastrService
-      .clear
-      // this.toastrService.findDuplicate(title, message, false, false).toastId
-      ();
     this.toastrService.error(message, title, {
       timeOut: 0,
       extendedTimeOut: 0,
