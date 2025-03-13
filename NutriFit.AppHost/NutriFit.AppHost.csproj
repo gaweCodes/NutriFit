@@ -1,7 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
@@ -10,16 +8,13 @@
     <IsAspireHost>true</IsAspireHost>
     <UserSecretsId>20d0b062-1521-4478-afce-7217be607fc5</UserSecretsId>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
-    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.1.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\NutriFit.MigrationService\NutriFit.MigrationService.csproj" />
     <ProjectReference Include="..\NutriFit.Web.Angular.BackendForFrontend\NutriFit.Web.Angular.BackendForFrontend.csproj" />
     <ProjectReference Include="..\Nutrition.Api\Nutrition.Api.csproj" />
   </ItemGroup>
-
 </Project>
