@@ -1,5 +1,3 @@
-﻿using SharedKernel.Domain;
+﻿namespace Nutrition.Domain.MenuPlans.ValueObjects;
 
-namespace Nutrition.Domain.MenuPlans.ValueObjects;
-
-public class MealSlotId(Guid value) : TypedIdValueBase(value);
+public record struct MealSlotId(Guid Value);

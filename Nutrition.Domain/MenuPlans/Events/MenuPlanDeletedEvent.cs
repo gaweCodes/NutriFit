@@ -2,7 +2,7 @@
 
 namespace Nutrition.Domain.MenuPlans.Events;
 
-public class MenuPlanDeletedDomainEvent(Guid id) : DomainEventBase
+public class MenuPlanDeletedDomainEvent(Guid id) : IDomainEvent
 {
     public Guid MenuPlanId { get; } = id;
 }

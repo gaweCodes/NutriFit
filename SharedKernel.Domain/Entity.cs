@@ -1,13 +1,16 @@
-﻿namespace SharedKernel.Domain;
+﻿using System.Text.Json.Serialization;
+
+namespace SharedKernel.Domain;
 
 public abstract class Entity
 {
-    private readonly List<IDomainEvent> _domainEvents = [];
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
-
-    public void ClearDomainEvents() => _domainEvents?.Clear();
-    protected void AddDomainEvent(IDomainEvent domainEvent) => _domainEvents.Add(domainEvent);
-
+    [JsonIgnore]
+    private readonly List<IDomainEvent> _uncommittedEvents = [];
+    public IEnumerable<IDomainEvent> GetUncommittedEvents() => _uncommittedEvents.AsReadOnly();
+    public long Version { get; protected set; }
+    
+    public void ClearUncommittedEvents() => _uncommittedEvents.Clear();
+    protected void AddUncommittedEvent(IDomainEvent domainEvent) => _uncommittedEvents.Add(domainEvent);
     protected static void CheckRule(IValidationRule rule)
     {
         if (rule.IsBroken()) throw new ValidationRuleException(rule.Message);

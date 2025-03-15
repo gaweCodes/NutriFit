@@ -2,8 +2,8 @@
 
 namespace Nutrition.Domain.Recipes.Events;
 
-public class RecipeUpdatedDomainEvent(Guid id, string name) : DomainEventBase
+public class RecipeUpdatedDomainEvent(Guid recipeId, string name) : IDomainEvent
 {
-    public Guid RecipeId { get; } = id;
+    public Guid RecipeId { get; } = recipeId;
     public string Name { get; } = name;
 }

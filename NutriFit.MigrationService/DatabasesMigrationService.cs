@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Nutrition.Infrastructure.Read.Database;
-using Nutrition.Infrastructure.Write.Database;
 
 namespace NutriFit.MigrationService;
 
@@ -15,11 +14,14 @@ public class DatabasesMigrationService(IServiceProvider serviceProvider, IHostAp
         using var activity = _activitySource.StartActivity("Migrating databases", ActivityKind.Client);
         try
         {
-            using var scope = serviceProvider.CreateScope();
-            var writeDbContext = scope.ServiceProvider.GetRequiredService<NutritionWriteDbContext>();
-            await writeDbContext.Database.MigrateAsync();
-            var readDbContext = scope.ServiceProvider.GetRequiredService<NutritionReadDbContext>();
-            await readDbContext.Database.MigrateAsync();
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var readDbContext = scope.ServiceProvider.GetRequiredService<NutritionReadDbContext>();
+                await readDbContext.Database.MigrateAsync(cancellationToken);
+                var eventsDbContext = scope.ServiceProvider.GetRequiredService<NutritionEventsDbContext>();
+                await eventsDbContext.Database.MigrateAsync();
+            }
+
         }
         catch (Exception ex)
         {

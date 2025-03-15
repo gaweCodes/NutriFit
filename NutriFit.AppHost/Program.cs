@@ -4,18 +4,18 @@ var postgresDbServer = builder.AddPostgres("postgres")
     .WithPgWeb()
     .WithLifetime(ContainerLifetime.Persistent);
 var nutritionReadDatabase = postgresDbServer.AddDatabase("nutrition-read", "nutrition-read");
-var nutritionWriteDatabase = postgresDbServer.AddDatabase("nutrition-write", "nutrition-write");
+var nutritionEventDb = postgresDbServer.AddDatabase("nutrition-events", "nutrition-events");
 
 var migrator = builder.AddProject<Projects.NutriFit_MigrationService>("nutrifit-migration-service")
     .WithReference(nutritionReadDatabase)
-    .WithReference(nutritionWriteDatabase)
+    .WithReference(nutritionEventDb)
     .WaitFor(nutritionReadDatabase)
-    .WaitFor(nutritionWriteDatabase)
+    .WaitFor(nutritionEventDb)
     .WaitFor(postgresDbServer);
 
 var nutritionApi = builder.AddProject<Projects.Nutrition_Api>("nutrition-api")
     .WithReference(nutritionReadDatabase)
-    .WithReference(nutritionWriteDatabase)
+    .WithReference(nutritionEventDb)
     .WaitForCompletion(migrator);
 
 builder.AddProject<Projects.NutriFit_Web_Angular_BackendForFrontend>("nutrifit-web-angular-backendforfrontend")
@@ -23,4 +23,4 @@ builder.AddProject<Projects.NutriFit_Web_Angular_BackendForFrontend>("nutrifit-w
     .WithReference(nutritionApi)
     .WaitFor(nutritionApi);
 
-builder.Build().Run();
+await builder.Build().RunAsync();

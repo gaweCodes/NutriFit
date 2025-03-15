@@ -2,4 +2,4 @@
 
 namespace Nutrition.Domain.MenuPlans.ValueObjects;
 
-public class MenuPlanId(Guid value) : TypedIdValueBase(value);
+public record struct MenuPlanId(Guid Value) : IAggregateId;

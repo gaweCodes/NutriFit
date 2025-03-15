@@ -8,7 +8,7 @@ namespace Nutrition.Domain.MenuPlans.Entities;
 
 public class MenuPlan : Entity, IAggregateRoot
 {
-    public MenuPlanId Id { get; private set; } = null!;
+    public MenuPlanId Id { get; private set; }
     public DateOnly StartDate { get; private set; }
     public DateOnly EndDate { get; private set; }
     public bool IsDeleted { get; private set; }
@@ -28,7 +28,7 @@ public class MenuPlan : Entity, IAggregateRoot
         for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
             Days.Add(new(date));
 
-        AddDomainEvent(new MenuPlanCreatedDomainEvent(Id.Value, StartDate, EndDate));
+        AddUncommittedEvent(new MenuPlanCreatedDomainEvent(Id.Value, StartDate, EndDate));
     }
     public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker uniqueMenuPlanDateRangeChecker) => 
         new(startDate, endDate, uniqueMenuPlanDateRangeChecker);
@@ -50,12 +50,12 @@ public class MenuPlan : Entity, IAggregateRoot
         }
         Days = dayList;
 
-        AddDomainEvent(new MenuPlanUpdatedDomainEvent(Id.Value, StartDate, EndDate));
+        AddUncommittedEvent(new MenuPlanUpdatedDomainEvent(Id.Value, StartDate, EndDate));
     }
 
     public void Delete()
     {
         IsDeleted = true;
-        AddDomainEvent(new MenuPlanDeletedDomainEvent(Id.Value));
+        AddUncommittedEvent(new MenuPlanDeletedDomainEvent(Id.Value));
     }
 }

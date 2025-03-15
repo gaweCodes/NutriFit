@@ -1,15 +1,16 @@
-﻿using Nutrition.Domain.MenuPlans;
+﻿using Nutrition.Domain.MenuPlans.Entities;
 using Nutrition.Domain.MenuPlans.ValueObjects;
 using SharedKernel.Application;
+using SharedKernel.Domain;
 
 namespace Nutrition.Application.MenuPlans.Commands.DeleteMenuPlan;
 
-internal class DeleteMenuPlanCommandHandler(IMenuPlanRepository menuPlanRepository) : ICommandHandler<DeleteMenuPlanCommand>
+internal class DeleteMenuPlanCommandHandler(IRepository<MenuPlan, MenuPlanId> menuPlanRepository) : ICommandHandler<DeleteMenuPlanCommand>
 {
     public async Task Handle(DeleteMenuPlanCommand request, CancellationToken cancellationToken)
     {
-        var menuPlanToDelete = await menuPlanRepository.GetByIdAsync(new MenuPlanId(request.Id), cancellationToken);
-        menuPlanToDelete.Delete();
-        await menuPlanRepository.SaveChangesAsync(cancellationToken);
+        var menuPlan = await menuPlanRepository.GetSpecificAsync(new MenuPlanId(request.Id), cancellationToken);
+        menuPlan.Delete();
+        await menuPlanRepository.StoreAsync(menuPlan, menuPlan.Id, cancellationToken);
     }
 }

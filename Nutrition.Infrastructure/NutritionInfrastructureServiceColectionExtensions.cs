@@ -1,17 +1,18 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Nutrition.Domain.Recipes;
 using Nutrition.Infrastructure.Read.Database;
-using Nutrition.Infrastructure.Write.Database;
-using Nutrition.Infrastructure.Write.Repositories;
 using SharedKernel.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Nutrition.Application.Recipes.Queries;
 using Nutrition.Infrastructure.Read.Repositories;
-using Nutrition.Domain.MenuPlans;
 using Nutrition.Application.MenuPlans.Queries;
-using Nutrition.Domain.MenuPlans.Checkers;
-using Nutrition.Infrastructure.Write.Checkers;
+using Marten;
+using SharedKernel.Domain;
+using Nutrition.Domain.Recipes.Entities;
+using Nutrition.Domain.Recipes.ValueObjects;
+using Nutrition.Domain.MenuPlans.ValueObjects;
+using Nutrition.Domain.MenuPlans.Entities;
+using Weasel.Core;
 
 namespace Nutrition.Infrastructure;
 
@@ -19,17 +20,18 @@ public static class NutritionInfrastructureServiceColectionExtensions
 {
     public static IServiceCollection AddNutritionInfrastructure(this IServiceCollection serviceCollection, ConfigurationManager configuration)
     {
-        serviceCollection.AddScoped<IRecipeRepository, RecipeRepository>();
-        serviceCollection.AddScoped<IMenuPlanRepository, MenuPlanRepository>();
+        serviceCollection.AddScoped<IRepository<Recipe, RecipeId>, Repository<Recipe, RecipeId>>();
+        serviceCollection.AddScoped<IRepository<MenuPlan, MenuPlanId>, Repository<MenuPlan, MenuPlanId>>();
+        serviceCollection.AddMarten(o =>
+        {   
+            o.Connection(configuration.GetConnectionString("nutrition-events")!);
+            o.UseSystemTextJsonForSerialization();
+            o.AutoCreateSchemaObjects = AutoCreate.All;
+            o.DataSourceFactory(new CustomNpgSqlDataSourceFactory());
+        });
         serviceCollection.AddScoped<IReadRecipeRepository, ReadRecipeRepository>();
         serviceCollection.AddScoped<IReadMenuPlanRepository, ReadMenuPlanRepository>();
-        serviceCollection.AddDbContext<NutritionWriteDbContext>((sp, options) =>
-        {
-            options.UseNpgsql(configuration.GetConnectionString("nutrition-write"));
-            options.AddInterceptors(new EventPublisher(sp));
-        });
         serviceCollection.AddDbContext<NutritionReadDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("nutrition-read")));
-        serviceCollection.AddScoped<IUniqueMenuPlanDateRangeChecker, UniqueMenuPlanDateRangeChecker>();
 
         return serviceCollection;
     }

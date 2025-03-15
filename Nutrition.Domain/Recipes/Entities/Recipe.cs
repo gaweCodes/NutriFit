@@ -6,28 +6,50 @@ namespace Nutrition.Domain.Recipes.Entities;
 
 public class Recipe : Entity, IAggregateRoot
 {
-    public RecipeId Id { get; } = null!;
+    public RecipeId Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
     public bool IsDeleted { get; private set; }
 
     private Recipe() { }
     private Recipe(string name)
     {
-        Id = new RecipeId(Guid.NewGuid());
-        Name = name;
-        
-        AddDomainEvent(new RecipeCreatedDomainEvent(Id.Value, Name));
+        var domainEvent = new RecipeCreatedDomainEvent(Guid.NewGuid(), name);
+        Apply(domainEvent);
+        AddUncommittedEvent(domainEvent);
     }
     public static Recipe CreateNew(string name) => new(name);
     public void UpdateRecipe(string name)
     {
-        Name = name;
-        AddDomainEvent(new RecipeUpdatedDomainEvent(Id.Value, Name));
+        var domainEvent = new RecipeUpdatedDomainEvent(Id.Value, name);
+        Apply(domainEvent);
+        AddUncommittedEvent(domainEvent);
     }
 
     public void Delete()
     {
-        IsDeleted = true;
-        AddDomainEvent(new RecipeDeletedDomainEvent(Id.Value));
+        var domainEvent = new RecipeIsDeletedChangedDomainEvent(Id.Value, true);
+        Apply(domainEvent);
+        AddUncommittedEvent(domainEvent);
+    }
+
+    private void Apply(RecipeCreatedDomainEvent recipeCreatedEvent)
+    {
+        Id = new RecipeId(recipeCreatedEvent.RecipeId);
+        Name = recipeCreatedEvent.Name;
+        Version++;
+    }
+
+    private void Apply(RecipeUpdatedDomainEvent recipeUpdatedDomainEvent)
+    {
+        Id = new RecipeId(recipeUpdatedDomainEvent.RecipeId);
+        Name = recipeUpdatedDomainEvent.Name;
+        Version++;
+    }
+
+    private void Apply(RecipeIsDeletedChangedDomainEvent recipeIsDeletedChangedDomainEvent)
+    {
+        Id = new RecipeId(recipeIsDeletedChangedDomainEvent.RecipeId);
+        IsDeleted = recipeIsDeletedChangedDomainEvent.IsDeleted;
+        Version++;
     }
 }

@@ -8,7 +8,7 @@ namespace Nutrition.Infrastructure.Read.Projectors;
 internal class RecipeProjector(NutritionReadDbContext dbContext) 
     : IDomainEventHandler<RecipeCreatedDomainEvent>, 
     IDomainEventHandler<RecipeUpdatedDomainEvent>, 
-    IDomainEventHandler<RecipeDeletedDomainEvent>
+    IDomainEventHandler<RecipeIsDeletedChangedDomainEvent>
 {
     public async Task Handle(RecipeCreatedDomainEvent eventData, CancellationToken cancellationToken)
     {
@@ -31,7 +31,7 @@ internal class RecipeProjector(NutritionReadDbContext dbContext)
         await dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task Handle(RecipeDeletedDomainEvent eventData, CancellationToken cancellationToken)
+    public async Task Handle(RecipeIsDeletedChangedDomainEvent eventData, CancellationToken cancellationToken)
     {
         var recipeDetail = await dbContext.FindAsync<RecipeDetail>(eventData.RecipeId, cancellationToken);
         var recipeOverview = await dbContext.FindAsync<RecipeOverview>(eventData.RecipeId, cancellationToken);

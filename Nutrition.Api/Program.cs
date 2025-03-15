@@ -15,4 +15,4 @@ var app = builder.Build();
 app.MapDefaultEndpoints();
 app.MapGrpcService<MenuPlanService>();
 app.MapGrpcService<RecipeService>();
-app.Run();
+await app.RunAsync();

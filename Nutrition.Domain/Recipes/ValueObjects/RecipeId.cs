@@ -2,4 +2,4 @@
 
 namespace Nutrition.Domain.Recipes.ValueObjects;
 
-public class RecipeId(Guid value) : TypedIdValueBase(value);
+public record struct RecipeId(Guid Value) : IAggregateId;

@@ -5,7 +5,7 @@ namespace Nutrition.Domain.MenuPlans.Entities;
 
 public class DayPlan : Entity
 {
-    public DayPlanId Id { get; } = null!;
+    public DayPlanId Id { get; }
     public DateOnly Date { get; private set; }
     public ICollection<MealSlot> MealSlots { get; } = [];
     
