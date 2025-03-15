@@ -11,6 +11,6 @@ internal class DeleteMenuPlanCommandHandler(IRepository<MenuPlan, MenuPlanId> me
     {
         var menuPlan = await menuPlanRepository.GetSpecificAsync(new MenuPlanId(request.Id), cancellationToken);
         menuPlan.Delete();
-        await menuPlanRepository.StoreAsync(menuPlan, menuPlan.Id, cancellationToken);
+        await menuPlanRepository.StoreAsync(menuPlan, cancellationToken);
     }
 }

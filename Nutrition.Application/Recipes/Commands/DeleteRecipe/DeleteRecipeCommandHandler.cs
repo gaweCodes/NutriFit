@@ -11,6 +11,6 @@ internal class DeleteRecipeCommandHandler(IRepository<Recipe, RecipeId> recipeRe
     {
         var recipe = await recipeRepository.GetSpecificAsync(new RecipeId(request.Id), cancellationToken);
         recipe.Delete();
-        await recipeRepository.StoreAsync(recipe, recipe.Id, cancellationToken);
+        await recipeRepository.StoreAsync(recipe, cancellationToken);
     }
 }

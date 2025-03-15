@@ -1,5 +1,4 @@
-﻿using Nutrition.Domain.Recipes;
-using Nutrition.Domain.Recipes.Entities;
+﻿using Nutrition.Domain.Recipes.Entities;
 using Nutrition.Domain.Recipes.ValueObjects;
 using SharedKernel.Application;
 using SharedKernel.Domain;
@@ -11,7 +10,7 @@ internal class CreateRecipeCommandHandler(IRepository<Recipe, RecipeId> recipeRe
     public async Task<Guid> Handle(CreateRecipeCommand request, CancellationToken cancellationToken)
     {
         var recipe = Recipe.CreateNew(request.Name);
-        await recipeRepository.StoreAsync(recipe, recipe.Id, cancellationToken);
+        await recipeRepository.StoreAsync(recipe, cancellationToken);
         return recipe.Id.Value;
     }
 }

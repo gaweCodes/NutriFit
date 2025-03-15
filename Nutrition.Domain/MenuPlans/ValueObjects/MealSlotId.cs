@@ -1,3 +1,5 @@
-﻿namespace Nutrition.Domain.MenuPlans.ValueObjects;
+﻿using SharedKernel.Domain;
 
-public record struct MealSlotId(Guid Value);
+namespace Nutrition.Domain.MenuPlans.ValueObjects;
+
+public record struct MealSlotId(Guid Value) : IEntityKeyValue;

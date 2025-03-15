@@ -5,9 +5,8 @@ using SharedKernel.Domain;
 
 namespace Nutrition.Domain.MenuPlans.Entities;
 
-public class MealSlot : Entity
+public class MealSlot : Entity<MealSlotId>
 {
-    public MealSlotId Id { get; }
     public MealType MealType { get; private set; }
     public ICollection<RecipeId> RecipeIds { get; } = [];
     

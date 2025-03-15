@@ -4,9 +4,8 @@ using SharedKernel.Domain;
 
 namespace Nutrition.Domain.Recipes.Entities;
 
-public class Recipe : Entity, IAggregateRoot
+public class Recipe : Entity<RecipeId>, IAggregateRoot
 {
-    public RecipeId Id { get; private set; }
     public string Name { get; private set; } = string.Empty;
     public bool IsDeleted { get; private set; }
 

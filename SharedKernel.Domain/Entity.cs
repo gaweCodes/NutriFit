@@ -2,11 +2,12 @@
 
 namespace SharedKernel.Domain;
 
-public abstract class Entity
+public abstract class Entity<TKey> : IEntityKey<TKey> where TKey : struct, IEntityKeyValue
 {
     [JsonIgnore]
     private readonly List<IDomainEvent> _uncommittedEvents = [];
     public IEnumerable<IDomainEvent> GetUncommittedEvents() => _uncommittedEvents.AsReadOnly();
+    public TKey Id { get; protected set; }
     public long Version { get; protected set; }
     
     public void ClearUncommittedEvents() => _uncommittedEvents.Clear();

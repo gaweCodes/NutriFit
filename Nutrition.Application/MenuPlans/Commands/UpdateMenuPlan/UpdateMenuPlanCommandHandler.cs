@@ -9,9 +9,9 @@ internal class UpdateMenuPlanCommandHandler(IRepository<MenuPlan, MenuPlanId> me
 {
     public async Task<Guid> Handle(UpdateMenuPlanCommand request, CancellationToken cancellationToken)
     {
-        //var menuPlan = await menuPlanRepository.GetSpecificAsync(new MenuPlanId(request.Id), cancellationToken);
-        //menuPlan.UpdateMenuPlan(request.StartDate, request.EndDate, uniqueMenuPlanDateRangeChecker);
-        //await menuPlanRepository.StoreAsync(menuPlan, menuPlan.Id, cancellationToken);
-        return Guid.NewGuid();
+        var menuPlan = await menuPlanRepository.GetSpecificAsync(new MenuPlanId(request.Id), cancellationToken);
+        menuPlan.UpdateMenuPlan(request.StartDate, request.EndDate);
+        await menuPlanRepository.StoreAsync(menuPlan, cancellationToken);
+        return menuPlan.Id.Value;
     }
 }

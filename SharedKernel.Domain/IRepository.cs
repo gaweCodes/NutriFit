@@ -1,9 +1,9 @@
 ﻿namespace SharedKernel.Domain;
 
-public interface IRepository<TAggregate, TAggregateId> 
-    where  TAggregate : Entity, IAggregateRoot
-    where TAggregateId : struct, IAggregateId
+public interface IRepository<TAggregate, TKey> 
+    where  TAggregate : Entity<TKey>, IAggregateRoot
+    where TKey : struct, IEntityKeyValue
 {
-    Task StoreAsync(TAggregate aggregate, TAggregateId  aggregateId, CancellationToken cancellationToken);
-    Task<TAggregate> GetSpecificAsync(TAggregateId aggregateId, CancellationToken cancellationToken);
+    Task StoreAsync(TAggregate aggregate, CancellationToken cancellationToken);
+    Task<TAggregate> GetSpecificAsync(TKey aggregateId, CancellationToken cancellationToken);
 }

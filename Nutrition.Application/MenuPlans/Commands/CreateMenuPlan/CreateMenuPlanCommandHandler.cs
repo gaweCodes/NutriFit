@@ -9,8 +9,8 @@ internal class CreateMenuPlanCommandHandler(IRepository<MenuPlan, MenuPlanId> me
 {
     public async Task<Guid> Handle(CreateMenuPlanCommand request, CancellationToken cancellationToken)
     {
-        //var menuPlan = MenuPlan.CreateNew(request.StartDate, request.EndDate, uniqueMenuPlanDateRangeChecker);
-        //await menuPlanRepository.StoreAsync(menuPlan, menuPlan.Id, cancellationToken);
-        return Guid.NewGuid();
+        var menuPlan = MenuPlan.CreateNew(request.StartDate, request.EndDate);
+        await menuPlanRepository.StoreAsync(menuPlan, cancellationToken);
+        return menuPlan.Id.Value;
     }
 }

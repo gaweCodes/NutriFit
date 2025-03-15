@@ -3,9 +3,8 @@ using SharedKernel.Domain;
 
 namespace Nutrition.Domain.MenuPlans.Entities;
 
-public class DayPlan : Entity
+public class DayPlan : Entity<DayPlanId>
 {
-    public DayPlanId Id { get; }
     public DateOnly Date { get; private set; }
     public ICollection<MealSlot> MealSlots { get; } = [];
     

@@ -11,7 +11,7 @@ internal class UpdateRecipeCommandHandler(IRepository<Recipe, RecipeId> recipeRe
     {
         var recipe = await recipeRepository.GetSpecificAsync(new RecipeId(request.Id), cancellationToken);
         recipe.UpdateRecipe(request.Name);
-        await recipeRepository.StoreAsync(recipe, recipe.Id, cancellationToken);
+        await recipeRepository.StoreAsync(recipe, cancellationToken);
         return recipe.Id.Value;
     }
 }

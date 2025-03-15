@@ -23,12 +23,13 @@ public static class NutritionInfrastructureServiceColectionExtensions
         serviceCollection.AddScoped<IRepository<Recipe, RecipeId>, Repository<Recipe, RecipeId>>();
         serviceCollection.AddScoped<IRepository<MenuPlan, MenuPlanId>, Repository<MenuPlan, MenuPlanId>>();
         serviceCollection.AddMarten(o =>
-        {   
+        {
             o.Connection(configuration.GetConnectionString("nutrition-events")!);
             o.UseSystemTextJsonForSerialization();
             o.AutoCreateSchemaObjects = AutoCreate.All;
             o.DataSourceFactory(new CustomNpgSqlDataSourceFactory());
         });
+
         serviceCollection.AddScoped<IReadRecipeRepository, ReadRecipeRepository>();
         serviceCollection.AddScoped<IReadMenuPlanRepository, ReadMenuPlanRepository>();
         serviceCollection.AddDbContext<NutritionReadDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("nutrition-read")));
