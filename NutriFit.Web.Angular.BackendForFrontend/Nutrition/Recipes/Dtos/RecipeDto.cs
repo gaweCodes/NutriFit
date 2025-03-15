@@ -2,7 +2,7 @@
 
 namespace NutriFit.Web.Angular.BackendForFrontend.Nutrition.Recipes.Dtos;
 
-public class RecipeDto 
+public class RecipeDto
 {
     [Required]
     public string Name { get; set; } = string.Empty;

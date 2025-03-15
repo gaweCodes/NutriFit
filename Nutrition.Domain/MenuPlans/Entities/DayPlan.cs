@@ -7,7 +7,7 @@ public class DayPlan : Entity<DayPlanId>
 {
     public DateOnly Date { get; private set; }
     public ICollection<MealSlot> MealSlots { get; } = [];
-    
+
     private DayPlan() { }
 
     internal DayPlan(DateOnly date)

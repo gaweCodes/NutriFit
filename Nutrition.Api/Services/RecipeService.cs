@@ -1,12 +1,12 @@
 ﻿using MediatR;
-using ProtoBuf.Grpc;
-using Nutrition.Api.Contracts.Recipes;
 using Nutrition.Api.Contracts.Common;
+using Nutrition.Api.Contracts.Recipes;
 using Nutrition.Application.Recipes.Commands.CreateRecipe;
-using Nutrition.Application.Recipes.Queries.GetRecipeOverview;
-using Nutrition.Application.Recipes.Queries.GetRecipe;
-using Nutrition.Application.Recipes.Commands.UpdateRecipe;
 using Nutrition.Application.Recipes.Commands.DeleteRecipe;
+using Nutrition.Application.Recipes.Commands.UpdateRecipe;
+using Nutrition.Application.Recipes.Queries.GetRecipe;
+using Nutrition.Application.Recipes.Queries.GetRecipeOverview;
+using ProtoBuf.Grpc;
 
 namespace Nutrition.Api.Services;
 
@@ -17,7 +17,7 @@ public class RecipeService(IMediator mediator) : IRecipeService
         var recipeId = await mediator.Send(new CreateRecipeCommand(request.Name));
         return new() { Id = recipeId };
     }
-    
+
     public async IAsyncEnumerable<RecipeOverviewResponse> GetAsync(CallContext context = default)
     {
         var recipeOverview = await mediator.Send(new GetRecipeOverviewQuery());

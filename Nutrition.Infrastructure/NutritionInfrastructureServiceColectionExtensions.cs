@@ -1,17 +1,17 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Nutrition.Infrastructure.Read.Database;
-using SharedKernel.Infrastructure;
+﻿using Marten;
 using Microsoft.EntityFrameworkCore;
-using Nutrition.Application.Recipes.Queries;
-using Nutrition.Infrastructure.Read.Repositories;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Nutrition.Application.MenuPlans.Queries;
-using Marten;
-using SharedKernel.Domain;
+using Nutrition.Application.Recipes.Queries;
+using Nutrition.Domain.MenuPlans.Entities;
+using Nutrition.Domain.MenuPlans.ValueObjects;
 using Nutrition.Domain.Recipes.Entities;
 using Nutrition.Domain.Recipes.ValueObjects;
-using Nutrition.Domain.MenuPlans.ValueObjects;
-using Nutrition.Domain.MenuPlans.Entities;
+using Nutrition.Infrastructure.Read.Database;
+using Nutrition.Infrastructure.Read.Repositories;
+using SharedKernel.Domain;
+using SharedKernel.Infrastructure;
 using Weasel.Core;
 
 namespace Nutrition.Infrastructure;

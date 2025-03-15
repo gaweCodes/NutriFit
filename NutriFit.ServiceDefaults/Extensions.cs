@@ -22,7 +22,7 @@ public static class Extensions
         builder.Services.AddServiceDiscovery();
         builder.Services.ConfigureHttpClientDefaults(http =>
         {
-            http.AddStandardResilienceHandler(x => x.Retry.ShouldHandle = args => 
+            http.AddStandardResilienceHandler(x => x.Retry.ShouldHandle = args =>
             ValueTask.FromResult(args.Outcome.Result is HttpResponseMessage response && (response.StatusCode == HttpStatusCode.RequestTimeout || (int)response.StatusCode >= 500))
             );
             http.AddServiceDiscovery();
@@ -54,7 +54,7 @@ public static class Extensions
                     .AddHttpClientInstrumentation();
             });
         builder.AddOpenTelemetryExporters();
-        
+
         return builder;
     }
 
@@ -76,7 +76,7 @@ public static class Extensions
     {
         builder.Services.AddHealthChecks()
             .AddCheck("self", () => HealthCheckResult.Healthy(), ["live"]);
-        
+
         return builder;
     }
 

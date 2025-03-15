@@ -23,7 +23,7 @@ public class MenuPlansController(IMenuPlanService menuPlanClient) : ControllerBa
         {
             menuPlanOverview.Add(new() { Id = menuPlan.Id, Period = $"{menuPlan.StartDate:dd.MM.yyyy} - {menuPlan.EndDate:dd.MM.yyyy}" });
         }
-        
+
         return Ok(menuPlanOverview);
     }
 
@@ -44,7 +44,7 @@ public class MenuPlansController(IMenuPlanService menuPlanClient) : ControllerBa
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAsync(Guid id)
     {
-        await menuPlanClient.DeleteAsync(new() { Id= id });
+        await menuPlanClient.DeleteAsync(new() { Id = id });
         return NoContent();
     }
 }

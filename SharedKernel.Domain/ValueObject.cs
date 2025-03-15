@@ -6,9 +6,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
 {
     public static bool operator ==(ValueObject? obj1, ValueObject? obj2)
     {
-        if (ReferenceEquals(obj1, obj2)) return true;
-        if (obj1 is null || obj2 is null) return false;
-        return obj1.Equals(obj2);
+        return ReferenceEquals(obj1, obj2) ? true : obj1 is null || obj2 is null ? false : obj1.Equals(obj2);
     }
 
     public static bool operator !=(ValueObject obj1, ValueObject obj2) => !(obj1 == obj2);

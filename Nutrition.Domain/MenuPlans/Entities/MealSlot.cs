@@ -9,7 +9,7 @@ public class MealSlot : Entity<MealSlotId>
 {
     public MealType MealType { get; private set; }
     public ICollection<RecipeId> RecipeIds { get; } = [];
-    
+
     private MealSlot() { }
 
     internal MealSlot(MealType mealType)

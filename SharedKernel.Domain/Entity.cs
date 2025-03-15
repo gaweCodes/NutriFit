@@ -9,14 +9,14 @@ public abstract class Entity<TKey> : IEntityKey<TKey> where TKey : struct, IEnti
     public IEnumerable<IDomainEvent> GetUncommittedEvents() => _uncommittedEvents.AsReadOnly();
     public TKey Id { get; protected set; }
     public long Version { get; protected set; }
-    
+
     public void ClearUncommittedEvents() => _uncommittedEvents.Clear();
     protected void AddUncommittedEvent(IDomainEvent domainEvent) => _uncommittedEvents.Add(domainEvent);
     protected static void CheckRule(IValidationRule rule)
     {
         if (rule.IsBroken()) throw new ValidationRuleException(rule.Message);
     }
-    
+
     protected static void CheckRule(IBusinessRule rule)
     {
         if (rule.IsBroken()) throw new BusinessRuleException(rule.Message);

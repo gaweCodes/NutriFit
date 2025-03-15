@@ -4,7 +4,7 @@ using SharedKernel.Domain;
 
 namespace SharedKernel.Infrastructure;
 
-public class Repository<TAggregate, TStreamId>(IDocumentStore store, IMediator mediator) : IRepository<TAggregate, TStreamId> 
+public class Repository<TAggregate, TStreamId>(IDocumentStore store, IMediator mediator) : IRepository<TAggregate, TStreamId>
     where TAggregate : Entity<TStreamId>, IAggregateRoot
     where TStreamId : struct, IEntityKeyValue
 {

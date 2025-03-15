@@ -5,9 +5,9 @@ using SharedKernel.Domain;
 
 namespace Nutrition.Infrastructure.Read.Projectors;
 
-internal class RecipeProjector(NutritionReadDbContext dbContext) 
-    : IDomainEventHandler<RecipeCreatedDomainEvent>, 
-    IDomainEventHandler<RecipeUpdatedDomainEvent>, 
+internal class RecipeProjector(NutritionReadDbContext dbContext)
+    : IDomainEventHandler<RecipeCreatedDomainEvent>,
+    IDomainEventHandler<RecipeUpdatedDomainEvent>,
     IDomainEventHandler<RecipeIsDeletedChangedDomainEvent>
 {
     public async Task Handle(RecipeCreatedDomainEvent eventData, CancellationToken cancellationToken)

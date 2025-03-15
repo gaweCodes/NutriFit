@@ -29,9 +29,9 @@ public class MenuPlan : Entity<MenuPlanId>, IAggregateRoot
 
         AddUncommittedEvent(new MenuPlanCreatedDomainEvent(Id.Value, StartDate, EndDate));
     }
-    public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker? uniqueMenuPlanDateRangeChecker = null) => 
+    public static MenuPlan CreateNew(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker? uniqueMenuPlanDateRangeChecker = null) =>
         new(startDate, endDate, uniqueMenuPlanDateRangeChecker);
-    
+
     public void UpdateMenuPlan(DateOnly startDate, DateOnly endDate, IUniqueMenuPlanDateRangeChecker? uniqueMenuPlanDateRangeChecker = null)
     {
         StartDate = startDate;
@@ -42,7 +42,7 @@ public class MenuPlan : Entity<MenuPlanId>, IAggregateRoot
             throw new BusinessRuleException("Die Menüpläne müssen einen eindeutigen Zeitraum abdecken. Es darf keine Überschneidungen geben.");
 
         var dayList = Days.ToList();
-        dayList.RemoveAll(x => x.Date < StartDate || x.Date > EndDate);       
+        dayList.RemoveAll(x => x.Date < StartDate || x.Date > EndDate);
         for (var date = StartDate; date <= EndDate; date = date.AddDays(1))
         {
             if (!dayList.Any(x => x.Date == date)) dayList.Add(new(date));

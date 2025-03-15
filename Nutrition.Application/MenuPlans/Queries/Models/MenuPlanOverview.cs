@@ -7,7 +7,7 @@ public class MenuPlanOverview
     public DateOnly EndDate { get; set; }
 
     private MenuPlanOverview() { }
-    
+
     public MenuPlanOverview(Guid id, DateOnly startDate, DateOnly endDate)
     {
         Id = id;

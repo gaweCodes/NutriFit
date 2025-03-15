@@ -8,7 +8,7 @@ namespace NutriFit.Web.Angular.BackendForFrontend.Nutrition;
 public static class RegisterNutritionApiClientsServiceCollectionExtensions
 {
     private readonly static string ServiceName = "nutrition-api";
-    public static void AddNutritionApiClients(this IServiceCollection services) 
+    public static void AddNutritionApiClients(this IServiceCollection services)
     {
         AddNutritionApiClient<IMenuPlanService>(services);
         AddNutritionApiClient<IRecipeService>(services);
