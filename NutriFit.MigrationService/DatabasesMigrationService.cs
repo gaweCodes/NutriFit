@@ -17,8 +17,6 @@ public class DatabasesMigrationService(IServiceProvider serviceProvider, IHostAp
             using var scope = serviceProvider.CreateScope();
             var readDbContext = scope.ServiceProvider.GetRequiredService<NutritionReadDbContext>();
             await readDbContext.Database.MigrateAsync(cancellationToken);
-            var eventsDbContext = scope.ServiceProvider.GetRequiredService<NutritionEventsDbContext>();
-            await eventsDbContext.Database.MigrateAsync(cancellationToken);
         }
         catch (Exception ex)
         {

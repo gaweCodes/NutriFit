@@ -14,10 +14,5 @@ builder.Services.AddDbContext<NutritionReadDbContext>(x =>
     var connectionString = builder.Configuration.GetConnectionString("nutrition-read");
     x.UseNpgsql(connectionString, x => x.MigrationsAssembly(typeof(Program).Assembly));
 });
-builder.Services.AddDbContext<NutritionEventsDbContext>(x =>
-{
-    var connectionString = builder.Configuration.GetConnectionString("nutrition-events");
-    x.UseNpgsql(connectionString, x => x.MigrationsAssembly(typeof(Program).Assembly));
-});
 
 await builder.Build().RunAsync();

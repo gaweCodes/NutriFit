@@ -4,10 +4,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Marten" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Aspire.EventStore" />
+	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedKernel.Domain\SharedKernel.Domain.csproj" />
   </ItemGroup>
