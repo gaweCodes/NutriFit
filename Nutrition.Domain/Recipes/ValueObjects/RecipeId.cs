@@ -2,4 +2,4 @@
 
 namespace Nutrition.Domain.Recipes.ValueObjects;
 
-public record struct RecipeId(Guid Value) : IEntityKeyValue;
+public readonly record struct RecipeId(Guid Value) : IEntityKey;

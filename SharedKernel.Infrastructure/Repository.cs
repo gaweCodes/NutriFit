@@ -8,7 +8,7 @@ namespace SharedKernel.Infrastructure;
 
 public class Repository<TAggregate, TKey>(EventStoreClient client, IMediator mediator) : IRepository<TAggregate, TKey>
     where TAggregate : Entity<TKey>, IAggregateRoot
-    where TKey : struct, IEntityKeyValue
+    where TKey : struct, IEntityKey
 {
     private static readonly Dictionary<string, Type> EventTypeCache = typeof(TAggregate).Assembly.GetTypes()
         .Where(t => typeof(IDomainEvent).IsAssignableFrom(t))

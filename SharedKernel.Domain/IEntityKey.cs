@@ -1,3 +1,6 @@
 ﻿namespace SharedKernel.Domain;
 
-public interface IEntityKey<TKey> where TKey : struct, IEntityKeyValue;
+public interface IEntityKey
+{
+    Guid Value { get; }
+}

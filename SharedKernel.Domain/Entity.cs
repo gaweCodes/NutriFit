@@ -2,7 +2,7 @@
 
 namespace SharedKernel.Domain;
 
-public abstract class Entity<TKey> : IEntityKey<TKey> where TKey : struct, IEntityKeyValue
+public abstract class Entity<TKey> where TKey : struct, IEntityKey
 {
     [JsonIgnore]
     private readonly List<IDomainEvent> _uncommittedEvents = [];

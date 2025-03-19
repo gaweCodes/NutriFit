@@ -2,4 +2,4 @@
 
 namespace Nutrition.Domain.MenuPlans.ValueObjects;
 
-public record struct MenuPlanId(Guid Value) : IEntityKeyValue;
+public readonly record struct MenuPlanId(Guid Value) : IEntityKey;
