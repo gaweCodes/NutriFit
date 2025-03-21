@@ -1,4 +1,4 @@
-﻿using Nutrition.Domain.MenuPlans.Checkers;
+﻿/*using Nutrition.Domain.MenuPlans.Checkers;
 using Nutrition.Domain.MenuPlans.Events;
 using Nutrition.Domain.MenuPlans.Rules;
 using Nutrition.Domain.MenuPlans.ValueObjects;
@@ -58,3 +58,4 @@ public class MenuPlan : Entity<MenuPlanId>, IAggregateRoot
         AddUncommittedEvent(new MenuPlanDeletedDomainEvent(Id.Value));
     }
 }
+*/

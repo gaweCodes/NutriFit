@@ -1,4 +1,4 @@
-﻿using Nutrition.Domain.MenuPlans.ValueObjects;
+﻿/*using Nutrition.Domain.MenuPlans.ValueObjects;
 using SharedKernel.Domain;
 
 namespace Nutrition.Domain.MenuPlans.Entities;
@@ -19,4 +19,4 @@ public class DayPlan : Entity<DayPlanId>
         MealSlots.Add(new(MealType.Lunch));
         MealSlots.Add(new(MealType.Dinner));
     }
-}
+}*/

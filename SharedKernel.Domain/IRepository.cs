@@ -5,5 +5,5 @@ public interface IRepository<TAggregate, TKey>
     where TKey : struct, IEntityKey
 {
     Task StoreAsync(TAggregate aggregate, CancellationToken cancellationToken);
-    Task<TAggregate> GetSpecificAsync(TKey aggregateId, CancellationToken cancellationToken);
+    Task<TAggregate> GetByIdAsync(TKey aggregateId, CancellationToken cancellationToken);
 }

@@ -9,7 +9,7 @@ internal class UpdateRecipeCommandHandler(IRepository<Recipe, RecipeId> recipeRe
 {
     public async Task<Guid> Handle(UpdateRecipeCommand request, CancellationToken cancellationToken)
     {
-        var recipe = await recipeRepository.GetSpecificAsync(new RecipeId(request.Id), cancellationToken);
+        var recipe = await recipeRepository.GetByIdAsync(new RecipeId(request.Id), cancellationToken);
         recipe.UpdateRecipe(request.Name);
         await recipeRepository.StoreAsync(recipe, cancellationToken);
         return recipe.Id.Value;

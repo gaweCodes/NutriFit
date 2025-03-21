@@ -9,7 +9,7 @@ internal class DeleteRecipeCommandHandler(IRepository<Recipe, RecipeId> recipeRe
 {
     public async Task Handle(DeleteRecipeCommand request, CancellationToken cancellationToken)
     {
-        var recipe = await recipeRepository.GetSpecificAsync(new RecipeId(request.Id), cancellationToken);
+        var recipe = await recipeRepository.GetByIdAsync(new RecipeId(request.Id), cancellationToken);
         recipe.Delete();
         await recipeRepository.StoreAsync(recipe, cancellationToken);
     }

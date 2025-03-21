@@ -1,4 +1,4 @@
-﻿using Nutrition.Domain.MenuPlans.Rules;
+﻿/*using Nutrition.Domain.MenuPlans.Rules;
 using Nutrition.Domain.MenuPlans.ValueObjects;
 using Nutrition.Domain.Recipes.ValueObjects;
 using SharedKernel.Domain;
@@ -24,3 +24,4 @@ public class MealSlot : Entity<MealSlotId>
         RecipeIds.Add(recipeId);
     }
 }
+*/

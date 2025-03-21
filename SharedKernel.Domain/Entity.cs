@@ -1,17 +1,19 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace SharedKernel.Domain;
 
-namespace SharedKernel.Domain;
-
-public abstract class Entity<TKey> where TKey : struct, IEntityKey
+public abstract class Entity<TKey>
+    where TKey : struct, IEntityKey
 {
-    [JsonIgnore]
-    private readonly List<IDomainEvent> _uncommittedEvents = [];
-    public IEnumerable<IDomainEvent> GetUncommittedEvents() => _uncommittedEvents.AsReadOnly();
     public TKey Id { get; protected set; }
-    public long Version { get; protected set; }
+}
 
-    public void ClearUncommittedEvents() => _uncommittedEvents.Clear();
-    protected void AddUncommittedEvent(IDomainEvent domainEvent) => _uncommittedEvents.Add(domainEvent);
+public abstract class Entity<TState, TKey> : Entity<TKey>, IEventRegistryAccessor
+    where TState : AggregateState<TKey>
+    where TKey : struct, IEntityKey
+{
+    public new TKey Id => State.Id;
+    protected TState State { get; set; } = null!;
+    IEventRegistry IEventRegistryAccessor.GetEventRegistry() => State;
+    protected void RaiseEvent(IDomainEvent domainEvent) => State.ApplyAndRegister(domainEvent);
     protected static void CheckRule(IValidationRule rule)
     {
         if (rule.IsBroken()) throw new ValidationRuleException(rule.Message);
