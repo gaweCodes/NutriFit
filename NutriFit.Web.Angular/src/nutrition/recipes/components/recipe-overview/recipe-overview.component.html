@@ -1,12 +1,4 @@
 <nutrifit-layout-card pageTitle="Rezepte">
-  <nutrifit-action-bar actionBar>
-    <nutrifit-link
-      text="Erfassen"
-      color="primary"
-      appearance="button"
-      link="create"
-    />
-  </nutrifit-action-bar>
   <nutrifit-row *ngIf="recipes$ | async as recipes" body>
     <nutrifit-col *ngFor="let recipe of recipes" [columnWidth]="3">
       <nutrifit-image-card

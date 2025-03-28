@@ -1,0 +1,18 @@
+﻿<PageTitle>@PageTitle | NutriFit</PageTitle>
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="card-title">@PageTitle</h1>
+        <hr />
+    </div>
+    <div class="card-body" style="padding: 0">
+        @Content
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public required string PageTitle { get; init; }
+    [Parameter] 
+    public required RenderFragment Content { get; init; }
+}

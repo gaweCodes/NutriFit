@@ -1,8 +1,0 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.1738743">
-  <PropertyGroup>
-    <StartupCommand>npm start</StartupCommand>
-    <JavaScriptTestFramework>karma</JavaScriptTestFramework>
-    <ShouldRunBuildScript>false</ShouldRunBuildScript>
-    <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\NutriFit.Web.Angular\browser\</BuildOutputFolder>
-  </PropertyGroup>
-</Project>

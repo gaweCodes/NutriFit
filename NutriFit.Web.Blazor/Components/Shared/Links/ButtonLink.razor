@@ -1,0 +1,18 @@
+﻿@switch (Color)
+{
+    case ColorType.Primary:
+        <NavLink href="@Link" class="btn btn-primary">@Text</NavLink>
+        break;
+    case ColorType.Secondary:
+        <NavLink href="@Link" class="btn btn-secondary">@Text</NavLink>
+        break;
+}
+
+@code {
+    [Parameter]
+    public required string Link { get; init; }
+    [Parameter]
+    public required string Text { get; init; }
+    [Parameter]
+    public required ColorType Color { get; init; }
+}

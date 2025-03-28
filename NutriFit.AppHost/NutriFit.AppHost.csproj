@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -15,7 +15,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NutriFit.MigrationService\NutriFit.MigrationService.csproj" />
-    <ProjectReference Include="..\NutriFit.Web.Angular.BackendForFrontend\NutriFit.Web.Angular.BackendForFrontend.csproj" />
+    <ProjectReference Include="..\NutriFit.Web.Blazor.BackendForFrontend\NutriFit.Web.Blazor.BackendForFrontend.csproj" />
+    <ProjectReference Include="..\NutriFit.Web.Blazor\NutriFit.Web.Blazor.csproj" />
     <ProjectReference Include="..\Nutrition.Api\Nutrition.Api.csproj" />
   </ItemGroup>
 </Project>
