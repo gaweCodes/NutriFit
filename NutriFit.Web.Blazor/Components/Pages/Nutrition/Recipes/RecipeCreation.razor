@@ -2,6 +2,13 @@
 
 <PageCard PageTitle="Rezept erfassen">
     <Content>
-        <p>asdfsa</p>
+        @if (OperatingSystem.IsBrowser())
+        {
+            <p>Diese Komponente läuft in Blazor WebAssembly!</p>
+        }
+        else
+        {
+            <p>Diese Komponente läuft in Blazor Server!</p>
+        }
     </Content>
 </PageCard>

@@ -1,4 +1,4 @@
-﻿<a class="link-@Color.ToString().ToLower() link-underline-opacity-25 link-underline-opacity-100-hover">@Text</a>
+﻿<a class="@GetLinkClass()">@Text</a>
 
 @code {
     [Parameter]
@@ -7,4 +7,11 @@
     public required string Text { get; init; }
     [Parameter]
     public ColorType Color { get; init; } = ColorType.Primary;
+
+    private string GetLinkClass() => Color switch
+    {
+        ColorType.Primary => "link-primary link-underline-opacity-25 link-underline-opacity-100-hover",
+        ColorType.Secondary => "link-secondary link-underline-opacity-25 link-underline-opacity-100-hover",
+        _ => "link-dark link-underline-opacity-25 link-underline-opacity-100-hover"
+    };
 }
