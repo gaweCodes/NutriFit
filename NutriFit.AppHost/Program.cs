@@ -23,12 +23,15 @@ var nutritionApi = builder.AddProject<Projects.Nutrition_Api>("nutrition-api")
 /*builder.AddProject<Projects.NutriFit_Web_Angular_BackendForFrontend>("nutrifit-web-angular-backendforfrontend")
     */
 
-var blazorBff = builder.AddProject<Projects.NutriFit_Web_Blazor_BackendForFrontend>("nutrifit-web-blazor-backendforfrontend")
+var backendforFrontend = builder.AddProject<Projects.NutriFit_BackendForFrontend>("nutrifit-backend-for-frontend")
     .WithReference(nutritionApi)
     .WaitFor(nutritionApi);
 
-builder.AddProject<Projects.NutriFit_Web_Blazor>("nutrifit-web-blazor")
-    .WaitFor(blazorBff)
-    .WithReference(blazorBff);
+builder.AddNpmApp("nutrifit-client-angular", "../NutriFit.Client.Angular")
+    .WithReference(backendforFrontend)
+    .WaitFor(backendforFrontend)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints()
+    .PublishAsDockerFile();
 
 await builder.Build().RunAsync();

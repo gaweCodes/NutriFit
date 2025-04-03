@@ -1,9 +1,0 @@
-<button
-  type="button"
-  class="btn btn-{{ color }}"
-  [ngClass]="{ 'ms-1': color !== 'primary' }"
-  (click)="clicked.emit()"
-  [disabled]="isDisabled"
->
-  {{ text }}
-</button>

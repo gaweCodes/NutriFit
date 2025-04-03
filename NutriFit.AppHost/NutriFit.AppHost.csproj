@@ -10,13 +10,21 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.NodeJs" />
     <PackageReference Include="Aspire.Hosting.PostgreSQL" />
     <PackageReference Include="CommunityToolkit.Aspire.Hosting.EventStore" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NutriFit.BackendforFrontend\NutriFit.BackendForFrontend.csproj" />
     <ProjectReference Include="..\NutriFit.MigrationService\NutriFit.MigrationService.csproj" />
-    <ProjectReference Include="..\NutriFit.Web.Blazor.BackendForFrontend\NutriFit.Web.Blazor.BackendForFrontend.csproj" />
-    <ProjectReference Include="..\NutriFit.Web.Blazor\NutriFit.Web.Blazor.csproj" />
     <ProjectReference Include="..\Nutrition.Api\Nutrition.Api.csproj" />
   </ItemGroup>
+
+	<Target Name="RestoreNpm" BeforeTargets="Build" Condition=" '$(DesignTimeBuild)' != 'true' ">
+		<ItemGroup>
+			<PackageJsons Include="..\*\package.json" />
+		</ItemGroup>
+		<Message Importance="Normal" Text="Installing npm packages for %(PackageJsons.RelativeDir)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
+		<Exec Command="npm install" WorkingDirectory="%(PackageJsons.RootDir)%(PackageJsons.Directory)" Condition="!Exists('%(PackageJsons.RootDir)%(PackageJsons.Directory)/node_modules')" />
+	</Target>
 </Project>
