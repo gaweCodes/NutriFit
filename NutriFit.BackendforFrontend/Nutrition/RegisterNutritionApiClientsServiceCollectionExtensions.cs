@@ -1,4 +1,5 @@
-﻿using Grpc.Net.ClientFactory;
+﻿using Grpc.Core;
+using Grpc.Net.ClientFactory;
 using Nutrition.Api.Contracts.MenuPlans;
 using Nutrition.Api.Contracts.Recipes;
 using ProtoBuf.Grpc.ClientFactory;
@@ -23,6 +24,7 @@ public static class RegisterNutritionApiClientsServiceCollectionExtensions
             o.InterceptorRegistrations.Add(new(InterceptorScope.Channel, sp => sp.GetRequiredService<ErrorHandlingInterceptor>()));
             o.ChannelOptionsActions.Add(options =>
             {
+                options.Credentials = ChannelCredentials.Insecure;
                 options.HttpHandler = new SocketsHttpHandler
                 {
                     PooledConnectionIdleTimeout = Timeout.InfiniteTimeSpan,

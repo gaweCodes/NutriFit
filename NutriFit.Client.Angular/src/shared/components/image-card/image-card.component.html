@@ -1,0 +1,19 @@
+<div class="card w-100">
+  <div clas="card-header">
+    <h2 class="card-title">
+      <nutrifit-link
+        appearance="text"
+        color="primary"
+        [text]="imgLink.text"
+        [link]="imgLink.href"
+        class="text-truncate d-inline-block"
+        style="width: 100%"
+        data-bs-toggle="tooltip"
+        [title]="imgLink.text"
+      ></nutrifit-link>
+    </h2>
+  </div>
+  <a [routerLink]="imgLink.href">
+    <img [alt]="imgSrc.alt" [src]="imgSrc.src" class="card-img-bottom" />
+  </a>
+</div>

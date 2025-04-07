@@ -1,0 +1,29 @@
+<nutrifit-layout-card pageTitle="Menüpläne">
+  <nutrifit-action-bar actionBar>
+    <nutrifit-link
+      text="Erfassen"
+      color="primary"
+      appearance="button"
+      link="create"
+    />
+  </nutrifit-action-bar>
+  <nutrifit-row body>
+    <nutrifit-col [columnWidth]="12">
+      <nutrifit-table
+        [columns]="columns"
+        *ngIf="menuPlans$ | async as menuPlans"
+      >
+        <tr *ngFor="let row of menuPlans">
+          <td>
+            <nutrifit-link
+              appearance="text"
+              color="dark"
+              [text]="row.period"
+              [link]="row.id"
+            ></nutrifit-link>
+          </td>
+        </tr>
+      </nutrifit-table>
+    </nutrifit-col>
+  </nutrifit-row>
+</nutrifit-layout-card>

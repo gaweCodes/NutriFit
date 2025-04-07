@@ -23,7 +23,7 @@ var nutritionApi = builder.AddProject<Projects.Nutrition_Api>("nutrition-api")
 /*builder.AddProject<Projects.NutriFit_Web_Angular_BackendForFrontend>("nutrifit-web-angular-backendforfrontend")
     */
 
-var backendforFrontend = builder.AddProject<Projects.NutriFit_BackendForFrontend>("nutrifit-backend-for-frontend")
+var backendforFrontend = builder.AddProject<Projects.NutriFit_BackendForFrontend>("nutrifitBackendForFrontend")
     .WithReference(nutritionApi)
     .WaitFor(nutritionApi);
 

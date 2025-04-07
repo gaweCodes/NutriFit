@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #005f56;
+$navbar-light-color: black;
+$navbar-light-hover-color: darken($primary, 10%);
+$navbar-light-active-color: $primary;
+$navbar-light-brand-color: $primary;
+$navbar-light-brand-hover-color: $navbar-light-hover-color;
+$navbar-light-toggler-border-color: $primary;
+$navbar-light-icon-color: $primary;
+
+@import "bootstrap/scss/bootstrap";
+@import "ngx-toastr/toastr";

@@ -1,0 +1,35 @@
+{
+  "projectPath": ".",
+  "outputPath": "aspirate-output",
+  "containerImageTags": [
+    "latest"
+  ],
+  "containerBuilder": "docker",
+  "outputFormat": "compose",
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "secrets": {
+    "salt": "HcARGfPqwzxs1WEi",
+    "hash": "TKCowPPsehS9PuzEDd7T6uEpkRO2ux8qJx345MqxbAc=",
+    "secrets": {
+      "postgres-password": {
+        "value": "HcARGfPqwzxs1WEiynW4PPUqPvyoSUDnZfkLorX1Sxc0n2Wyod3dU1qO5likImSNcHM="
+      },
+      "event-store": {},
+      "postgres": {
+        "POSTGRES_PASSWORD": "HcARGfPqwzxs1WEiynW4PPUqPvyoSUDnZfkLorX1Sxc0n2Wyod3dU1qO5likImSNcHM="
+      },
+      "nutrition-read": {},
+      "nutrifit-migration-service": {
+        "ConnectionStrings__nutrition-read": "HcARGfPqwzxs1WEilQzV\u002B\u002B23WLgdUIuErdvvx4z5VRlav2SKtMPHQkvB2HOyDjzfLXJmpyzLuu6PH9qrzl0ZE8b1ThyfoPMOcatg2qbmyUlJnFdN4eprUoUF2pMEZu/HvAn4ywJk24\u002BhSs9dQZ4siaGm0o069M7RIUVQunM="
+      },
+      "nutrition-api": {
+        "ConnectionStrings__event-store": "HcARGfPqwzxs1WEi97XAUPAKWsmgYkNqCRBchaHlQg9d4CSctsHbUxWJ/HOyHzvYKHBnow3UrKGHH9u9lg==",
+        "ConnectionStrings__nutrition-read": "HcARGfPqwzxs1WEilQzV\u002B\u002B23WLgdUIuErdvvx4z5VRlav2SKtMPHQkvB2HOyDjzfLXJmpyzLuu6PH9qrzl0ZE8b1ThyfoPMOcatg2qbmyUlJnFdN4eprUoUF2pMEZu/HvAn4ywJk24\u002BhSs9dQZ4siaGm0o069M7RIUVQunM="
+      },
+      "nutrifitBackendForFrontend": {},
+      "nutrifit-client-angular": {}
+    }
+  },
+  "processAllComponents": true
+}
