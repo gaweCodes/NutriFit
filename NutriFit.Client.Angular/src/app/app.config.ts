@@ -15,6 +15,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { LoadingInterceptor } from '../shared/interceptors/loading-interceptor';
 import { apiErrorInterceptor } from '../shared/interceptors/api-error-interceptor';
+import { LocalStores } from '../shared/interfaces/local-stores-injection-token';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,5 +30,6 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
+    { provide: LocalStores, useValue: { recipes: 'key' } },
   ],
 };
